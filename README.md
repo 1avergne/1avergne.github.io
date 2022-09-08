@@ -6,6 +6,8 @@
 
 🐦 [Tweet me !](https://twitter.com/1avergne)
 
+🤝 [Network me ?](https://www.linkedin.com/in/amaurylavergne/)
+
 ---
 
 # Articles
@@ -28,3 +30,5 @@
 - [Convertir les caractères ASCII du code hexa au symbole](./Articles/convertir-code-hexa-sql.html)
 - [Créer une table 'Calendrier'](./Articles/creer-calendrier-sql.html)
 - [Suppression par lots](./Articles/suppression-lot.html)
+
+🦥
