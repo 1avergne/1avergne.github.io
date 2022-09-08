@@ -1,14 +1,16 @@
+# Creer un Pareto avec Power BI
+
 _« Le principe de Pareto, aussi appelé loi de Pareto, principe des 80-20 ou encore loi des 80-20, est un phénomène empirique constaté dans certains domaines : environ 80 % des effets sont le produit de 20 % des causes. Il a été appliqué à des domaines comme le contrôle qualité. On considère souvent que les phénomènes pour lesquels ce principe est vérifié suivent une forme particulière de distribution de Pareto. »_ https://fr.wikipedia.org/wiki/Principe_de_Pareto
 
 Représenté de manière graphique ça ressemble à ça :
 
-![image](uploads/2d6be63f94e9528e171c0944cbc11e1a/image.png)
+![image](../Images/pareto-sales.gif)
 
 Le diagramme de Pareto, permet donc du visualiser rapidement quand les causes ont produit une certaine quantité d’effet.
 
 Nativement il n’y a pas de visuel _Pareto_ dans Power BI. Mais puisqu’il s’agit simplement d’un histogramme et d’une courbe combinés, nous allons pouvoir nous débrouiller avec le visuel _Graphiques en courbes et histogramme empilé_.
 
-![image](uploads/42ce3e440b926fbe4c51e5a17bf3fd96/image.png)
+![image](../Images/pareto-type-visuel-courbe-histo.png)
 
 Pour faire mon Pareto je vais utiliser un jeu de données d'exemple appelé « US Sales ».
 
@@ -18,7 +20,7 @@ La méthode est la suivante :
 2. Faire une mesure avec les valeurs cumulées
 3. Faire un ratio des valeurs cumulées par rapport au total.
 
-![image](uploads/2bd83f5fc2bb8e9586494759f9403141/image.png)
+![image](../Images/pareto-table-rank.png)
 
 1. Je veux faire mon Pareto une mesure appelée _Gross Profit_, par rapport à la colonne _ProductName_ contenue dans ma table de faits _Sales_. Je détermine d'abords le rang de chaque valeur de cette colonne avec **RANKX()** :
 
@@ -60,3 +62,5 @@ DIVIDE(
   ; total
 )
 ```
+
+![image](../Images/pareto-visuel-resultat.png)

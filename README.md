@@ -10,6 +10,7 @@
 
 # Articles
 
+- [Un camembert avec le regroupement des petites catégories](./Articles/Camembert-avec-regroupement.html)
 - [Créer un Pareto dans Power-BI](./Articles/Cr%C3%A9er-un-Pareto.html)
-- [Embarquer une vidéo-dans-un-Dashboard-Power-BI](./Articles/Embarquer-une-vid%C3%A9o-dans-un-Dashboard-Power-BI.md)
+- [Embarquer une vidéo-dans-un-Dashboard-Power-BI](./Articles/Embarquer-une-vid%C3%A9o-dans-un-Dashboard-Power-BI.html)
 - [Filtre dynamiques dans les _dashboards_ Power-BI](./Articles/Dynamic-filter-in-dashboard.html)
