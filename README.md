@@ -34,4 +34,6 @@
 - [Créer une table 'Calendrier'](./Articles/creer-calendrier-sql.html)
 - [Suppression par lots](./Articles/suppression-lot.html)
 - [Retirer les accents dans un texte en SQL et en PowerQuery](./Articles/supprimer-accents.md)
+
+
 🦥
