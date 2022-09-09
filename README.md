@@ -33,5 +33,5 @@
 - [Convertir les caractères ASCII du code hexa au symbole](./Articles/convertir-code-hexa-sql.html)
 - [Créer une table 'Calendrier'](./Articles/creer-calendrier-sql.html)
 - [Suppression par lots](./Articles/suppression-lot.html)
-
+- [Retirer les accents dans un texte en SQL et en PowerQuery](./Articles/supprimer-accents.md)
 🦥

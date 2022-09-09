@@ -9,7 +9,7 @@ Donc voici comment _simplement_ retirer les accents d'un texte.
 ## PowerQuery 
 
 La solution consiste à convertir le code en binaire pour ensuite le repasser en code avec un encodage ASCII. 
-Pour cela on crée une nouvelle colonne : ```Text.FromBinary(Text.ToBinary  ([#"Texte-avec-accent"], 1251 ),  TextEncoding.Ascii))```
+Pour cela on crée une nouvelle colonne : ```Text.FromBinary(Text.ToBinary ([#"Texte-avec-accent"], 1251), TextEncoding.Ascii))```
 
 ![image](../Images/accent-powerquery.png)
 
@@ -21,7 +21,7 @@ in
     #"Personnalisée ajoutée"
 ```
 
-_Merci [Denis@Stackoverflow](https://stackoverflow.com/questions/71969831/power-query-how-to-remove-diacritic-accent-symbols-from-text)_
+_Merci [Denis](https://stackoverflow.com/questions/71969831/power-query-how-to-remove-diacritic-accent-symbols-from-text) !_
 
 ## SQL
 
