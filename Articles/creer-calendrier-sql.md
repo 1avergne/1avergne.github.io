@@ -6,7 +6,7 @@ On a toujours besoin d'une table de type calendrier avec la liste des jours et �
 
 Pour cela on crée la table avec une colonne _date_ qui va contenir la date du jour, et les autres colonnes. Toutes les autres colonnes sont définies par une formule basée sur _date_. Cela permet de générer les valeurs pour toutes les colonnes en alimentant uniquement la colonne _date_.
 
-```
+```sql
 CREATE TABLE [dwh].[dim_calendar](
     [date] [date] NOT NULL,
     [day]  AS (datepart(day,[date])),

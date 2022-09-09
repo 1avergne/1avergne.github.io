@@ -23,7 +23,7 @@ Dans l’exemple suivant :
 - Les contrôles (boutons lecture, pause, …) ne sont pas affichés (pas d’instruction « controls »).
 - Je rajoute un fond noir pour les zones qui ne sont pas couverte par la vidéo avec l’instruction « style ».
 
-```
+```xml
 <video width="770" height="350" muted autoplay loop
 src="https://www.sample-videos.com/video123/mp4/480/big_buck_bunny_480p_1mb.mp4" type="video/mp4"
 style="width: 770px; height: 350px; background-color:black;">

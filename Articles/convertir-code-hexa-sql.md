@@ -6,7 +6,7 @@ J'ai plein de chaînes de caractères avec des _$20_. 20 est le code hexadécima
 
 J'ai donc écris une fonction qui convertie dans une chaîne les séquences "$**" (avec ** un nombre hexadécimal entre 00 et 7F) en symbole ASCII :
 
-```
+```sql
 CREATE FUNCTION [dbo].[ReplaceHex]
 (@str NVARCHAR(255)
 )

@@ -4,7 +4,7 @@
 
 Un SQL Agent avec une centaine de jobs ça fait beaucoup de clics quand on veut tout désactiver ... Mais heureusement, il y a un script pour ça !
 
-```
+```sql
 select s.name as job_name
 --, s.job_id 
 , s.enabled

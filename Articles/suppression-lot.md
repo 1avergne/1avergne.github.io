@@ -4,7 +4,7 @@ Pour éviter de saturer les logs d'une base, ou d'avoir une requête trop longue
 
 Pour cela on utilise l'instruction TOP dans un DELETE répété dans un boucle :
 
-```
+```sql
 declare @rc int = 200000
  
 while @rc >= 200000 

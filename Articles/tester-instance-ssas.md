@@ -4,11 +4,11 @@ Pour un projet avec du SSAS multidimensionnel, j'ai eu besoin de mettre en place
 
 ![image](../Images/ssas-etat-instance.png)
 
-Cette commande permet d'exécuter du code MDX ou XMLA depuis l'invite de commande.
+Cette commande permet d'exécuter du code [MDX](https://docs.microsoft.com/fr-fr/sql/mdx/mdx-language-reference-mdx) ou [XMLA](https://docs.microsoft.com/fr-fr/analysis-services/xmla/xml-for-analysis-xmla-reference) depuis l'invite de commande.
 
 Idéalement le script est appelé depuis une autre VM que celle qui héberge l'instance SSAS. Cela permet de tester si l'instance est bien accessible à travers le réseau. On teste si le cube est bien traité et utilisable en appelant une mesure qui est renvoie le nombre de lignes dans la table de fait.
 
-```
+```powershell
 $server = "localhost"    #SSAS instance name.
 $database = "BASE_OLAP"  #SSAS database name.
  

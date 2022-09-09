@@ -1,18 +1,20 @@
-With the 'Web-content' tile, it's possible to add a custom menu Inside a Power BI dashboard !
+# Dynamic filter in dashboard
+
+With the _Web-content_ tile, it's possible to add a custom menu Inside a Power BI dashboard !
 
 To do this, I use a javascript code that change the target url of a link according to the selected value in a dropdown menu.
 
-![image](uploads/15ab243d250a5e73be6d66824bbfc7e7/image.png)
+![image](../Images/dynamic-filter-demo.gif)
 
-Generated url embed the value as a parameter. The syntax is : URL?filter=Table/Field eq 'value'
+Generated url embed the value as a parameter. The syntax is : ```URL?filter=Table/Field eq 'value'```
 
-All documentation about this functionality is here : https://docs.microsoft.com/en-us/power-bi/service-url-filters
+All documentation about this functionality is [here](https://docs.microsoft.com/en-us/power-bi/service-url-filters).
 
-![image](uploads/3e0104b9fed27c698071cc278e697b99/image.png)
+![image](../Images/dynamic-filter-screen.png)
 
 Here is my code:
 
-```
+```html
 <script> 
 function func(o){
     var reportUrl = "https://app.powerbi.com/groups/myP0werB1R3p0rtUrl";

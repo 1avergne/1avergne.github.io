@@ -13,7 +13,7 @@ All I have to do to use it is :
 
 ![image](../Images/clipboard-automatic-entry.gif)
 
-```
+```powershell
 Param(
   [int]$delay = 5
 )
@@ -74,4 +74,4 @@ foreach ($line in $inputString)
 #thx: https://blogs.msdn.microsoft.com/timid/2014/08/05/send-keys/
 ```
 
-ps: I copied most of the 'SendKeys' part from [here](https://blogs.msdn.microsoft.com/timid/2014/08/05/send-keys/).
+_ps: I copied most of the 'SendKeys' part from [here](https://blogs.msdn.microsoft.com/timid/2014/08/05/send-keys/)._
