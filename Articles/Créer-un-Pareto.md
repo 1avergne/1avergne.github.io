@@ -28,7 +28,7 @@ La méthode est la suivante :
 Product Rank by Gross Profit = 
 RANKX(
   DISTINCT(ALLSELECTED(Sales[Product Name]))
-  ; [Gross Profit]
+  , [Gross Profit]
 )
 ```
 
@@ -44,7 +44,7 @@ Gross Profit Pareto =
 VAR currentRank = [Product Rank by Gross Profit]
 RETURN 
 CALCULATE([Gross Profit]
-  ; FILTER(ALLSELECTED(Sales[Product Name]); [Product Rank by Gross Profit] <= currentRank)
+  , FILTER(ALLSELECTED(Sales[Product Name]), [Product Rank by Gross Profit] <= currentRank)
 )
 ```
 
@@ -52,14 +52,14 @@ CALCULATE([Gross Profit]
 
 ```
 Gross Profit Pareto = 
-VAR total = CALCULATE([Gross Profit]; ALLSELECTED(Sales[Product Name]))
+VAR total = CALCULATE([Gross Profit], ALLSELECTED(Sales[Product Name]))
 VAR currentRank = [Product Rank by Gross Profit]
 RETURN 
 DIVIDE(
   CALCULATE([Gross Profit]
-    ; FILTER(ALLSELECTED(Sales[Product Name]); [Product Rank by Gross Profit] <= currentRank)
+    , FILTER(ALLSELECTED(Sales[Product Name]), [Product Rank by Gross Profit] <= currentRank)
   )
-  ; total
+  , total
 )
 ```
 
