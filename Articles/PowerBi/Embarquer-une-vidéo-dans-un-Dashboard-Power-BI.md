@@ -2,13 +2,13 @@ Power BI permet d’afficher dans un Dashboard des vidéos hébergé sur Vimeo o
 
 Pour cela il faut utiliser le type de vignette _Web content_ pour embarquer la vidéo dans le Dashboard.
 
-![image](../Images/video-dashboard-add-tile.png)
+![image](/Images/video-dashboard-add-tile.png)
 
 Par exemple, en allant sur le site internet d’une grande entreprise de publicité, on peut voir en arrière-plan une vidéo qui tourne en boucle, si je devais faire un Dashboard pour cette entreprise il serait intéressant d’afficher cette vidéo.
 
 Une rapide inspection du code de la page permet d’obtenir l’adresse source de la vidéo :
 
-![image](../Images/video-dashboard-code-div.png)
+![image](/Images/video-dashboard-code-div.png)
 
 En créant une nouvelle vignette de _type Web Content_ et en mettant le morceau de code `<video … >…</video>`, j’affiche directement la vidéo telle qu’elle est sur le site original.
 
@@ -30,4 +30,4 @@ style="width: 770px; height: 350px; background-color:black;">
 </video>
 ```
 
-![image](../Images/video-dashboard-manip.gif)
+![image](/Images/video-dashboard-manip.gif)

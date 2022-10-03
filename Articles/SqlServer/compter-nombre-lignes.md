@@ -16,7 +16,7 @@ and t.name like '%'
 group by s.name, t.name
 ```
 
-![image](../Images/comptage-lignes-sql.png)
+![image](/Images/comptage-lignes-sql.png)
 
 Et pour avoir le détail par partition :
 

@@ -4,13 +4,13 @@ With the _Web-content_ tile, it's possible to add a custom menu Inside a Power B
 
 To do this, I use a javascript code that change the target url of a link according to the selected value in a dropdown menu.
 
-![image](../Images/dynamic-filter-demo.gif)
+![image](/Images/dynamic-filter-demo.gif)
 
 Generated url embed the value as a parameter. The syntax is : ```URL?filter=Table/Field eq 'value'```
 
 All documentation about this functionality is [here](https://docs.microsoft.com/en-us/power-bi/service-url-filters).
 
-![image](../Images/dynamic-filter-screen.png)
+![image](/Images/dynamic-filter-screen.png)
 
 Here is my code:
 

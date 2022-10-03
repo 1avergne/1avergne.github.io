@@ -2,7 +2,7 @@
 
 J'ai plein de chaînes de caractères avec des _$20_. 20 est le code hexadécimal pour l'espace, donc je pourrai faire un simple _REPLACE_. Mais pourquoi faire simple quand on peut faire une fonction ?
 
-![image](../Images/sql-code-hexa.png)
+![image](/Images/sql-code-hexa.png)
 
 J'ai donc écris une fonction qui convertie dans une chaîne les séquences "$**" (avec ** un nombre hexadécimal entre 00 et 7F) en symbole ASCII :
 

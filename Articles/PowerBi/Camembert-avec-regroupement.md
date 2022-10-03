@@ -2,15 +2,15 @@
 
 Le problème quand on fait un diagramme en camembert (Piechart) c'est que les toutes petites catégories ne sont pas bien lisibles : on a souvent une série de toutes petites tranches "tassées" et ce qui ne donne pas vraiment d'information pertinente. 
 
-![image](../Images/camembert-sans-categories.png)
+![image](/Images/camembert-sans-categories.png)
 
 C'est pour cela qu'il est parfois mieux de regrouper les valeurs faibles dans une seule catégorie "autres". Certains visuels custom proposent cette option (par exemple celui-là). Mais si comme moi vous préférez utiliser au maximum les visuels standards, voilà comment faire !
 
-![image](../Images/camembert-ouverture-pbi.gif)
+![image](/Images/camembert-ouverture-pbi.gif)
 
 J'utilise un modèle simple basé sur la base de démo EchoPilote. Les données de faits sont dans la table "Vente Detail", on va analyser les ventes à travers la dimension "Produit". L'objectif est de faire un Piechart des ventes par produits où tous les produits avec une part de vente inférieure à 2% sont regroupés dans une seul catégorie "Autres produits".
 
-![image](../Images/camembert-modele-echopilote.png) 
+![image](/Images/camembert-modele-echopilote.png) 
 
 ## 1. Modification des données :
 J'ajoute une nouvelle ligne dans la table des produits, l'agrégation dans le Piechart se fera sur cette valeur.
@@ -18,13 +18,13 @@ Dans mon cas j'ajoute la ligne en M dans l'éditeur de requêtes. Mais il est po
 
 Je crée une nouvelle table avec uniquement ma ligne de valeur. Il faut faire attention a utiliser un ID qui n'est pas utilisé :
 
-![image](../Images/camembert-create-table.png)
+![image](/Images/camembert-create-table.png)
 
 Je désactive le chargement de cette nouvelle table. Je l'ajoute à la requête "Produit" :
 
-![image](../Images/camembert-append-table.png)
+![image](/Images/camembert-append-table.png)
 
-![image](../Images/camembert-resultat-table.png)
+![image](/Images/camembert-resultat-table.png)
 
 Mon modèle est donc inchangé, il y a juste une ligne supplémentaire dans ma dimension produit.
 
@@ -47,7 +47,7 @@ CA (gp) = VAR s = 0.02
 RETURN if([CA % Produits] >= s, [CA], BLANK())
 ```
 
-![image](../Images/camembert-avec-categories.png)
+![image](/Images/camembert-avec-categories.png)
 
 On voit que les parts du camembert les plus petites ne sont plus affichées.
 
@@ -61,7 +61,7 @@ RETURN if(SELECTEDVALUE(Produit[ProduitID]) = -1
 )
 ```
 
-![image](../Images/camembert-avec-categories2.png)
+![image](/Images/camembert-avec-categories2.png)
 
 Avec un seuil de 2%, la catégorie "Autres produits" s'est glissée à la 2e place.
 
@@ -70,9 +70,9 @@ Avec un seuil de 2%, la catégorie "Autres produits" s'est glissée à la 2e pla
 Il serai maintenant intéressant de pouvoir changer dynamiquement le seuil.
 Pour cela on va utiliser un paramètre "what-if"
 
-![image](../Images/camembert-parametre-whatif-bouton.png)
+![image](/Images/camembert-parametre-whatif-bouton.png)
 
-![image](../Images/camembert-parametre-whatif-config.png)
+![image](/Images/camembert-parametre-whatif-config.png)
 
 Dans la mesure, je remplace la variable "s" par la valeur sélectionnée dans le segment :
 
@@ -85,4 +85,4 @@ CA (gp) = if(SELECTEDVALUE(Produit[ProduitID]) = -1
 
 La valeur de seuil peut être maintenant sélectionnée directement dans le segment.
 
-![image](../Images/camembert-avec-categories-dyn.gif)
+![image](/Images/camembert-avec-categories-dyn.gif)

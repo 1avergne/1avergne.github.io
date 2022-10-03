@@ -11,7 +11,7 @@ All I have to do to use it is :
 - Press Ctrl+Alt+V
 - Select the destination window
 
-![image](../Images/clipboard-automatic-entry.gif)
+![image](/Images/clipboard-automatic-entry.gif)
 
 ```powershell
 Param(

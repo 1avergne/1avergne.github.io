@@ -2,7 +2,7 @@
 
 Pour un projet avec du SSAS multidimensionnel, j'ai eu besoin de mettre en place une solution de monitoring pour tester si l'instance SSAS est bien accessible aux utilisateurs et si les cubes sont traités. Pour cela j'ai utilisé la commande [Invoke-ASCmd](https://docs.microsoft.com/en-us/powershell/module/sqlserver/invoke-ascmd) dans PowerShell.
 
-![image](../Images/ssas-etat-instance.png)
+![image](/Images/ssas-etat-instance.png)
 
 Cette commande permet d'exécuter du code [MDX](https://docs.microsoft.com/fr-fr/sql/mdx/mdx-language-reference-mdx) ou [XMLA](https://docs.microsoft.com/fr-fr/analysis-services/xmla/xml-for-analysis-xmla-reference) depuis l'invite de commande.
 

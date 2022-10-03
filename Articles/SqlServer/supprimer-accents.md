@@ -11,7 +11,7 @@ Donc voici comment _simplement_ retirer les accents d'un texte.
 La solution consiste à convertir le code en binaire pour ensuite le repasser en code avec un encodage ASCII. 
 Pour cela on crée une nouvelle colonne : ```Text.FromBinary(Text.ToBinary ([#"Texte-avec-accent"], 1251), TextEncoding.Ascii))```
 
-![image](../Images/accent-powerquery.png)
+![image](/Images/accent-powerquery.png)
 
 ```
 let
@@ -42,6 +42,6 @@ FROM [dbo].[DimProduit]
 WHERE TRANSLATE(ProduitDesc, @avecAccent, @sansAccent) <> [ProduitDesc]
 ```
 
-![image](../Images/accent-sql.png)
+![image](/Images/accent-sql.png)
 
 **Attention** : La fonction suit la collation de la base de données. Si la base est configurée comme insensible à la casse ; les caractère seront remplacés par le premier équivalent trouvé majuscules et minuscules confondues. Par exemple ```select TRANSLATE('où fuît-il les ÉPHÉMÈRES ?', 'àéèùÎ', 'aeeuI')``` renvoit _ou fuIt-il les ePHeMeRES ?_ 
