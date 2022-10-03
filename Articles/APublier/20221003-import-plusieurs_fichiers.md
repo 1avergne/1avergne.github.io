@@ -1,6 +1,8 @@
-# Importer plusieurs fichiers en parallèles avec Power-Query
+# Importer plusieurs fichiers en parallèle avec Power-Query
 
 J'ai eu envie de faire un rapport sur la météo et ça tombe bien, [Météo France](https://donneespubliques.meteofrance.fr/) donne accès à l'historique d'une cinquantaine de stations sur 15 ans. On peut télécharger les données [ici](https://donneespubliques.meteofrance.fr/?fond=produit&id_produit=90&id_rubrique=32) pour une date ou pour un mois précis. 
+
+![image](/Images/20221003-import-plusieurs_fichiers/rapportMeteo.png)]
 
 Je rencontre deux problématiques :
 - récuperer les fichiers pour plusieurs mois sans avoir à faire une requête par mois.
@@ -12,8 +14,8 @@ En téléchargeant un premier fichier j'identifie le format du nom du fichier : 
 
 ![image](/Images/20221003-import-plusieurs_fichiers/lienTelechargement.png)
 
-Il suffi de changer l'année et le mois pour acceder aux données d'une autre période.
-Avec un langage procédurale ce serait facile de récuperer tout l'historique dans une boucle :
+Il suffit de changer l'année et le mois pour acceder aux données d'une autre période.
+Avec un langage procédurale ce serai facile de récuperer tout l'historique dans une boucle :
 
 ```powershell
 $i = 0
@@ -37,7 +39,7 @@ Disons que l'on veuille récupérer 3 ans d'historiques, soit 36 mois :
 - On génère une liste de 1 à 36. La liste doit être convertie en table et on peut renommer la colonne.
 
 ```
-= List.Generate(() => 0, each _ < #"Nombre de mois" + 1, each _ + 1)
+= List.Generate(() > 0, each _ <= 36, each _ + 1)
 ```
 
 - Pour chaque valeur on détermine un numéro de mois en texte au format _YYYYMM_ (en repartant de la date du jour). 
@@ -95,7 +97,7 @@ On peut à present développer la nouvelle colonne pour récuperer le contenu de
 Le script complet de la requête PowerQuery est : 
 ```
 let
-    Source = List.Generate(() => 0, each _ < #"Nombre de mois" + 1, each _ + 1),
+    Source = List.Generate(() > 0, each _ <= 36, each _ + 1),
     #"Converti en table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
     #"Colonnes renommées" = Table.RenameColumns(#"Converti en table",{{"Column1", "Offset"}}),
     #"Code Mois ajouté" = Table.AddColumn(#"Colonnes renommées", "Code Mois", each DateTime.ToText(Date.AddMonths(Date.EndOfMonth(DateTime.LocalNow()), 0 - [Offset]), "yyyyMM")),
