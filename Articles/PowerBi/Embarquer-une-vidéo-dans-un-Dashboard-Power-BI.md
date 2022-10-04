@@ -1,3 +1,5 @@
+# Embarquer une vidéo dans un _dashboard_ Power-BI
+
 Power BI permet d’afficher dans un Dashboard des vidéos hébergé sur Vimeo ou YouTube, mais il est aussi possible de diffuser des vidéo MP4 / WEBM / OGV directement accessible sur internet.
 
 Pour cela il faut utiliser le type de vignette _Web content_ pour embarquer la vidéo dans le Dashboard.
