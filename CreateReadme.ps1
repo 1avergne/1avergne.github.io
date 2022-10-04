@@ -4,7 +4,7 @@
 
     Write-Host $dir
     $tdir = $dir.Split("\")
-    $("#" * $level) + " " + $dir.Substring(1 + $dir.LastIndexOf("\")) | out-file $destFile -Append -Encoding utf8
+    "`n" + $("#" * $level) + " " + $dir.Substring(1 + $dir.LastIndexOf("\")) | out-file $destFile -Append -Encoding utf8
 
     $d = Get-ChildItem $dir | Sort-Object -Descending LastWriteTime
 
