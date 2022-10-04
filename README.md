@@ -16,6 +16,7 @@
 
 ## Power BI
 
+- [Importer plusieurs fichiers en parallèle avec Power Query](./Articles/20221003-import-plusieurs_fichiers.html)
 - [Un camembert avec le regroupement des petites catégories](./Articles/PowerBi/Camembert-avec-regroupement.html)
 - [Créer un Pareto dans Power-BI](./Articles/PowerBi/Cr%C3%A9er-un-Pareto.html)
 - [Embarquer une vidéo dans un _dashboard_ Power-BI](./Articles/PowerBi/Embarquer-une-vid%C3%A9o-dans-un-Dashboard-Power-BI.html)
