@@ -4,7 +4,7 @@
 
     Write-Host $dir
     $tdir = $dir.Split("\")
-    $("#" * $level) + " " + $dir.Substring(1 + $dir.LastIndexOf("\")) >> $destFile 
+    $("#" * $level) + " " + $dir.Substring(1 + $dir.LastIndexOf("\")) | out-file $destFile -Append -Encoding utf8
 
     $d = Get-ChildItem $dir | Sort-Object -Descending LastWriteTime
 
@@ -21,7 +21,7 @@
             {
                 $title = Get-Content $path -Encoding utf8 | select -first 1
                 $line = "- [" + $title.TrimStart("#").TrimStart() + "](" + $path.Replace("\", "/").Replace(".md", ".html") + ")"
-                $line >> $destFile 
+                $line | out-file $destFile -Append -Encoding utf8
             }
         }
     }
@@ -31,6 +31,6 @@
 
 $destFile = "README.md"
 
-Get-Content "homepage.md" -Encoding utf8 > $destFile 
+Get-Content "homepage.md" | out-file $destFile -Encoding default
 
 subSection -dir ".\Articles" -level 1
