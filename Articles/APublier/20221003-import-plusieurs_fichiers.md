@@ -1,33 +1,33 @@
-# Importer plusieurs fichiers en parallèle avec Power-Query
+# Importer plusieurs fichiers en parallèle avec Power Query
 
 J'ai eu envie de faire un rapport sur la météo et ça tombe bien, [Météo France](https://donneespubliques.meteofrance.fr/) donne accès à l'historique d'une cinquantaine de stations sur 15 ans. On peut télécharger les données [ici](https://donneespubliques.meteofrance.fr/?fond=produit&id_produit=90&id_rubrique=32) pour une date ou pour un mois précis. 
 
 ![image](/Images/20221003-import-plusieurs_fichiers/rapportMeteo.png)]
 
 Je rencontre deux problématiques :
-- récuperer les fichiers pour plusieurs mois sans avoir à faire une requête par mois.
+- récupérer les fichiers pour plusieurs mois sans avoir à faire une requête par mois.
 - décompresser les fichiers qui sont fournis en _.gz_.
 
 En téléchargeant un premier fichier j'identifie le format du nom du fichier : l'année et le mois sont indiqués dans l'adresse.
 
-- _donneespubliques.meteofrance.fr/donnees_libres/Txt/Synop/Archive/synop.**202210**.csv.gz_
+_donneespubliques.meteofrance.fr/donnees_libres/Txt/Synop/Archive/synop.**202210**.csv.gz_
 
 ![image](/Images/20221003-import-plusieurs_fichiers/lienTelechargement.png)
 
-Il suffit de changer l'année et le mois pour acceder aux données d'une autre période.
-Avec un langage procédurale ce serai facile de récuperer tout l'historique dans une boucle :
+Il suffit de changer l'année et le mois pour accéder aux données d'une autre période.
+Avec un langage procédural ce serai facile de récupérer tout l'historique dans une boucle :
 
 ```powershell
 $i = 0
 while($i -lt 12){
     $m = ((Get-Date).AddMonths(-1 * $i)) | Get-Date -Format "yyyyMM"
     $uri = "https://donneespubliques.meteofrance.fr/donnees_libres/Txt/Synop/Archive/synop." + $m + ".csv.gz"
-    Invoke-RestMethod $uri -Method 'GET' > $("synop." + $m + ".csv.gz")
+    Invoke-RestMethod $uri -Method 'GET' -OutFile $("synop." + $m + ".csv.gz") 
     $i = $i + 1
 }
 ```
 
-Mais dans PowerQuery, il n'y a pas de boucle. Il faut donc procéder en 3 étapes :
+Mais dans Power Query, il n'y a pas de boucle. Il faut donc procéder en 3 étapes :
 - Etablir la liste des fichiers à télécharger
 - Ecrire une fonction capable de traiter un fichier
 - Appeler la fonction sur chaque fichier de la liste
@@ -66,7 +66,7 @@ Les fichiers récupérés sont des _CSV_ compressés en _ZIP_.
 Il faut les décompresser pour ensuite les traiter. Pour cela on utilise l'instruction [```Binary.Decompress```](https://learn.microsoft.com/fr-fr/powerquery-m/binary-decompress) (je pense que le nom est assez explicite).
 Une fois le fichier lisible, on le traite comme un _CSV_ et on remonte la première ligne en en-tête.
 
-Tout ce processus doit être encapsulé dans une fonction pour pouvoir être appellé pour chaque ligne de notre première requête :
+Tout ce processus doit être encapsulé dans une fonction pour pouvoir être appelé pour chaque ligne de notre première requête :
 
 ```
 (ZIPFile) =>
@@ -82,19 +82,19 @@ On appelle la fonction _Unzip_ histoire de rester original.
 
 ![image](/Images/20221003-import-plusieurs_fichiers/fonctionUnzip.png)
 
-## Appeller la fonction pour chaque fichier
+## Appeler la fonction pour chaque fichier
 
 On a la liste des fichiers (téléchargés en binaire) et une fonction pour les lire, il ne reste plus qu'à utiliser tout ça.
 
-Dans la première requête, on crée une nouvelle colonne en appellant une fonction personalisée : la fonction _Unzip_ crée précedement ! La fonction prend en paramètre la colonne des fichiers en binaire.
+Dans la première requête, on crée une nouvelle colonne en appelant une fonction personnalisée : la fonction _Unzip_ crée précédemment ! La fonction prend en paramètre la colonne des fichiers en binaire.
 
 ![image](/Images/20221003-import-plusieurs_fichiers/appelerFonctionPersonalisee.png)
 
-On peut à present développer la nouvelle colonne pour récuperer le contenu de chaque fichier dans la même table.
+On peut à présent développer la nouvelle colonne pour récupérer le contenu de chaque fichier dans la même table.
 
 ![image](/Images/20221003-import-plusieurs_fichiers/developperColonneUnzip.png)
 
-Le script complet de la requête PowerQuery est : 
+Le script complet de la requête Power Query est :
 ```
 let
     Source = List.Generate(() > 0, each _ <= 36, each _ + 1),
@@ -113,10 +113,12 @@ in
 ## La même en mieux
 
 Si on souhaite améliorer la requête et se conformer aux bonnes pratiques :
-- Séparer les étape en plusieure requêtes et ne garder que la dernière requête d'active.
+- Séparer les étapes en plusieurs requêtes et ne garder que la dernière requête d'active.
 - Utiliser des paramètres pour le nombre de mois d'historique, l'adresse du site web, et le chemin relatif.
 - Utiliser une balise dans le chemin relatif pour le numéro du mois qui sera remplacé dynamiquement lors du chargement :
 
 ```
 = Table.AddColumn(#"Personnalisée ajoutée", "Fichier", each Web.Contents(#"Base Uri", [RelativePath = Text.Replace(#"Complement Uri", "<mois>", [Code Mois])]))
 ```
+
+![image](/Images/20221003-import-plusieurs_fichiers/dependancesRequetes.png)
