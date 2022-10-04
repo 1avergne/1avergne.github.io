@@ -3,7 +3,6 @@
     , [int]$level)
 
     Write-Host $dir
-    $tdir = $dir.Split("\")
     "`n" + $("#" * $level) + " " + $dir.Substring(1 + $dir.LastIndexOf("\")) | out-file $destFile -Append -Encoding utf8
 
     $d = Get-ChildItem $dir | Sort-Object -Descending LastWriteTime
@@ -19,7 +18,7 @@
             }
             else
             {
-                $title = Get-Content $path -Encoding utf8 | select -first 1
+                $title = Get-Content $path -Encoding utf8 | Select-Object -first 1
                 $line = "- [" + $title.TrimStart("#").TrimStart() + "](" + $path.Replace("\", "/").Replace(".md", ".html") + ")"
                 $line | out-file $destFile -Append -Encoding utf8
             }
