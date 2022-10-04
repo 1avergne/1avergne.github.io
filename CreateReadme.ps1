@@ -20,7 +20,7 @@
             else
             {
                 $title = Get-Content $path -Encoding utf8 | select -first 1
-                $line = "- [" + $title.TrimStart("#").TrimStart() + "](" + $path.Replace(".md", ".html") + ")"
+                $line = "- [" + $title.TrimStart("#").TrimStart() + "](" + $path.Replace("\", "/").Replace(".md", ".html") + ")"
                 $line >> $destFile 
             }
         }
