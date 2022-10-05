@@ -15,6 +15,7 @@
 # Articles
 
 ## PowerBi
+- [PowerQuery - Traiter une colonne avec des valeurs de type _list_ et de type _text_](./Articles/PowerBi/20221005-PowerQuery-Colonne-liste-et-texte.html)
 - [Importer plusieurs fichiers en parallèle avec Power Query](./Articles/PowerBi/20221003-import-plusieurs_fichiers.html)
 - [Embarquer une vidéo dans un _dashboard_ Power-BI](./Articles/PowerBi/Embarquer-une-vidéo-dans-un-Dashboard-Power-BI.html)
 - [Un camembert avec le regroupement des petites catégories](./Articles/PowerBi/Camembert-avec-regroupement.html)
