@@ -14,6 +14,9 @@
 
 # Articles
 
+## PowerAutomate
+- [Rafraichir un rapport Power BI après la mise à jour du fichier source](./Articles/PowerAutomate/20221011-traiter-un-rapport-apres-maj-sharepoint.html)
+
 ## PowerBi
 - [PowerQuery - Traiter une colonne avec des valeurs de type _list_ et de type _text_](./Articles/PowerBi/20221005-PowerQuery-Colonne-liste-et-texte.html)
 - [Importer plusieurs fichiers en parallèle avec Power Query](./Articles/PowerBi/20221003-import-plusieurs_fichiers.html)
