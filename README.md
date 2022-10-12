@@ -36,3 +36,7 @@
 ## PowerShell
 - [Tester l'état d'une instance SSAS](./Articles/PowerShell/tester-instance-ssas.html)
 - [Automatic entry of clipboard contents](./Articles/PowerShell/Clipboard-automatic-entry.html)
+
+
+
+🐱‍🐉
