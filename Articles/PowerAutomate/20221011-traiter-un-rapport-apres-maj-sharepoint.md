@@ -11,7 +11,16 @@ Le rapport est connecté au fichier sur SharePoint. Je n'utilise pas de paramèt
 
 Je charge aussi une table _Info_ d'une seule ligne avec la date de chargement en UTC et le nom du fichier source.
 
-
+```
+let
+    #"Table" = "Planning_présence_site.xlsx",
+    #"Converti en table1" = #table(1, { {Table} }),
+    #"Colonnes renommées" = Table.RenameColumns(#"Converti en table1",{ {"Column1", "Nom fichier"} }),
+    #"Personnalisée ajoutée" = Table.AddColumn(#"Colonnes renommées", "Date traitement", each DateTimeZone.UtcNow()),
+    #"Type modifié" = Table.TransformColumnTypes(#"Personnalisée ajoutée",{ {"Date traitement", type datetime}, {"Nom fichier", type text} })
+in
+    #"Type modifié"
+```
 
 ![image](/Images/20221011-traiter-un-rapport-apres-maj-sharepoint/flux-requetes-powerquery.png)
 
