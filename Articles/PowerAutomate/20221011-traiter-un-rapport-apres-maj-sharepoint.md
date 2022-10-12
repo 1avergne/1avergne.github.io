@@ -11,7 +11,7 @@ Le rapport est connecté au fichier sur SharePoint. Je n'utilise pas de paramèt
 
 Je charge aussi une table _Info_ d'une seule ligne avec la date de chargement en UTC et le nom du fichier source.
 
-```
+```m
 let
     #"Table" = "Planning_présence_site.xlsx",
     #"Converti en table1" = #table(1, { {Table} }),
