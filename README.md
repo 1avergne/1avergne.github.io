@@ -14,6 +14,11 @@
 
 # Articles
 
+## PowerShell
+- [Avoir un _clavier fantôme_ qui appuie sur une touche toutes les 5 secondes](./Articles/PowerShell/20221012-clavier-fantome.html)
+- [Tester l'état d'une instance SSAS](./Articles/PowerShell/tester-instance-ssas.html)
+- [Automatic entry of clipboard contents](./Articles/PowerShell/Clipboard-automatic-entry.html)
+
 ## PowerAutomate
 - [Rafraichir un rapport Power BI après la mise à jour du fichier source](./Articles/PowerAutomate/20221011-traiter-un-rapport-apres-maj-sharepoint.html)
 
@@ -32,11 +37,3 @@
 - [Retirer les accents dans un texte](./Articles/SqlServer/supprimer-accents.html)
 - [Créer une table 'Calendrier'](./Articles/SqlServer/creer-calendrier-sql.html)
 - [Suppression par lots](./Articles/SqlServer/suppression-lot.html)
-
-## PowerShell
-- [Tester l'état d'une instance SSAS](./Articles/PowerShell/tester-instance-ssas.html)
-- [Automatic entry of clipboard contents](./Articles/PowerShell/Clipboard-automatic-entry.html)
-
-
-
-🐱‍🐉
