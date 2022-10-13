@@ -6,9 +6,9 @@ Envie de profiter de votre télétravail tout en apparaissant comme _actif_ sur 
 
 Pas motiver pour retaper votre mot de passe apès la pause café ?
 
-## Ce script est fait pour vous !
+## Ce script Powershell est fait pour vous !
 
-Il va tout simplement _appuyer_ sur la touche _z_ toutes les 5 secondes, et donc eviter que votre poste se met en veille
+Il va tout simplement _appuyer_ sur la touche _z_ toutes les 5 secondes, et donc eviter que votre poste se met en veille.
 
 ```powershell
 [int]$delay = 5
@@ -24,6 +24,6 @@ while($delay -gt 0)
 }
 ```
 
-Et pour plus de fun, n'hésitez pas à remplacer _z_ par votre émoji préféré 😴
+Et pour plus de fun, n'hésitez pas à remplacer _z_ par votre émoji préféré [😴](https://github.com/1avergne/1avergne.github.io/blob/main/TypeZZZ.ps1)
 
 ![image](/Images/powershell-typez.png)
