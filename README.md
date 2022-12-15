@@ -14,6 +14,15 @@
 
 # Articles
 
+## SqlServer
+- [Un exemple de requête SQL récursive](./Articles/SqlServer/20221215-exemple-cte-recursive.html)
+- [Connaître le nombre de lignes dans chaque table](./Articles/SqlServer/compter-nombre-lignes.html)
+- [Convertir les caractères ASCII du code hexa au symbole](./Articles/SqlServer/convertir-code-hexa-sql.html)
+- [Lister et désactiver les jobs SQL Agent](./Articles/SqlServer/Lister-desactiver-jobs-sqlAgent.html)
+- [Retirer les accents dans un texte](./Articles/SqlServer/supprimer-accents.html)
+- [Créer une table 'Calendrier'](./Articles/SqlServer/creer-calendrier-sql.html)
+- [Suppression par lots](./Articles/SqlServer/suppression-lot.html)
+
 ## PowerShell
 - [Avoir un _clavier fantôme_ qui appuie sur une touche toutes les 5 secondes](./Articles/PowerShell/20221012-clavier-fantome.html)
 - [Tester l'état d'une instance SSAS](./Articles/PowerShell/tester-instance-ssas.html)
@@ -29,11 +38,3 @@
 - [Un camembert avec le regroupement des petites catégories](./Articles/PowerBi/Camembert-avec-regroupement.html)
 - [Creer un Pareto avec Power BI](./Articles/PowerBi/Créer-un-Pareto.html)
 - [Dynamic filter in dashboard](./Articles/PowerBi/Dynamic-filter-in-dashboard.html)
-
-## SqlServer
-- [Connaître le nombre de lignes dans chaque table](./Articles/SqlServer/compter-nombre-lignes.html)
-- [Convertir les caractères ASCII du code hexa au symbole](./Articles/SqlServer/convertir-code-hexa-sql.html)
-- [Lister et désactiver les jobs SQL Agent](./Articles/SqlServer/Lister-desactiver-jobs-sqlAgent.html)
-- [Retirer les accents dans un texte](./Articles/SqlServer/supprimer-accents.html)
-- [Créer une table 'Calendrier'](./Articles/SqlServer/creer-calendrier-sql.html)
-- [Suppression par lots](./Articles/SqlServer/suppression-lot.html)

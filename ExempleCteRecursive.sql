@@ -1,3 +1,7 @@
+/* exemple de requête récursive
+ * cf documentation : https://learn.microsoft.com/fr-fr/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver16#guidelines-for-defining-and-using-recursive-common-table-expressions
+ */
+
 drop table if exists #t;
 create table #t (obj_id int, parent_id int)
 insert into #t 
