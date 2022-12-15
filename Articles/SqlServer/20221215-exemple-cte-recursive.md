@@ -7,6 +7,7 @@ Les récursives c'est à mon avis le _summum_ du rafinement de la requête SQL !
 Mais pour que ce soit clair pour tout le monde, il vaut mieux avoir un exemple sous le bras.
 
 J'ai une liste d'objets avec l'identifiant du parent direct.
+
 obj_id|parent_id
 ---|---
 100|
@@ -28,12 +29,13 @@ values (100, null),(200, null),(300, null)
 ```
 
 Je veux récupérer pour chaque objet :
-- la **racine**, c'est à dire le parent le plus haut (qui n'a lui-même pas de parent).
-- le **chemin**, la liste de tous les objets du parent "racine" jusqu'à l'objet ; sous la forme ```100|110|112```.
+- la **racine** : c'est à dire le parent le plus haut (qui n'a lui-même pas de parent).
+- le **chemin** : la liste de tous les objets du parent "racine" jusqu'à l'objet ; sous la forme ```100|110|112```.
+- le **niveau** : le nombre de parents de l'objet.
 
-La requête récursive contient deux élements 
-- un **membre d'ancrage** : la liste des élements que je peut obtenir sans récursion. Ici il s'agit des racines qui n'ont pas de parent : ```select * from #t where parent_id is null```
-- un **membre récursif** : qui va réutiliser la requête en cours de définition (d'où le _récursif_, vous l'avez ?).
+La requête récursive contient deux élements :
+- un **membre d'ancrage** : la liste des élements que je peut obtenir sans récursion. Ici il s'agit des racines qui n'ont pas de parent : ```select *, 0 as [niveau] from #t where parent_id is null```
+- un **membre récursif** : qui va réutiliser la requête en cours de définition (d'où le _récursif_, vous l'avez ?) : ```[niveau] + 1 as [niveau]```
 
 Je laisse la requête d'exemple ci-dessous, et pour le reste il y a la [documentation](https://learn.microsoft.com/fr-fr/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver16#guidelines-for-defining-and-using-recursive-common-table-expressions) : 
 
