@@ -126,7 +126,7 @@ On ajoute également une colonne d'index.
 
 ![image](/Images/20230118-hierarchie-desequilibree/analysePerf-initial.png)
 
-## Colonnes calculées <img src="https://raw.githubusercontent.com/microsoft/PowerBI-Icons/main/SVG/Calculated-Column.svg" alt="Calculated-Column" style="width:15px;"/>
+## Colonnes calculées
 
 Un fois la table chargée dans le modèle, on va créer plusieurs colonnes et mesures pour rendre la hiérarchie facilement utilisable.
 Pour cela on va notamment utiliser les [fonctions parents et enfants](https://learn.microsoft.com/fr-fr/dax/parent-and-child-functions-dax).
@@ -161,7 +161,7 @@ Les colonnes créées peuvent être réunies dans une hiérarchie.
 
 _NB : La méthode pour répéter les niveaux à la place de valeurs vides est décrite plus bas._
 
-### Champs calculés <img src="https://raw.githubusercontent.com/microsoft/PowerBI-Icons/main/SVG/Measure.svg" alt="Measure" style="width:15px;"/>
+### Champs calculés
 
 La table est prète à être utilisée, on va créer les mesures qui vont gérer les valeurs non-additives et additives.
 
