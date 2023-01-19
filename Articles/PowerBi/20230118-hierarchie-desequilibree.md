@@ -84,7 +84,7 @@ On a deux mesures :
 - Pax : le nombre de personnes, la valeur est additive : le nombre de personnes dans une _équipe_ correspond à la somme du nombre de personnes dans les _sections_ qui la compose.
 
 ```
-└───Root : Eff = 55% / Pax = 37
+└───Root : Eff = 55% / Pax = 35
     ├───Grp_A : Eff = 60% / Pax = 9
     │   ├───Eqp_A1 : Eff = 40% / Pax = 5
     │   └───Eqp_A2 : Eff = 70% / Pax = 4
@@ -106,14 +106,14 @@ On récupère les données au format tabulaire : ```Elément | Parent | ValeurA 
 
 Elément | Parent | Eff | Pax
 --- | --- | --- | ---
-Root | _null_ | 55 | 37
-Grp_A | Root | 60 | 9
+Root | _null_ | 55 | _null_
+Grp_A | Root | 60 | _null_
 Eqp_A1 | Grp_A | 40 | 5
-Eqp_A2 | Grp_A | 70 | 4
+Eqp_A2 | Grp_A | 70 | _null_
 Sec_A2_ker | Eqp_A2 | 75 | 2
 Sec_A2_bis | Eqp_A2 | 55 | 2
-Grp_B | Root | 65 | 16
-Eqp_B1 | Grp_B | 40 | 6
+Grp_B | Root | 65 | _null_
+Eqp_B1 | Grp_B | 40 | _null_
 Sec_B1_ker | Eqp_B1 | 70 | 2
 Sec_B1_bis | Eqp_B1 | 40 | 2
 Sec_B1_ter | Eqp_B1 | 20 | 2
@@ -122,23 +122,31 @@ Eqp_B3 | Grp_B | 30 | 5
 Grp_C | Root | 30 | 10
 
 Il est important que la racine de la hiérarchie (_Root_) est une valeur nulle comme parent (et pas une valeur vide).
+Il est possible d'avoir plusieurs racines qui sont chacune au début d'une hiérarchie.
+
 On ajoute également une colonne d'index.
 
 ![image](/Images/20230118-hierarchie-desequilibree/analysePerf-initial.png)
 
-### Colonnes calculées
+### Colonnes calculées <img src="https://raw.githubusercontent.com/microsoft/PowerBI-Icons/main/SVG/Calculated-Column.svg" alt="Calculated-Column" style="width:15px;"/>
 
 Un fois la table chargée dans le modèle, on va créer plusieurs colonnes et mesures pour rendre la hiérarchie facilement utilisable.
 Pour cela on va notamment utiliser les [fonctions parents et enfants](https://learn.microsoft.com/fr-fr/dax/parent-and-child-functions-dax).
 
-```Path = PATH(AnalysePerf[Elément], AnalysePerf[Parent])``` 
---> Crée le _chemin_ de l'élement à partir de la racine. Les niveaux sont séparés par des tubes.
+- **Path** : Crée le _chemin_ de l'élement à partir de la racine. Les niveaux sont séparés par des tubes.
+```
+Path = PATH(AnalysePerf[Elément], AnalysePerf[Parent])
+``` 
 
-```Depth = PATHLENGTH(AnalysePerf[Path])```
---> Enregistre la profondeur de l'élement : 1 pour la racine, 2 pour les groupes, 3 pour les équipes ...
+- **Depth** : Enregistre la profondeur de l'élement : 1 pour la racine, 2 pour les groupes, 3 pour les équipes ...
+```
+Depth = PATHLENGTH(AnalysePerf[Path])
+```
 
-```Leaf = IF(COUNTROWS(FILTER(AnalysePerf, PATHCONTAINS(AnalysePerf[Path], EARLIER(AnalysePerf[Elément])))) = 1, 1, 0)```
---> Indique si l'élément est une feuille dans la hiérarchie (s'il n'a pas d'enfant). Pour une utilisation plus simple, la colonne est de type entier plutôt que booléen.
+- **Leaf** : Indique si l'élément est une feuille dans la hiérarchie (s'il n'a pas d'enfant). Pour une utilisation plus simple, la colonne est de type entier plutôt que booléen.
+```
+Leaf = IF(COUNTROWS(FILTER(AnalysePerf, PATHCONTAINS(AnalysePerf[Path], EARLIER(AnalysePerf[Elément])))) = 1, 1, 0)
+```
 
 On va à présent recomposer la hiérarchie en ajoutant une colonne par niveau. Il y a 4 niveaux dans notre exemple, il faut donc ajouter 4 colonnes.
 
@@ -153,11 +161,12 @@ Les colonnes créées peuvent être réunie dans une hiérarchie.
 
 ![image](/Images/20230118-hierarchie-desequilibree/analysePerf-colonnes_calculees.png)
 
-### Champs calculés
+### Champs calculés <img src="https://raw.githubusercontent.com/microsoft/PowerBI-Icons/main/SVG/Measure.svg" alt="Measure" style="width:15px;"/>
+
 
 La table est prète à être utilisée, on va créer les mesures qui vont gérer les valeurs non-additives.
 
-- **RowDepth** : la profondeur maximum des lignes filtrées :
+- **RowDepth** : la profondeur dans la navigation (par exemple dans une matrice) :
 ```
 RowDepth = MAX(AnalysePerf[Depth])
 ```
@@ -170,24 +179,106 @@ BrowseDepth = VAR _d = SWITCH(TRUE()
 , ISINSCOPE(AnalysePerf[Niveau 2]), 2
 , ISINSCOPE(AnalysePerf[Niveau 1]), 1
 )
-RETURN IF(_d <= [RowDepth], _d)
+RETURN IF(_d <= MAX(AnalysePerf[Depth]) && _d >= MIN(AnalysePerf[Depth]), _d)
 ```
 
-- **Val Eff** : la valeur de la colonne Eff pour l'élément du niveau observé (et pas pour tous ses enfants) :
+### Indicateurs version 1 
+
+- **Val Eff** : pour les **valeurs non-additives** ; la valeur de la colonne Eff pour l'élément du niveau observé (et pas pour tous ses enfants) :
 ```
 Val Eff = VAR _d = [BrowseDepth]
 RETURN CALCULATE(SUM(AnalysePerf[Eff]), FILTER(AnalysePerf, [Depth] = _d))
 ```
 
-- **Val Pax** : la somme du nombre de personne pour les éléments les plus bas uniquement. _Pax_ est une colonne qui peut être additionné si on ne prend que le niveau le plus fin et pas les valeurs déjà agrégées.
+- **Val Pax** : pour les **valeurs additives** ; la somme du nombre de personne pour les éléments les plus bas uniquement. _Pax_ est une colonne qui peut être additionné, on filtre pour ne garder le niveau le plus fin dans l'hypose ou des niveaux agrégés auraient également été renseignés.
 ```
-Val Pax = IF([BrowseDepth] <= [RowDepth]
-    , CALCULATE(SUM(AnalysePerf[Pax]), FILTER(AnalysePerf, AnalysePerf[Leaf] = 1)) 
-)
+Val Pax = IF([BrowseDepth], CALCULATE(SUM(AnalysePerf[Pax]), FILTER(AnalysePerf, AnalysePerf[Leaf] = 1)) )
 ```
 
 ![image](/Images/20230118-hierarchie-desequilibree/mesures-table-matrice.png)
 
+Attention, en filtrant sur un élement en particulier de la hierarchie : les mesures renvoient des valeurs uniquement pour cet élément et ses enfants. 
+Par exemple si je sélectionne _Eqp_2_ j'aurai le résultat pour _Eqp_2_, _Sec_A2_ker_ et _Sec_A2_bis_. Pour les niveaux supérieurs je n'ai soit pas de données.
+Ce comportement n'est pas incohérent et est celui attendu dans la pluspart des cas.
+
+![image](/Images/20230118-hierarchie-desequilibree/mesures-v1-filtrees.png)
+
+### Indicateurs version 2 : conservation des totaux
+
+Si on souhaite afficher les valeurs des niveaux supérieurs (les _totaux_), lorsque la hiérarchie est filtrée, il faut modifier les mesures :
+
+- **BrowseDepth** version 2 : le filtre sur le niveau minimum est retiré.
+```
+BrowseDepth 2 = VAR _d = SWITCH(TRUE()
+, ISINSCOPE(AnalysePerf[Niveau 4]), 4
+, ISINSCOPE(AnalysePerf[Niveau 3]), 3
+, ISINSCOPE(AnalysePerf[Niveau 2]), 2
+, ISINSCOPE(AnalysePerf[Niveau 1]), 1
+)
+RETURN IF(_d <= MAX(AnalysePerf[Depth]) , _d)
+```
+
+- **Val Eff** version 2 : pour les **valeurs non-additives** ; le chemin courant est récupéré pour être appliqué quelques soient les filtres.
+```
+Val Eff 2 = VAR _path = MIN(AnalysePerf[Path])
+VAR _d = [BrowseDepth 2]
+RETURN CALCULATE(SUM(AnalysePerf[Eff]), FILTER(ALL(AnalysePerf), AnalysePerf[Depth] = _d && PATHCONTAINS(_path, [Elément])))
+```
+
+- **Val Pax** version 2 : pour les **valeurs additives** ; l'élément courant est récupérer pour appliquer un calcul similaire à la version 1 en prenant en compte les déscendant de l'élement.
+```
+Val Pax 2 = VAR _d = [BrowseDepth 2]
+RETURN If(_d,
+VAR _p = MIN(AnalysePerf[Path])
+VAR _e = MINX(FILTER(ALL(AnalysePerf), AnalysePerf[Depth] = _d && PATHCONTAINS(_p, AnalysePerf[Elément])), [Elément])
+RETURN CALCULATE(SUM(AnalysePerf[Pax]), FILTER(ALL(AnalysePerf), PATHCONTAINS(AnalysePerf[Path], _e) && AnalysePerf[Leaf] = 1))
+)
+```
+
+![image](/Images/20230118-hierarchie-desequilibree/mesures-v2-filtrees.png)
+
+### Indicateurs version 3 : répétition des parents
+
+Si on affiche ses mesures dans un histogramme, seul les valeurs pour le niveaux en cours sont visible. Par exemple si on se place dans la hiérachie au niveau 3 (_Eqp_A1_, _Eqp_A2_, etc) on ne vera pas de résultat pour l'élément _Grp_C_ qui ne contient pas de niveau enfant.
+
+![image](/Images/20230118-hierarchie-desequilibree/histo-sans-repetition.png)
+
+Si on souhaite afficher les élements parents dans le visuels il faut à nouveau modifier les mesures. On reprend la version 2 des mesure et on remplace l'appel à ```[BrowseDepth 2]``` par le calcul ```MIN([Depth])```.
+
+- **Val Eff** version 3 : pour les **valeurs non-additives** ; le chemin courant est récupéré pour être appliqué quelques soient les filtres.
+```
+Val Eff 3 = VAR _path = MIN(AnalysePerf[Path])
+VAR _d = MIN([Depth])
+RETURN CALCULATE(SUM(AnalysePerf[Eff]), FILTER(ALL(AnalysePerf), AnalysePerf[Depth] = _d && PATHCONTAINS(_path, [Elément])))
+```
+
+- **Val Pax** version 3 : pour les **valeurs additives** ; l'élément courant est récupérer pour appliquer un calcul similaire à la version 1 en prenant en compte les déscendant de l'élement.
+```
+Val Pax 3 = VAR _d = MIN([Depth])
+RETURN If(_d,
+VAR _p = MIN(AnalysePerf[Path])
+VAR _e = MINX(FILTER(ALL(AnalysePerf), AnalysePerf[Depth] = _d && PATHCONTAINS(_p, AnalysePerf[Elément])), [Elément])
+RETURN CALCULATE(SUM(AnalysePerf[Pax]), FILTER(ALL(AnalysePerf), PATHCONTAINS(AnalysePerf[Path], _e) && AnalysePerf[Leaf] = 1))
+)
+```
+
+![image](/Images/20230118-hierarchie-desequilibree/histo-avec-repetition.png)
+
 ### Segments
 
-Le visuel _Segment_ dans Power Bi affiche tous les niveaux d'une hiérarchie. SI on l'utilise pour afficher les 4 niveaux, des valeurs _(Vide)_ seront affichées pour chaque niveau.
+Le visuel _Segment_ dans Power BI affiche tous les niveaux d'une hiérarchie. Si on l'utilise pour afficher les 4 niveaux, des valeurs _(Vide)_ seront affichées pour chaque niveau. Il faut donc filtrer ces valeurs.
+
+La mesure **BrowseDepth** est non nulle lorsqu'il faut afficher le niveau, on pourrait vouloir l'utiliser pour filtrer le segment. Mais en faisant cela on ne garde que les branches de la hiérarchie avec des niveaux complets (de 1 à 4) ; en effet le visuel segment n'affiche que des branches complètes. Ce n'est donc pas la bonne solution.
+
+On peut utiliser la colonne **Leaf** pour ne conserver que les élements qui terminent une branche. Dans ce cas on ne perd pas d'élément dans la hiérarchie. Mais les braches incomplètes (avec moins de 4 niveaux) comportent des valeurs _(vide)_.
+
+![image](/Images/20230118-hierarchie-desequilibree/segments.png)
+
+On remplace ses valeurs _(vide)_ en "complétant" les branches. Si un niveau est vide, on prend le nom du niveau précédent :
+
+```
+Niveau 1 = PATHITEM(AnalysePerf[Path], 1)
+Niveau 2 = IF(PATHITEM(AnalysePerf[Path], 2) <> "", PATHITEM(AnalysePerf[Path], 2), [Niveau 1])
+Niveau 3 = IF(PATHITEM(AnalysePerf[Path], 3) <> "", PATHITEM(AnalysePerf[Path], 3), [Niveau 2])
+Niveau 4 = IF(PATHITEM(AnalysePerf[Path], 4) <> "", PATHITEM(AnalysePerf[Path], 4), [Niveau 3])
+```
