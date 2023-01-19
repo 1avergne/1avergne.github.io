@@ -8,7 +8,7 @@ Pas motiver pour retaper votre mot de passe apès la pause café ?
 
 ## Ce script Powershell est fait pour vous !
 
-Il va tout simplement _appuyer_ sur la touche _z_ toutes les 5 secondes, et donc eviter que votre poste se met en veille.
+Il va tout simplement _appuyer_ sur la touche _z_ toutes les 5 secondes, et donc éviter que votre poste ne se mette en veille.
 
 ```powershell
 [int]$delay = 5

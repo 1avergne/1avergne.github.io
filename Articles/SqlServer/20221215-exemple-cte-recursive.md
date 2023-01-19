@@ -4,7 +4,9 @@ Les récursives c'est à mon avis le _summum_ du rafinement de la requête SQL !
 
 ![image](https://media3.giphy.com/media/PvZf5Asp3OkI9r1G0x/giphy.gif?cid=ecf05e47fwk127l84dcl3olufvptn2h23w0irra6m1yr9erg&rid=giphy.gif&ct=g)
 
-Mais pour que ce soit clair pour tout le monde, il vaut mieux avoir un exemple sous le bras.
+Mais pour que ce soit clair pour tout le monde, il vaut mieux avoir un exemple sous le bras. Alors c'est parti pour l'exemple !
+
+---
 
 J'ai une liste d'objets avec l'identifiant du parent direct.
 
@@ -16,13 +18,13 @@ obj_id|parent_id
 112|110
 120|100
 
-::: mermaid
-graph TD;
-    100-->110;
-    110-->111;
-    110-->112;
-    100-->120;
-:::
+```
+└───100
+    ├───110
+    │   ├───111
+    │   └───112
+    └───120
+```
 
 ```SQL
 drop table if exists #t;
