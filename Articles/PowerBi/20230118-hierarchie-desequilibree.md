@@ -125,3 +125,62 @@ Il est possible d'avoir plusieurs racines qui sont chacunes au début d'une hié
 On ajoute également une colonne d'index.
 
 ![image](/Images/20230118-hierarchie-desequilibree/analysePerf-initial.png)
+
+## Colonnes calculées
+
+Un fois la table chargée dans le modèle, on va créer plusieurs colonnes et mesures pour rendre la hiérarchie facilement utilisable.
+Pour cela on va notamment utiliser les [fonctions parents et enfants](https://learn.microsoft.com/fr-fr/dax/parent-and-child-functions-dax).
+
+- **Path** : Crée le _chemin_ de l'élément à partir de la racine. Les niveaux sont séparés par des tubes.
+```
+Path = PATH(AnalysePerf[Elément], AnalysePerf[Parent])
+``` 
+
+- **Depth** : Enregistre la profondeur de l'élément : 1 pour la racine, 2 pour les groupes, 3 pour les équipes ...
+```
+Depth = PATHLENGTH(AnalysePerf[Path])
+```
+
+- **Leaf** : Indique si l'élément est une feuille dans la hiérarchie (s'il n'a pas d'enfant). Pour une utilisation plus simple dans les filtres, la colonne est de type entier plutôt que booléen.
+```
+Leaf = IF(COUNTROWS(FILTER(AnalysePerf, PATHCONTAINS(AnalysePerf[Path], EARLIER(AnalysePerf[Elément])))) = 1, 1, 0)
+```
+
+On va à présent recomposer la hiérarchie en ajoutant une colonne par niveau. Il y a 4 niveaux dans notre exemple, il faut donc ajouter 4 colonnes.
+
+```
+Niveau 1 = PATHITEM(AnalysePerf[Path], 1)
+Niveau 2 = PATHITEM(AnalysePerf[Path], 2)
+Niveau 3 = PATHITEM(AnalysePerf[Path], 3)
+Niveau 4 = PATHITEM(AnalysePerf[Path], 4)
+```
+
+Les colonnes créées peuvent être réunies dans une hiérarchie.
+
+![image](/Images/20230118-hierarchie-desequilibree/analysePerf-colonnes_calculees.png)
+
+_NB : La méthode pour répéter les niveaux à la place de valeurs vides est décrite plus bas._
+
+### Champs calculés
+
+La table est prète à être utilisée, on va créer les mesures qui vont gérer les valeurs non-additives et additives.
+
+- **RowDepth** : la profondeur de la ligne dans la table source.
+```
+RowDepth = MIN(AnalysePerf[Depth])
+```
+
+- **BrowseDepth** : la profondeur dans la hiérarchie du niveau affiché.
+```
+BrowseDepth = SWITCH(TRUE()
+, ISINSCOPE(AnalysePerf[Niveau 4]), 4
+, ISINSCOPE(AnalysePerf[Niveau 3]), 3
+, ISINSCOPE(AnalysePerf[Niveau 2]), 2
+, ISINSCOPE(AnalysePerf[Niveau 1]), 1
+)
+```
+
+- **RowPath** : le chemin de la ligne en cours dans la hiérarchie.
+```
+RowPath = FIRSTNONBLANK(AnalysePerf[Path], TRUE())
+```
