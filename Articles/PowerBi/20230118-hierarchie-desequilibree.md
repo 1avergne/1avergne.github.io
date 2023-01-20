@@ -230,3 +230,30 @@ RETURN CALCULATE(SUM(AnalysePerf[Pax]), FILTER(ALL(AnalysePerf), PATHCONTAINS(An
 ```
 
 ![image](/Images/20230118-hierarchie-desequilibree/mesures-v2-filtrees.png)
+
+## Indicateurs version 3 : répétition des parents
+
+Si on affiche ces mesures dans un histogramme, seules les valeurs pour le niveau en cours sont visibles. Par exemple si on se place dans la hiérarchie au niveau 3 (_Eqp_A1_, _Eqp_A2_, etc.) on ne verra pas de résultat pour l'élément _Grp_C_ qui ne contient pas de niveau enfant.
+
+![image](/Images/20230118-hierarchie-desequilibree/histo-sans-repetition.png)
+
+Si on souhaite afficher les éléments parents dans le visuel il faut à nouveau modifier les mesures. On reprend la version 2 des mesures et on remplace l'appel à ```[BrowseDepth]``` par le calcul ```MIN([BrowseDepth], [RowDepth])``` : on garde le plus petit niveau entre les deux indicateurs.
+
+- **Val Eff** version 3 : pour les **valeurs non-additives** ; le chemin courant est récupéré pour être appliqué quelques soient les filtres.
+```
+Val Eff 3 = VAR _path = [RowPath]
+VAR _d = MIN([BrowseDepth], [RowDepth])
+RETURN CALCULATE(SUM(AnalysePerf[Eff]), FILTER(ALL(AnalysePerf), AnalysePerf[Depth] = _d && PATHCONTAINS(_path, [Elément]))) 
+```
+
+- **Val Pax** version 3 : pour les **valeurs additives** ; l'élément courant est récupéré pour appliquer un calcul similaire à la version 1 en prenant en compte les descendant de l'élément.
+```
+Val Pax 3 = VAR _d = MIN([BrowseDepth], [RowDepth])
+RETURN If(_d,
+VAR _p = [RowPath]
+VAR _e = MINX(FILTER(ALL(AnalysePerf), AnalysePerf[Depth] = _d && PATHCONTAINS(_p, AnalysePerf[Elément])), [Elément])
+RETURN CALCULATE(SUM(AnalysePerf[Pax]), FILTER(ALL(AnalysePerf), PATHCONTAINS(AnalysePerf[Path], _e) && AnalysePerf[Leaf] = 1))
+)
+```
+
+![image](/Images/20230118-hierarchie-desequilibree/histo-avec-repetition.png)
