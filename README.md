@@ -15,6 +15,7 @@
 # Articles
 
 ## PowerBi
+- [Gérer les hiérarchies déséquilibrées](./Articles/PowerBi/20230118-hierarchie-desequilibree.html)
 - [PowerQuery - Filtrer le résultat d'une jointure](./Articles/PowerBi/20230118-PowerQuery-Filtrer-resultat-jointure.html)
 - [PowerQuery - Traiter une colonne avec des valeurs de type _list_ et de type _text_](./Articles/PowerBi/20221005-PowerQuery-Colonne-liste-et-texte.html)
 - [Importer plusieurs fichiers en parallèle avec Power Query](./Articles/PowerBi/20221003-import-plusieurs_fichiers.html)
