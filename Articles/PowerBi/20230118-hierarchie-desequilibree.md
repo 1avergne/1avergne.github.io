@@ -257,3 +257,27 @@ RETURN CALCULATE(SUM(AnalysePerf[Pax]), FILTER(ALL(AnalysePerf), PATHCONTAINS(An
 ```
 
 ![image](/Images/20230118-hierarchie-desequilibree/histo-avec-repetition.png)
+
+## Indicateurs v1, v2 & v3
+
+![image](/Images/20230118-hierarchie-desequilibree/mesures-v3-filtrees.png)
+
+## Segments
+
+Le visuel _Segment_ dans Power BI affiche tous les niveaux d'une hiérarchie. Si on l'utilise pour afficher les 4 niveaux, des valeurs _(Vide)_ seront affichées pour chaque niveau. Il faut donc filtrer ces valeurs.
+
+La mesure **BrowseDepth** est non nulle lorsqu'il faut afficher le niveau, on pourrait vouloir l'utiliser pour filtrer le segment. Mais en faisant cela on ne garde que les branches de la hiérarchie avec des niveaux complets (de 1 à 4) ; en effet le visuel segment n'affiche que des branches complètes. Ce n'est donc pas la bonne solution.
+
+On peut utiliser la colonne **Leaf** pour ne conserver que les éléments qui terminent une branche. Dans ce cas on ne perd pas d'élément dans la hiérarchie. Mais les braches incomplètes (avec moins de 4 niveaux) comportent des valeurs _(vide)_.
+
+![image](/Images/20230118-hierarchie-desequilibree/segments.png)
+
+On remplace ses valeurs _(vide)_ en "complétant" les branches. Si un niveau est vide, on prend le nom du niveau précédent :
+
+```
+Niveau 1 = PATHITEM(AnalysePerf[Path], 1)
+Niveau 2 = IF(PATHITEM(AnalysePerf[Path], 2) <> "", PATHITEM(AnalysePerf[Path], 2), [Niveau 1])
+Niveau 3 = IF(PATHITEM(AnalysePerf[Path], 3) <> "", PATHITEM(AnalysePerf[Path], 3), [Niveau 2])
+Niveau 4 = IF(PATHITEM(AnalysePerf[Path], 4) <> "", PATHITEM(AnalysePerf[Path], 4), [Niveau 3])
+```
+
