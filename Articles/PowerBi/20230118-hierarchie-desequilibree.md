@@ -97,3 +97,31 @@ On a deux mesures :
     │   └───Eqp_B3 : Eff = 30% / Pax = 5
     └───Grp_C : Eff = 30% / Pax = 10
 ```
+
+## Les données en entrée
+
+On récupère les données au format tabulaire : ```Elément | Parent | ValeurA | ValeurB | ...``` 
+
+Elément | Parent | Eff | Pax
+--- | --- | --- | ---
+Root | _null_ | 55 | _null_
+Grp_A | Root | 60 | _null_
+Eqp_A1 | Grp_A | 40 | 5
+Eqp_A2 | Grp_A | 70 | _null_
+Sec_A2_ker | Eqp_A2 | 75 | 2
+Sec_A2_bis | Eqp_A2 | 55 | 2
+Grp_B | Root | 65 | _null_
+Eqp_B1 | Grp_B | 40 | _null_
+Sec_B1_ker | Eqp_B1 | 70 | 2
+Sec_B1_bis | Eqp_B1 | 40 | 2
+Sec_B1_ter | Eqp_B1 | 20 | 2
+Eqp_B2 | Grp_B | 35 | 5
+Eqp_B3 | Grp_B | 30 | 5
+Grp_C | Root | 30 | 10
+
+Il est important que la racine de la hiérarchie (_Root_) soit une valeur nulle comme parent (et pas une valeur vide).
+Il est possible d'avoir plusieurs racines qui sont chacunes au début d'une hiérarchie.
+
+On ajoute également une colonne d'index.
+
+![image](/Images/20230118-hierarchie-desequilibree/analysePerf-initial.png)
