@@ -184,3 +184,49 @@ BrowseDepth = SWITCH(TRUE()
 ```
 RowPath = FIRSTNONBLANK(AnalysePerf[Path], TRUE())
 ```
+
+## Indicateurs version 1 
+
+- **Val Eff** : pour les **valeurs non-additives** ; la valeur de la colonne _Eff_ pour l'élément du niveau observé (et pas pour tous ses enfants) :
+```
+Val Eff = VAR _d = [BrowseDepth]
+RETURN CALCULATE(SUM(AnalysePerf[Eff]), FILTER(AnalysePerf, [Depth] = _d))
+```
+
+- **Val Pax** : pour les **valeurs additives** ; la somme du nombre de personne pour les éléments les plus bas uniquement. _Pax_ est une colonne qui peut être additionné, on filtre pour ne garder le niveau le plus fin dans l'hypothèse où des niveaux agrégés auraient également été renseignés.
+```
+Val Pax = IF([BrowseDepth] >= MIN(AnalysePerf[Depth]) && [BrowseDepth] <= MAX(AnalysePerf[Depth])
+, CALCULATE(SUM(AnalysePerf[Pax]), FILTER(AnalysePerf, AnalysePerf[Leaf] = 1))
+)
+```
+
+![image](/Images/20230118-hierarchie-desequilibree/mesures-table-matrice.png)
+
+Attention, en filtrant sur un élément en particulier de la hiérarchie : les mesures renvoient des valeurs uniquement pour cet élément et ses enfants. 
+Par exemple si je sélectionne _Eqp_2_ j'aurai le résultat pour _Eqp_2_, _Sec_A2_ker_ et _Sec_A2_bis_. Pour les niveaux supérieurs je n'ai pas de données.
+Ce comportement n'est pas incohérent et est celui attendu dans la plupart des cas.
+
+![image](/Images/20230118-hierarchie-desequilibree/mesures-v1-filtrees.png)
+
+## Indicateurs version 2 : conservation des totaux
+
+Si on souhaite afficher les valeurs des niveaux supérieurs (les _totaux_), lorsque la hiérarchie est filtrée, il faut modifier les mesures :
+
+- **Val Eff** version 2 : pour les **valeurs non-additives** ; le chemin courant est récupéré pour être appliqué quelques soient les filtres.
+```
+Val Eff 2 = VAR _path = [RowPath]
+VAR _d = [BrowseDepth]
+RETURN CALCULATE(SUM(AnalysePerf[Eff]), FILTER(ALL(AnalysePerf), AnalysePerf[Depth] = _d && PATHCONTAINS(_path, [Elément])))
+```
+
+- **Val Pax** version 2 : pour les **valeurs additives** ; l'élément courant est récupéré pour appliquer un calcul similaire à la version 1 en prenant en compte les descendants de l'élément.
+```
+Val Pax 2 = VAR _d = [BrowseDepth]
+RETURN If(_d,
+VAR _p = [RowPath]
+VAR _e = MINX(FILTER(ALL(AnalysePerf), AnalysePerf[Depth] = _d && PATHCONTAINS(_p, AnalysePerf[Elément])), [Elément])
+RETURN CALCULATE(SUM(AnalysePerf[Pax]), FILTER(ALL(AnalysePerf), PATHCONTAINS(AnalysePerf[Path], _e) && AnalysePerf[Leaf] = 1))
+)
+```
+
+![image](/Images/20230118-hierarchie-desequilibree/mesures-v2-filtrees.png)
