@@ -1,5 +1,7 @@
 # Gérer les hiérarchies déséquilibrées
 
+![image](https://i.giphy.com/media/Vi5TUmZz8LZb95j2xb/giphy.webp)
+
 On est habitué à utiliser des hiérarchies où la somme des éléments d'un niveau donne le résultat pour le niveau parent. Par exemple le CA de chaque produit vendu dans une boutique donne le CA de la boutique ; le CA de toutes les boutiques dans un pays donne le CA du pays.
 Mais certaines hiérarchies ne fonctionnent pas comme ça :
 - Si la valeur mesurée n’est pas additive, c’est-à-dire que la valeur d’un parent ne correspond pas à la somme des valeurs de ses enfants.
