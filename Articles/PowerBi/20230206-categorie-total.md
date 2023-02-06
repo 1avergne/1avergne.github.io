@@ -1,5 +1,7 @@
 # Afficher une catégorie _Total_ dans un graphique
 
+<p style="text-align: right;">2023-02-06</p>
+
 Power BI ne permet pas d'afficher un total dans un graphique (courbe ou histogramme par exemple).
 On va tout de même pouvoir affichée une telle catégorie en jouant avec les données et le DAX.
 Il faudra :
