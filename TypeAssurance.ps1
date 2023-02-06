@@ -8,11 +8,10 @@ $signature = @"
 public static extern short GetAsyncKeyState(int virtualKeyCode);
 "@
 $getKeyState = Add-Type -memberDefinition $signature -name "Newtype" -namespace newnamespace -passThru
-$check = 0
 $cnt = 0
 
 [string]$word = ""
-[string]$target = "CHOCOB"
+[string]$target = "CHOCOB" #en majuscules, sans répétition de lettre
 
 [int]$max_length = 10 + $target.Length
 $target = $target.ToUpperInvariant()
@@ -24,9 +23,6 @@ while ($true)
 {
     Start-Sleep -Milliseconds 40
     $logged = ""
-    $result=""
-    $shift_state=""
-    $caps_state=""
     for ([int]$char=1;$char -le 254;$char++)
     {
         $vkey = $char
@@ -52,6 +48,7 @@ while ($true)
         }
     }
     
+    #détecte si le texte du presse-papier contient la cible
     $cnt++
     if($cnt -gt 25){
         $inputString = Get-Clipboard;
@@ -69,6 +66,7 @@ while ($true)
         $cnt = 0
     }
 
+    #si la cible a été trouvé dans le texte du presse-papier, l'historique du presse-paier est progressivement remplacé
     if($cnt_down -gt 0){
         if($cnt_down % 5 -eq 0){ Set-Clipboard -Value "$cnt_down" }
         $cnt_down--

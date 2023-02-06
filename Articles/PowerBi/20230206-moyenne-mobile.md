@@ -3,7 +3,7 @@
 Il y a plein de méthodes pour calculer une [moyenne mobile](https://fr.wikipedia.org/wiki/Moyenne_mobile).
 Dans le cas que j'ai eu à traiter la règle de gestion était la suivante : 
 - En considérant une suite temporelle de valeurs : 
-  - Pour chage valeur _Vn_ le résultat affiché est le rapport entre la valeur et la première valeur _V0_. Le premier résultat est donc 100% : _V0 / V0 = 1_
+  - Pour chaque valeur _Vn_ le résultat affiché est le rapport entre la valeur et la première valeur _V0_. Le premier résultat est donc 100% : _V0 / V0 = 1_
 
 Ce calcul permet de comparer des évolutions en effaçant les écarts de valeurs au départ.
 
