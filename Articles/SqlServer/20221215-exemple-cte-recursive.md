@@ -1,5 +1,7 @@
 # Un exemple de requête SQL récursive
 
+<p style="text-align: right;">2022-12-15</p>
+
 Les récursives c'est à mon avis le _summum_ du rafinement de la requête SQL ! Simple à lire, rapide à expliquer, compliqué à comprendre ... Personnelement j'adore !
 
 ![image](https://media3.giphy.com/media/PvZf5Asp3OkI9r1G0x/giphy.gif?cid=ecf05e47fwk127l84dcl3olufvptn2h23w0irra6m1yr9erg&rid=giphy.gif&ct=g)

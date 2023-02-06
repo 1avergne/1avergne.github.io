@@ -1,5 +1,7 @@
 # Moyenne mobile
 
+<p style="text-align: right;">2023-02-06</p>
+
 Il y a plein de méthodes pour calculer une [moyenne mobile](https://fr.wikipedia.org/wiki/Moyenne_mobile).
 Dans le cas que j'ai eu à traiter la règle de gestion était la suivante : 
 - En considérant une suite temporelle de valeurs : 

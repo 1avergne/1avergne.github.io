@@ -1,5 +1,7 @@
 # Avoir un _clavier fantôme_ qui appuie sur une touche toutes les 5 secondes
 
+<p style="text-align: right;">2022-10-12</p>
+
 Marre d'être déconnecté d'une VM ?
 
 Envie de profiter de votre télétravail tout en apparaissant comme _actif_ sur Teams ?

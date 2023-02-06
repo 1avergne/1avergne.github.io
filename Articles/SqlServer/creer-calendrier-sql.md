@@ -28,7 +28,7 @@ PRIMARY KEY CLUSTERED
 
 Pour l'alimentation, on va utiliser une requête qui génère la liste des jours entre le 1er et le dernier jour dans la table de faits. On se base sur une liste numérotée en faisant un _ROW_NUMBER()_ sur une table assez volumineuse (il faut au moins autant de lignes qu'il y a de jours): la table système _all_objects_ croisée avec elle-même fera l'affaire. Dans la requête ci-dessous je génère des années complètes. L'initialisation des variables (dans le _DECLARE_) n'est pas nécessaire puisque je fais une attribution dans le _SELECT_. Le _SELECT_ peut être omis si l'on souhaite définir les dates en dur.
 
-```
+```sql
 DECLARE @StartDate DATE = '20170101'
     ,@NumberOfYears INT = 5;
 DECLARE @CutoffDate DATE = DATEADD(YEAR, @NumberOfYears, @StartDate);

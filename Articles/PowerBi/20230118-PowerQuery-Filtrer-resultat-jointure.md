@@ -1,5 +1,7 @@
 # PowerQuery - Filtrer le résultat d'une jointure
 
+<p style="text-align: right;">2023-01-18</p>
+
 Lorsqu'on utilise la fonctionnalité _Fusionner des requêtes_ dans PowerQuery, le résultat est disponible dans une nouvelle colonne. On va ensuite déployer cette colonne en une ou plusieurs nouvelles lignes pour obtenir un résultat similaire à une jointure en _SQL_. On peut _développer_ la colonne (chaque ligne de la table jointe est ajoutée) ou _agréger_ (une seule valeur par ligne, un comptage ou une somme des colonnes de la table jointe).
 
 ![image](/Images/20230118-PowerQuery-Filtrer-resultat-jointure/fusion_agreger.png)

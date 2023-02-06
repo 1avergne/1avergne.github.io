@@ -1,5 +1,7 @@
 # PowerQuery - Traiter une colonne avec des valeurs de type _list_ et de type _text_
 
+<p style="text-align: right;">2022-10-05</p>
+
 Lorsqu'on intègre des données venant d'une source _json_ il arrive d'avoir des champs contenant des listes mélangées à du texte :
 
 ![image](/Images/20221005-PowerQuery-Colonne-liste-et-texte/Requete-liste-texte.png)

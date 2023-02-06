@@ -1,5 +1,7 @@
 # Importer plusieurs fichiers en parallèle avec Power Query
 
+<p style="text-align: right;">2022-10-03</p>
+
 J'ai eu envie de faire un rapport sur la météo et ça tombe bien, [Météo France](https://donneespubliques.meteofrance.fr/) donne accès à l'historique d'une cinquantaine de stations sur 15 ans. On peut télécharger les données [ici](https://donneespubliques.meteofrance.fr/?fond=produit&id_produit=90&id_rubrique=32) pour une date ou pour un mois précis. 
 
 ![image](/Images/20221003-import-plusieurs_fichiers/rapportMeteo.png)]
