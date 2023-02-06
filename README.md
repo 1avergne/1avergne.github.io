@@ -15,6 +15,7 @@
 # Articles
 
 ## PowerBi
+- [Afficher une catégorie _Total_ dans un graphique](./Articles/PowerBi/20230206-categorie-total.html)
 - [Moyenne mobile](./Articles/PowerBi/20230206-moyenne-mobile.html)
 - [Gérer les hiérarchies déséquilibrées](./Articles/PowerBi/20230118-hierarchie-desequilibree.html)
 - [PowerQuery - Filtrer le résultat d'une jointure](./Articles/PowerBi/20230118-PowerQuery-Filtrer-resultat-jointure.html)
