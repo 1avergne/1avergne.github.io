@@ -1,5 +1,7 @@
 # Tester l'état d'une instance SSAS
 
+<p style="text-align: right;">2020-10-23</p>
+
 Pour un projet avec du SSAS multidimensionnel, j'ai eu besoin de mettre en place une solution de monitoring pour tester si l'instance SSAS est bien accessible aux utilisateurs et si les cubes sont traités. Pour cela j'ai utilisé la commande [Invoke-ASCmd](https://docs.microsoft.com/en-us/powershell/module/sqlserver/invoke-ascmd) dans PowerShell.
 
 ![image](/Images/ssas-etat-instance.png)

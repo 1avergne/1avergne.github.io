@@ -1,5 +1,7 @@
 # Creer un Pareto avec Power BI
 
+<p style="text-align: right;">2019-07-29</p>
+
 _« Le principe de Pareto, aussi appelé loi de Pareto, principe des 80-20 ou encore loi des 80-20, est un phénomène empirique constaté dans certains domaines : environ 80 % des effets sont le produit de 20 % des causes. Il a été appliqué à des domaines comme le contrôle qualité. On considère souvent que les phénomènes pour lesquels ce principe est vérifié suivent une forme particulière de distribution de Pareto. »_ [Wikipedia](https://fr.wikipedia.org/wiki/Principe_de_Pareto)
 
 Représenté de manière graphique ça ressemble à ça :

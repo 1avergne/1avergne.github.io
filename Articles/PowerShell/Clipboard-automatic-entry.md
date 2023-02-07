@@ -1,5 +1,7 @@
 #  Automatic entry of clipboard contents
 
+<p style="text-align: right;">2018-10-01</p>
+
 Have you ever been frustrated by not being able to 'paste' into a particular text input because of a lock or a bug?
 I did !
 
