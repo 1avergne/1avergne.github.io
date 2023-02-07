@@ -1,5 +1,7 @@
 # Lister et désactiver les jobs SQL Agent
 
+<p style="text-align: right;">2021-06-29</p>
+
 ![image](/Images/sqlagent-joblist.png)
 
 Un SQL Agent avec une centaine de jobs ça fait beaucoup de clics quand on veut tout désactiver ... Mais heureusement, il y a un script pour ça !

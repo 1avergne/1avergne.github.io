@@ -1,5 +1,7 @@
 # Connaître le nombre de lignes dans chaque table
 
+<p style="text-align: right;">2020-03-19</p>
+
 Pour connaître le nombre de lignes dans une table d'une base SQL Server, il n'est pas forcément nécessaire de faire un ```select COUNT(*)```. 
 
 Le nombre de lignes dans chaque partition est contenu dans la table système _partitions_.

@@ -1,5 +1,7 @@
 ## Suppression par lots
 
+<p style="text-align: right;">2020-06-04</p>
+
 Pour éviter de saturer les logs d'une base, ou d'avoir une requête trop longue, il est conseillé de faire les opérations de DELETE par lots, c'est-à-dire de supprimer un nombre limité de lignes successivement dans différentes transactions.
 
 Pour cela on utilise l'instruction TOP dans un DELETE répété dans un boucle :

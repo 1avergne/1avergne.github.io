@@ -1,5 +1,7 @@
 # Dynamic filter in dashboard
 
+<p style="text-align: right;">2018-07-12</p>
+
 With the _Web-content_ tile, it's possible to add a custom menu Inside a Power BI dashboard !
 
 To do this, I use a javascript code that change the target url of a link according to the selected value in a dropdown menu.

@@ -1,5 +1,7 @@
 # Retirer les accents dans un texte
 
+<p style="text-align: right;">2020-02-28</p>
+
 Il est parfois nécessaire de retirer les accents dans des champs d'une requête PowerQuery / M ou dans une table SQL. Par exemple pour faire une jointure sans avoir à passer par un Fuzzy Lookup.
 
 J'avais imaginé il y a quelques années des solutions compliquées pour faire cela en [SQL](https://1avergne.azurewebsites.net/post/2020/02/28/sql-retirer-les-accents-et-caractere-speciaux) et en [PowerQuery](https://1avergne.azurewebsites.net/post/2019/09/05/powerquery-m-retirer-les-accents). Mais même si j'aime beaucoup les solutions compliquées, c'est plus simple de faire des choses simples (à cause de la simplicité) ...

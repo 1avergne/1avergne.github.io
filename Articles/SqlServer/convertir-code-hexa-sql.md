@@ -1,5 +1,7 @@
 # Convertir les caractères ASCII du code hexa au symbole
 
+<p style="text-align: right;">2020-06-24</p>
+
 J'ai plein de chaînes de caractères avec des _$20_. 20 est le code hexadécimal pour l'espace, donc je pourrai faire un simple _REPLACE_. Mais pourquoi faire simple quand on peut faire une fonction ?
 
 ![image](/Images/sql-code-hexa.png)

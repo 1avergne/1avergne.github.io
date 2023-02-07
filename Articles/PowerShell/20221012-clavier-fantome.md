@@ -6,11 +6,13 @@ Marre d'être déconnecté d'une VM ?
 
 Envie de profiter de votre télétravail tout en apparaissant comme _actif_ sur Teams ?
 
-Pas motiver pour retaper votre mot de passe apès la pause café ?
+Pas motivé pour retaper votre mot de passe après la pause café ?
 
 ## Ce script Powershell est fait pour vous !
 
 Il va tout simplement _appuyer_ sur la touche _z_ toutes les 5 secondes, et donc éviter que votre poste ne se mette en veille.
+
+![image](https://i.giphy.com/media/HQGzdiNhg52oM/giphy.webp)
 
 ```powershell
 [int]$delay = 5

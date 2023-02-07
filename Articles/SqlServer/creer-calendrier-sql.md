@@ -1,5 +1,7 @@
 # Créer une table 'Calendrier'
 
+<p style="text-align: right;">2020-06-11</p>
+
 **Je n'ai rien inventé, tout est [là](https://www.mssqltips.com/sqlservertip/4054/creating-a-date-dimension-or-calendar-table-in-sql-server/) !**
 
 On a toujours besoin d'une table de type calendrier avec la liste des jours et éventuellement les mois, semaines, dernier jours de mois, jour ouvrés, etc.

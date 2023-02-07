@@ -1,5 +1,7 @@
 # Un camembert avec le regroupement des petites catégories
 
+<p style="text-align: right;">2021-07-23</p>
+
 Le problème quand on fait un diagramme en camembert (Piechart) c'est que les toutes petites catégories ne sont pas bien lisibles : on a souvent une série de toutes petites tranches "tassées" et ce qui ne donne pas vraiment d'information pertinente. 
 
 ![image](/Images/camembert-sans-categories.png)

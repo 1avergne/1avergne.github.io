@@ -11,11 +11,11 @@ Il faudra :
 ## Ajouter la catégorie à la dimension
 
 On ajoute la catégorie _Total_ dans la dimension. Il faut créer une ligne avec un identifiant et une valeur qui n'existe pas encore. J'utilise habituellement le terme __TOTAL_ : pour avoir la valeur en premier si la liste est triée par ordre alphabétique.
-La catégorie peut être créée directement dans la source ou en Power-Query. Cependant cela ne sera pas possible en DAX.
+La catégorie peut être créée directement dans la source ou en PowerQuery. Cependant cela ne sera pas possible en DAX.
 
 ![image](/Images/20230206-categorie-total/dim_originale.png)
 
-En Power-Query, on va créer une table avec les mêmes colonnes que la table d'origine, et une seule ligne : la catégorie _Total_. On y ajoute une colonne _Flag Total_ qui sera _vrai_ pour le total.
+En PowerQuery, on va créer une table avec les mêmes colonnes que la table d'origine, et une seule ligne : la catégorie _Total_. On y ajoute une colonne _Flag Total_ qui sera _vrai_ pour le total.
 
 ![image](/Images/20230206-categorie-total/dim_categorie_total.png)
 
@@ -25,7 +25,7 @@ On fusionne ensuite la table d'origine à la nouvelle table. Les valeurs vide de
 
 ### Utilisation d'une fonction
 
-Pour créer la table avec la ligne _Total_ on peut utiliser une fonction Power-Query. La fonction va reprendre les colonnes de la table passée en deuxième paramètre  et créer une seule ligne avec le libellé passé en premier paramètre. 
+Pour créer la table avec la ligne _Total_ on peut utiliser une fonction PowerQuery. La fonction va reprendre les colonnes de la table passée en deuxième paramètre  et créer une seule ligne avec le libellé passé en premier paramètre. 
 
 ![image](/Images/20230206-categorie-total/fonction_ligne_total.png)
 
