@@ -1,4 +1,4 @@
-# Excel - Validation de données avec menu déroulant à partir d'une formule
+# Validation de données avec menu déroulant à partir d'une formule
 
 <p style="text-align: right;">2021-11-29</p>
 

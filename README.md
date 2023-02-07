@@ -15,7 +15,7 @@
 # Articles
 
 ## Excel
-- [Excel - Validation de données avec menu déroulant à partir d'une formule](./Articles/Excel/20211129-Excel-validation-liste-formule.html)
+- [Validation de données avec menu déroulant à partir d'une formule](./Articles/Excel/20211129-Excel-validation-liste-formule.html)
 
 ## PowerBi
 - [Afficher une catégorie _Total_ dans un graphique](./Articles/PowerBi/20230206-categorie-total.html)
