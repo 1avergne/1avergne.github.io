@@ -66,4 +66,3 @@ in D
 ![image](/Images/20230118-PowerQuery-Filtrer-resultat-jointure/ajouter_nouvelle_requete_sousrequete.png)
 
 Pour simplifier la création de la sous-requête, on peut utiliser l'option _Ajouter en tant que nouvelle requête_ sur une cellule de la colonne issue de la jointure. Cela crée une nouvelle requête qu'on va pouvoir modifier et ensuite récupérer le code _M_ généré pour l'adapter.
-

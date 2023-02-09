@@ -2,7 +2,7 @@
 
 <p style="text-align: right;">2021-08-23</p>
 
-Il y a plein de raisons de faire une boucle en SQL : [suppression par lots](https://1avergne.github.io/Articles/SqlServer/suppression-lot.html), traitement par partition... Mais il arrive que ça prenne un peu de temps et qu'il faille interrompre l'exécution de la boucle. Dans ce cas on n'a pas forcement envie d'annuler tout ce qui a déjà été fait. 
+Il y a plein de raisons de faire une boucle en SQL : [suppression par lots](https://1avergne.github.io/Articles/SqlServer/20200604-suppression-lot.html), traitement par partition... Mais il arrive que ça prenne un peu de temps et qu'il faille interrompre l'exécution de la boucle. Dans ce cas on n'a pas forcement envie d'annuler tout ce qui a déjà été fait. 
 
 ![image](https://i.giphy.com/media/9P8PtNwxCzHtjH5mEU/giphy.webp)
 
@@ -10,7 +10,7 @@ Pour me permettre d'interrompre proprement une boucle et de sortir entre deux it
 
 ## Par exemple :
 
-```
+```sql
 DECLARE @m int = 10
 
 WHILE @m >= 0 AND OBJECT_ID('tempdb..##stop') is null
@@ -23,12 +23,12 @@ END
 
 Pour sortir de la boucle, il suffit alors de créer la table ```##stop``` dans une autre fenêtre :
 
-```
+```sql
 select 1 as i into ##stop
 ```
 
 Si je dois relancer la boucle, je supprime la table ou je ferme la fenêtre où elle a été créée :
 
-```
+```sql
 drop table ##stop
 ```

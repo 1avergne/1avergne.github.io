@@ -8,7 +8,7 @@ Il faudra :
 - Ajouter la catégorie _Total_ à la dimension.
 - Créer une mesure dédiée pour afficher la catégorie _Total_ lorsque c'est nécessaire.
 
-Cette méthode ressemble a ce qu'on a pu faire avec la [catégorie _autres_ des camemberts](https://1avergne.github.io/Articles/PowerBi/Camembert-avec-regroupement.html). 
+Cette méthode ressemble a ce qu'on a pu faire avec la [catégorie _autres_ des camemberts](https://1avergne.github.io/Articles/PowerBi/20210723-camembert-avec-regroupement.html). 
 
 ## Ajouter la catégorie à la dimension
 

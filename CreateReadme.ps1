@@ -5,7 +5,12 @@
     Write-Host $dir
     "`n" + $("#" * $level) + " " + $dir.Substring(1 + $dir.LastIndexOf("\")) | out-file $destFile -Append -Encoding utf8
 
-    $d = Get-ChildItem $dir | Sort-Object -Descending LastWriteTime
+    if($level -le 1){
+        $d = Get-ChildItem $dir | Sort-Object -Descending LastWriteTime    #tri par ordre de dernière modification
+    }else{
+        $d = Get-ChildItem $dir | Sort-Object -Descending Name    #tri par ordre alpha
+    }
+    
 
     foreach($f in $d){
         if($f.Name.ToString() -ne "APublier")
@@ -14,7 +19,7 @@
         
             if($f.PSIsContainer)
             {
-                subSection  -dir $path -level $($level + 1)
+                subSection -dir $path -level $($level + 1)
             }
             else
             {
