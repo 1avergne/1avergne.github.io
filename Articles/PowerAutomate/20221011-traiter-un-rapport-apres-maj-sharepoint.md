@@ -42,15 +42,15 @@ J'ai organisé mon flux ainsi :
 
 ![image](/Images/20221011-traiter-un-rapport-apres-maj-sharepoint/flux-power-automate.png)
 
-### 0- SharePoint / Lors de la modification d’un élément ou d’un fichier
+### 0. SharePoint / Lors de la modification d’un élément ou d’un fichier
 
 Le flux commence si n'importe quel fichier du répertoire SharePoint est modifié. A cette étape, il n'est pas possible de filtrer sur un fichier précis. Il serait possible de faire un test du fichier immédiatement après le déclencheur, mais on le fera plus tard.
 
-### 1- Délai
+### 1. Délai
 
 On attend 5 minutes avant de continuer le flux. Cela permet de faire plusieurs modifications sur le fichier sans lancer le traitement immédiatement.
 
-### 2- Power BI / Exécuter une requête sur un jeu de données
+### 2. Power BI / Exécuter une requête sur un jeu de données
     
 On éxécute une requête _DAX_ sur le modèle de données pour récupérer le nom du fichier et la dernière date de mise à jour. Les deux champs sont dans la table _Info_. J'utilise l'action [_Exécuter une requête sur un jeu de données_](https://learn.microsoft.com/fr-fr/connectors/powerbi/#run-a-query-against-a-dataset) du connecteur Power BI.
 
@@ -66,7 +66,7 @@ On va tester le résultat de requête pour verifier que le fichier modifié est 
 
 ![image](/Images/20221011-traiter-un-rapport-apres-maj-sharepoint/flux-appliquer-a-chacun.png)
 
-### 5- Power BI / Actualiser un jeu de données
+### 5. Power BI / Actualiser un jeu de données
 
 Si le test est réussi (fichier correct et dernier traitement il y a plus de 30 minutes), on lance l'actualisation du jeu de données dans Power BI. J'utilise l'action [_Actualiser un jeu de données_](https://docs.microsoft.com/connectors/powerbi/#refresh-a-dataset) du connecteur Power BI.
 

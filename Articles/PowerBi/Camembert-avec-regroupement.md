@@ -67,7 +67,7 @@ RETURN if(SELECTEDVALUE(Produit[ProduitID]) = -1
 
 Avec un seuil de 2%, la catégorie "Autres produits" s'est glissée à la 2e place.
 
-## 3- Seuil dynamique :
+## 3. Seuil dynamique :
 
 Il serai maintenant intéressant de pouvoir changer dynamiquement le seuil.
 Pour cela on va utiliser un paramètre "what-if"

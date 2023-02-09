@@ -1,4 +1,4 @@
-# T-SQL - Prévoir une _sortie_ dans une boucle
+# Prévoir une _sortie_ dans une boucle
 
 <p style="text-align: right;">2021-08-23</p>
 

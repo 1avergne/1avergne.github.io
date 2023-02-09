@@ -10,7 +10,7 @@ Dans Excel, si on veut faire une validation de données sur un champ avec un men
 
 Mais si on souhaite utiliser une formule (pour filtrer ou supprimer les doublons), il faut utiliser l'option **Autoriser : Personnalisé** qui ne propose pas de liste déroulante.
 
-## 0- Par exemple
+## 0. Par exemple
 
 J'ai une liste d'équipements avec des propriétés (une ligne par propriété, les équipements sont répétés).
 
@@ -22,7 +22,7 @@ Je souhaite pouvoir choisir mon équipement dans un second tableau. Si je met un
 
 Pour faire une validation qui prend en compte une formule, je procède ainsi :
 
-## 1- Créer une liste dédoublonnée dans un nouvel onglet
+## 1. Créer une liste dédoublonnée dans un nouvel onglet
 
 Dans un nouvel onglet j'ajoute la liste des équipements avec la formule :
 
@@ -42,7 +42,7 @@ ou avec les noms de cellules :
 
 ![image](/Images/20211129-Excel-validation-liste-formule/trier-unique-filtre.png)
 
-## 2- Ajouter la validation de données
+## 2. Ajouter la validation de données
 
 ![image](/Images/20211129-Excel-validation-liste-formule/validation-donnees.png)
 

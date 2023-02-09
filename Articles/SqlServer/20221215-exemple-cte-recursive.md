@@ -52,7 +52,7 @@ La requête récursive contient deux élements :
 
 Je laisse la requête d'exemple ci-dessous, et pour le reste il y a la [documentation](https://learn.microsoft.com/fr-fr/sql/t-sql/queries/with-common-table-expression-transact-sql?view=sql-server-ver16#guidelines-for-defining-and-using-recursive-common-table-expressions) : 
 
-```SQL
+```sql
 with cte as (
 	select t.obj_id
 		, t.parent_id

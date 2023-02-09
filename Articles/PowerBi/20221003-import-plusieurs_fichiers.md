@@ -1,4 +1,4 @@
-# Importer plusieurs fichiers en parallèle avec Power Query
+# Importer plusieurs fichiers en parallèle avec PowerQuery
 
 <p style="text-align: right;">2022-10-03</p>
 
@@ -29,7 +29,7 @@ while($i -lt 12){
 }
 ```
 
-Mais dans Power Query, il n'y a pas de boucle. Il faut donc procéder en 3 étapes :
+Mais dans PowerQuery, il n'y a pas de boucle. Il faut donc procéder en 3 étapes :
 - Etablir la liste des fichiers à télécharger
 - Ecrire une fonction capable de traiter un fichier
 - Appeler la fonction sur chaque fichier de la liste
@@ -96,7 +96,7 @@ On peut à présent développer la nouvelle colonne pour récupérer le contenu 
 
 ![image](/Images/20221003-import-plusieurs_fichiers/developperColonneUnzip.png)
 
-Le script complet de la requête Power Query est :
+Le script complet de la requête PowerQuery est :
 ```
 let
     Source = List.Generate(() > 0, each _ <= 36, each _ + 1),

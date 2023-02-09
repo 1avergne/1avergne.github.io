@@ -8,6 +8,8 @@ Il faudra :
 - Ajouter la catégorie _Total_ à la dimension.
 - Créer une mesure dédiée pour afficher la catégorie _Total_ lorsque c'est nécessaire.
 
+Cette méthode ressemble a ce qu'on a pu faire avec la [catégorie _autres_ des camemberts](https://1avergne.github.io/Articles/PowerBi/Camembert-avec-regroupement.html). 
+
 ## Ajouter la catégorie à la dimension
 
 On ajoute la catégorie _Total_ dans la dimension. Il faut créer une ligne avec un identifiant et une valeur qui n'existe pas encore. J'utilise habituellement le terme __TOTAL_ : pour avoir la valeur en premier si la liste est triée par ordre alphabétique.
