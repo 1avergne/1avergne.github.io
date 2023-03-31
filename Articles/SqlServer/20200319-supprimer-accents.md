@@ -25,6 +25,29 @@ in
 
 _Merci [Denis](https://stackoverflow.com/questions/71969831/power-query-how-to-remove-diacritic-accent-symbols-from-text) !_
 
+## PowerQuery _version alternative_
+
+Une autre méthode est d'établir la liste des caractères de substitution et de les remplacer dans le texte initial.
+
+Liste de réference : *Liste_Correspondance*
+```m
+let
+    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("RdA5CgJRFETRvbz476j5gYiBiQbSgb0aRxzaoW0HnA3k78vSB97scKGSyjJ7DyxYw2IQh3AEx3ACp7AWu849PMAjPMEznIst5wIuYQkrZjOx6VyJbecabuAWXsTceYU3eIc7sfNj+r7T8/oS+87Hn+kpFhbjBw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [ori = _t, des = _t]),
+    TableToList = Table.ToColumns(Table.Transpose(Source))
+in
+    TableToList
+```
+
+On crée une nouvelle colonne : ```Table.AddColumn(Source, "Personnalisé", each Text.Combine(List.ReplaceMatchingItems(Text.ToList(Text.Lower([#"Texte-avec-accent"])), Liste_Correspondance)))```
+
+```m
+let
+    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("NYy5TsNAFAB/5ck1QhENdXr+wLhYzCJW2ogo9kqUEIi470NchcMhbO4joAQIFKP9LwwITTPNTBgGzDBLkznmaZHR5pQzzrlgmx122SvZ54AnnunwwitdFllimRVyCq645oEFLtlklTXW2eCGW+6455AjjjmhxxvvfLDFo89823f5ou/7/jOIBsJgRIl1NUPe0EIRW2VKsUriBnlNi3LTkpY6YXUiZGJHXaUyNKzcmBYTG9GpWLLB31XV/VRF3SWxs38TinFjS5+iJzpJ//NJOnWTKhtE0Tc=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Texte-avec-accent" = _t]),
+    #"Added Custom" = Table.AddColumn(Source, "Personnalisé", each Text.Combine(List.ReplaceMatchingItems(Text.ToList(Text.Lower([#"Texte-avec-accent"])), Liste_Correspondance)))
+in
+    #"Added Custom"
+```
+
 ## SQL
 
 Il existe en T-SQL la fonction [_TRANSLATE_](https://docs.microsoft.com/fr-fr/sql/t-sql/functions/translate-transact-sql) qui permet de remplacer les caractère d'une liste, par leur equivalents dans une autre liste.

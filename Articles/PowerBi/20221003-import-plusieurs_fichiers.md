@@ -7,8 +7,8 @@ J'ai eu envie de faire un rapport sur la météo et ça tombe bien, [Météo Fra
 ![image](/Images/20221003-import-plusieurs_fichiers/rapportMeteo.png)]
 
 Je rencontre deux problématiques :
-- récupérer les fichiers pour plusieurs mois sans avoir à faire une requête par mois.
-- décompresser les fichiers qui sont fournis en _.gz_.
+- Récupérer les fichiers pour plusieurs mois sans avoir à faire une requête par mois.
+- Décompresser les fichiers qui sont fournis en _.gz_.
 
 En téléchargeant un premier fichier j'identifie le format du nom du fichier : l'année et le mois sont indiqués dans l'adresse.
 
@@ -36,7 +36,7 @@ Mais dans PowerQuery, il n'y a pas de boucle. Il faut donc procéder en 3 étape
 
 ## La liste des fichiers
 
-Disons que l'on veuille récupérer 3 ans d'historiques, soit 36 mois :
+Disons que l'on veuille récupérer 3 ans d'historique, soit 36 mois :
 
 - On génère une liste de 1 à 36. La liste doit être convertie en table et on peut renommer la colonne.
 
