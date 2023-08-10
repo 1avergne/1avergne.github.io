@@ -43,7 +43,7 @@ Quand on est expert dans un domaine, on a des connaissances sur des choses plus 
 
 ## 1avergne (https://1avergne.github.io/)
 
-[![image](/Images/20230810-mes-sites-preferes/1avergne.png)](https://1avergne.github.io/)
+[![image](/Images/20230810-mes-sites-preferes/1avergne-figlet.gif)](https://1avergne.github.io/)
 
 Oui c'est mon blog perso, mais non ce n'est pas de l'auto-promo. Je n'écris pas uniquement des articles pour partager mes connaissances sur MS-BI, mais aussi (et peut-être surtout) me faire une documentation personnelle sur ce que j'ai pu développer. Plutôt que de rouvrir un vieux projet pour rechercher une formule, il m'est bien plus pratique de l'avoir directement à disposition sur mon site. Je vous conseille de capitaliser au maximum sur vos connaissances dans un blog / Git / OneDrive / … L'important est de retrouver facilement ce que vous avez déjà fait.
 
