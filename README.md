@@ -14,6 +14,9 @@
 
 # Articles
 
+## Divers
+- [Mes sites préférés](./Articles/Divers/20230810-mes-sites-preferes.html)
+
 ## PowerShell
 - [Avoir un _clavier fantôme_ qui appuie sur une touche toutes les 5 secondes](./Articles/PowerShell/20221012-clavier-fantome.html)
 - [Tester l'état d'une instance SSAS](./Articles/PowerShell/20201003-tester-instance-ssas.html)
