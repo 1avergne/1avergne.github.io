@@ -8,3 +8,12 @@ Le rapport est : "Fiche de compte"
 
 
 <button onClick="window.location.reload();">Refresh Page</button>
+
+
+<script language="JavaScript" type="text/javascript">
+//<![CDATA[
+window.onbeforeunload = function(){
+return 'Are you sure you want to leave?';
+};
+//]]>
+</script>
