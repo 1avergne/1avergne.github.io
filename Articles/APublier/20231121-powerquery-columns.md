@@ -1,6 +1,6 @@
 # Power Query - Gérer les colonnes dynamiquement
 
-<p style="text-align: right;">2023-10-26</p>
+<p style="text-align: right;">2023-11-21</p>
 
 Lorsqu'on charge une source dans Power Query, il arrive que le format de la source change (d'un fichier à l'autre par exemple). Même si on préfèrerait refuser le fichier et imposer un format, ce n'est pas toujours possible... Il faut parfois savoir s'adapter.
 
@@ -35,6 +35,12 @@ let
 in
     RemovedColumns
 ```
+## Supprimer les colonnes selon un filtre
+
+Même méthode ! Mais en modifiant le filtre appliqué. Plutôt que ```each Text.StartsWith(_, "Column")``` on va utiliser un filtre qui correspond au cas d'usage.
+
+Et si on souhaite conserver certaines colonnes plutôt que de les supprimer, on utilisera la fonction *Table.SelectColumns* qui supprime les autres colonnes.
+
 
 ## Renommer des colonnes avec des noms variables
 
@@ -82,3 +88,15 @@ in
     RenamedColumns
 ```
 
+## Ajouter des colonnes manquantes
+
+Il arrive que certaines colonnes nécessaires au chargement soient absentes du fichier source. Il faut alors les ajouter dans les premières étapes du traitement.
+La méthode la plus simple pour faire cela est de définir la liste des colonnes nécessaire au traitement et de la combiner à la requête initiale pour que celle-ci soit complétée avec les colonnes manquantes.
+
+1. Avec la fonctionnalité "Entrer des données", on définit une table vide avec les colonnes souhaitées. On peut supprimer l'étape de typage si elle est ajoutée automatiquement.
+
+![image](/Images/20231121-powerquery-columns/Ex3-Source.png)
+
+2. Dans la requête de la table à compléter, avec l'option "Ajouter des requête", ajouter la requête définie précédemment (celle avec uniquement les en-têtes). 
+ 
+![image](/Images/20231121-powerquery-columns/Ex3-AppendedQuery.gif
