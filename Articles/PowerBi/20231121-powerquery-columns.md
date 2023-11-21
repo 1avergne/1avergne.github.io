@@ -1,4 +1,4 @@
-# Power Query - Gérer les colonnes dynamiquement
+# PowerQuery - Gérer les colonnes dynamiquement
 
 <p style="text-align: right;">2023-11-21</p>
 
