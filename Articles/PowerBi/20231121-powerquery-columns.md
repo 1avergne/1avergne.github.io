@@ -99,4 +99,4 @@ La méthode la plus simple pour faire cela est de définir la liste des colonnes
 
 2. Dans la requête de la table à compléter, avec l'option "Ajouter des requête", ajouter la requête définie précédemment (celle avec uniquement les en-têtes). 
  
-![image](/Images/20231121-powerquery-columns/Ex3-AppendedQuery.gif
+![image](/Images/20231121-powerquery-columns/Ex3-AppendedQuery.gif)
