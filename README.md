@@ -2,7 +2,7 @@
 
 ![image](/Images/avatar-1avergne.jpg)
 
-- 💻 Data Engineer / Data Analyst / Business Intelligence Consultant / Power BI Expert
+- 💻 Analytics Engineer / Data Engineer / Business Intelligence Consultant / Power BI Expert
 - 👨‍🏫 MS-BI Trainer / University part-time teacher 
 - 🚲 Bike commuter / Vintage bikes collector 
 
@@ -15,7 +15,8 @@
 # Articles
 
 ## PowerBi
-- [Power Query - Gérer les colonnes dynamiquement](./Articles/PowerBi/20231121-powerquery-columns.html)
+- [Un histogramme délimité par un seuil](./Articles/PowerBi/20231123-powerbi-histo-seuil.html)
+- [PowerQuery - Gérer les colonnes dynamiquement](./Articles/PowerBi/20231121-powerquery-columns.html)
 - [Moyenne mobile](./Articles/PowerBi/20230206-moyenne-mobile.html)
 - [Afficher une catégorie _Total_ dans un graphique](./Articles/PowerBi/20230206-categorie-total.html)
 - [PowerQuery - Filtrer le résultat d'une jointure](./Articles/PowerBi/20230118-PowerQuery-Filtrer-resultat-jointure.html)

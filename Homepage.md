@@ -2,7 +2,7 @@
 
 ![image](/Images/avatar-1avergne.jpg)
 
-- 💻 Data Engineer / Data Analyst / Business Intelligence Consultant / Power BI Expert
+- 💻 Analytics Engineer / Data Engineer / Business Intelligence Consultant / Power BI Expert
 - 👨‍🏫 MS-BI Trainer / University part-time teacher 
 - 🚲 Bike commuter / Vintage bikes collector 
 
