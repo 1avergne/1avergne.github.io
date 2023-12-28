@@ -15,6 +15,7 @@
 # Articles
 
 ## PowerBi
+- [Les paramètres de champs](./Articles/PowerBi/20231228-field-parameters.html)
 - [Un histogramme délimité par un seuil](./Articles/PowerBi/20231123-powerbi-histo-seuil.html)
 - [PowerQuery - Gérer les colonnes dynamiquement](./Articles/PowerBi/20231121-powerquery-columns.html)
 - [Moyenne mobile](./Articles/PowerBi/20230206-moyenne-mobile.html)

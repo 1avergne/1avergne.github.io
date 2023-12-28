@@ -2,7 +2,7 @@
 
 <p style="text-align: right;">2023-11-21</p>
 
-Lorsqu'on charge une source dans Power Query, il arrive que le format de la source change (d'un fichier à l'autre par exemple). Même si on préfèrerait refuser le fichier et imposer un format, ce n'est pas toujours possible... Il faut parfois savoir s'adapter.
+Lorsqu'on charge une source dans PowerQuery, il arrive que le format de la source change (d'un fichier à l'autre par exemple). Même si on préfèrerait refuser le fichier et imposer un format, ce n'est pas toujours possible... Il faut parfois savoir s'adapter.
 
 ![image](https://i.kym-cdn.com/entries/icons/original/000/023/987/overcome.jpg)
 
