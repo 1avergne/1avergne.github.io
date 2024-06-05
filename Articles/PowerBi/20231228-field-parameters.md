@@ -1,6 +1,8 @@
 # Les paramètres de champs
 
-<p style="text-align: right;">2021-12-28</p>
+<p style="text-align: right;">2023-12-28</p>
+
+Les [paramètres de champ](https://learn.microsoft.com/fr-fr/power-bi/create-reports/power-bi-field-parameters) sont une solution très utiles pour rentre dynamiques des visuels en offrant la possibilité à l'utilisateur de choisir les champs ou les mesures à afficher.  
 
 ## Libellés de mesures dynamiques
 

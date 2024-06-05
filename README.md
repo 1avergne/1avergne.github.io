@@ -15,6 +15,8 @@
 # Articles
 
 ## PowerBi
+- [Mon calendrier en DAX](./Articles/PowerBi/20240605-dax-calendar.html)
+- [Les groupes de calcul](./Articles/PowerBi/20240425-calculation-group.html)
 - [Les paramètres de champs](./Articles/PowerBi/20231228-field-parameters.html)
 - [Un histogramme délimité par un seuil](./Articles/PowerBi/20231123-powerbi-histo-seuil.html)
 - [PowerQuery - Gérer les colonnes dynamiquement](./Articles/PowerBi/20231121-powerquery-columns.html)
