@@ -2,8 +2,17 @@
 
 <p style="text-align: right;">2024-06-05</p>
 
-A force d'écrire la même formule en DAX pour creer un calendrier. Je me suis dit qu'il etait temps de créer une version à peu près définitive.
-Dans ce code je calcule le jour de Paques et les jours fériés qui en découlent avec la [méthode de Butcher-Meeus](https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques#M%C3%A9thode_moderne).
+A force d'écrire la même formule en DAX pour créer un calendrier. Je me suis dit qu'il etait temps de faire une version à peu près définitive !
+
+![image](/Images/dalle_calendar4.jfif)
+
+Dans ce code je récupère le calendrier à proprement parler (la liste des jours) avec la fonction ```CALENDARAUTO``` . On peut tout aussi bien utiliser ```CALENDAR```
+
+Je calcule le jour de Paques et les jours fériés qui en découlent avec la [méthode de Butcher-Meeus](https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques#M%C3%A9thode_moderne).
+
+Les jours *ouvrés* correspondent aux jourshors week-end et hors jours fériers.
+
+Les colonnes *Week-end* et *Ouvré* sont des entiers plutôt que des booléens. Cela permet de compter plus rapidement le nombre de jour (en faisant une somme sur la colonne).
 
 ```dax
 Calendrier = VAR _local = "fr-fr"
