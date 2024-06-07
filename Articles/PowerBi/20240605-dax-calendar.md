@@ -4,8 +4,6 @@
 
 A force d'écrire la même formule en DAX pour créer un calendrier. Je me suis dit qu'il etait temps de faire une version à peu près définitive !
 
-![image](/Images/dalle_calendar4.jfif)
-
 Dans ce code je récupère le calendrier à proprement parler (la liste des jours) avec la fonction ```CALENDARAUTO``` . On peut tout aussi bien utiliser ```CALENDAR```
 
 Je calcule le jour de Paques et les jours fériés qui en découlent avec la [méthode de Butcher-Meeus](https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques#M%C3%A9thode_moderne).
@@ -14,9 +12,12 @@ Les jours *ouvrés* correspondent aux jourshors week-end et hors jours fériers.
 
 Les colonnes *Week-end* et *Ouvré* sont des entiers plutôt que des booléens. Cela permet de compter plus rapidement le nombre de jour (en faisant une somme sur la colonne).
 
+
+<object data="../../Calendrier.dax" type="text/plain"></object>
+
 ```dax
 Calendrier = VAR _local = "fr-fr"
-VAR _cal = CALENDARAUTO()
+VAR _cal = CALENDARAUTO() // CALENDAR(DATE(2020, 1, 1), DATE(2030, 1, 1))
 VAR _ann = DISTINCT(SELECTCOLUMNS(_cal, "Année", YEAR([Date])))
 VAR _paq = ADDCOLUMNS(_ann
 , "Date", VAR _n = MOD([Année], 19)
@@ -50,16 +51,20 @@ VAR _fet = UNION(SELECTCOLUMNS(_paq, "Fete", "Paques", "Date", [Date])
     , SELECTCOLUMNS(_ann, "Fête", "Noël", "Date", DATE([Année], 12, 25))
 )
 RETURN ADDCOLUMNS(ADDCOLUMNS(_cal
-, "Année", YEAR([Date])
-, "Année-mois", EOMONTH([Date], 0) // afficher au format "mmmm yyyy"
-, "Mois", FORMAT([Date], "mmmm", _local) // trier par [Mois (num)]
-, "Mois (num)", MONTH([Date])
-, "Semaine (num)", WEEKNUM([Date], 2)
-, "Jour semaine", FORMAT([Date], "dddd", _local) // trier par [Jour semaine (num)]
-, "Jour semaine (num)", WEEKDAY([Date], 2)
-, "Début semaine", [Date] - WEEKDAY([Date], 2) + 1
-, "Week-end", IF(WEEKDAY([Date], 2) > 5, 1, 0)
-, "Fête", MINX(FILTER(_fet, [Date] = EARLIER([Date])), [Fete])
+    , "Année", YEAR([Date])
+    , "Année-mois", EOMONTH([Date], 0) // afficher au format "mmmm yyyy"
+    , "Mois", FORMAT([Date], "mmmm", _local) // trier par [Mois (num)]
+    , "Mois (num)", MONTH([Date])
+    , "Semaine (num)", WEEKNUM([Date], 2) // la semaine 1 contient le premier jour de l'année
+    , "Semaine ISO (num)", WEEKNUM([Date], 21) // la semaine 1 contient le premier jeudi de l'année
+    , "Jour semaine", FORMAT([Date], "dddd", _local) // trier par [Jour semaine (num)]
+    , "Jour semaine (num)", WEEKDAY([Date], 2)
+    , "Début semaine", [Date] - WEEKDAY([Date], 2) + 1 // premier jour de la semaine
+    , "Passé", IF([Date] < TODAY(), 1, 0) // indique si la date est antérieure à aujourd'hui
+    , "Rang année", YEAR([Date]) - YEAR(TODAY()) // années passées en négatif, années futures en positif
+    , "Rang mois", DATEDIFF(EOMONTH(TODAY(), 0), EOMONTH([Date], 0), MONTH) // mois passés en négatif, Mois futurs en positif
+    , "Week-end", IF(WEEKDAY([Date], 2) > 5, 1, 0)
+    , "Fête", MINX(FILTER(_fet, [Date] = EARLIER([Date])), [Fete])
 ), "Ouvré", IF([Week-end] = 0 && ISBLANK([Fête]), 1, 0)
 )
 ```
