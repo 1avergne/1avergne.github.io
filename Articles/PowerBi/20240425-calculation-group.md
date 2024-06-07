@@ -39,7 +39,18 @@ IF(ABS(SELECTEDMEASURE()) < 0.01, "0.00\ ‰;-0.00\ ‰;0.00\ ‰", "0.00\ %;-0.
 
 Comment gérer un modèle comme celui-ci simplement ?
 
+La table de faits **C** est filtrée par la dimension **B** qui dépent elle-même d'une table **A**. Mais entre **A** et **B** il existe plusieurs relations *many-to-many*. Selon le contexte, on voudra utiliser telle ou telle table de jointure (**A1B**, **A2B** ou **A3B**).
+Il faut que le filtrage d'une seule relation entre la table de brige et B soit à double sens pour que le modèle soit valide et que **A** filtre bien **B** et **C**.
+
 ![image](/Images/20240425-calculation-group/multiroute-diagram.png)
 
-Avec les **groupes de mesures** !
-*La suite au prochain numéro ...*
+Dans le modèle, on définie le filtrage de toute les relation à sens unique. 
+Puis on crée un groupe avec un élement de calcul pour chaque table de jointure. On peut ensuite indiquer quelle relation utiliser à double sens pour filtrer de la table **A** vers la table **C**
+
+```dax
+Pont 1 = CALCULATE(SELECTEDMEASURE(), CROSSFILTER('A1B'[Id_B], 'B'[Id_B], Both))
+
+Pont 2 = CALCULATE(SELECTEDMEASURE(), CROSSFILTER('A2B'[Id_B], 'B'[Id_B], Both))
+
+Pont 3 = CALCULATE(SELECTEDMEASURE(), CROSSFILTER('A3B'[Id_B], 'B'[Id_B], Both))
+```
