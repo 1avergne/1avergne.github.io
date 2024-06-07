@@ -12,9 +12,6 @@ Les jours *ouvrés* correspondent aux jourshors week-end et hors jours fériers.
 
 Les colonnes *Week-end* et *Ouvré* sont des entiers plutôt que des booléens. Cela permet de compter plus rapidement le nombre de jour (en faisant une somme sur la colonne).
 
-
-<object data="../../Calendrier.dax" type="text/plain" width="500" height="200"></object>
-
 ```dax
 Calendrier = VAR _local = "fr-fr"
 VAR _cal = CALENDARAUTO() // CALENDAR(DATE(2020, 1, 1), DATE(2030, 1, 1))
