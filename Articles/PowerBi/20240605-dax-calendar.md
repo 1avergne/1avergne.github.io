@@ -8,9 +8,9 @@ Dans ce code je récupère le calendrier à proprement parler (la liste des jour
 
 Je calcule le jour de Paques et les jours fériés qui en découlent avec la [méthode de Butcher-Meeus](https://fr.wikipedia.org/wiki/Calcul_de_la_date_de_P%C3%A2ques#M%C3%A9thode_moderne).
 
-Les jours *ouvrés* correspondent aux jourshors week-end et hors jours fériers.
+Les jours *ouvrés* correspondent aux jours hors week-end et hors jours fériers.
 
-Les colonnes *Week-end* et *Ouvré* sont des entiers plutôt que des booléens. Cela permet de compter plus rapidement le nombre de jour (en faisant une somme sur la colonne).
+Les colonnes *Week-end* et *Ouvré* sont des entiers plutôt que des booléens. Cela permet de compter plus rapidement le nombre de jours (en faisant une somme sur la colonne).
 
 ```dax
 Calendrier = VAR _local = "fr-fr"
