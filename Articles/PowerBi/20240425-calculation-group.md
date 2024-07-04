@@ -2,7 +2,7 @@
 
 <p style="text-align: right;">2024-04-25</p>
 
-Les groupes de calcul, c'est la meilleure choses qui soit arrivé à Power BI depuis les paramètres de champs ! C'est simplement la dernière fonctionalité qu'il manquait ratraper les capacité du MDX.
+Les groupes de calcul, c’est la meilleure choses qui soit arrivé à Power BI depuis les paramètres de champs ! C’est simplement la dernière fonctionnalité qu’il manquait rattraper les capacité du MDX.
 Les groupes de calcul permettent de modifier le comportement des mesures ; on va pouvoir "surcharger" les mesures avec des calculs suplémentaires. On retrouve un comportement similaire à la fonctionalité "Scope" des modèles multidimentionnels.
 
 La documentation Microsoft explique déjà très bien comment ça fonctionne, je vais plutôt me concentrer sur des cas d'usages.
