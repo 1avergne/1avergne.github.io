@@ -15,6 +15,7 @@
 # Articles
 
 ## PowerBi
+- [API : copie de rapport et rétro-déploiement ](./Articles/PowerBi/20241010-api-copie-deploiement-selectif.html)
 - [Mon calendrier en DAX](./Articles/PowerBi/20240605-dax-calendar.html)
 - [Les groupes de calcul](./Articles/PowerBi/20240425-calculation-group.html)
 - [Les paramètres de champs](./Articles/PowerBi/20231228-field-parameters.html)
