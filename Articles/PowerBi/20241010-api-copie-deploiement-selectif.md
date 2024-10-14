@@ -2,7 +2,7 @@
 
 <p style="text-align: right;">2024-10-10</p>
 
-Sur un projet Power BI, j’utilise les Pipelines de déploiement pour gérer le cycle de vie de mes rapports. Avec une petite subtilité certains rapports, une fois en production, doivent également être déployés sur d’autres Workspaces (qui ne sont pas dans le pipeline).
+Sur un projet Power BI, j’utilise les [pipelines de déploiement](https://learn.microsoft.com/fr-fr/fabric/cicd/deployment-pipelines/get-started-with-deployment-pipelines) pour gérer le cycle de vie de mes rapports. Avec une petite subtilité certains rapports, une fois en production, doivent également être déployés sur d’autres Workspaces (qui ne sont pas dans le pipeline).
 
 ![image](/Images/20241010-api-copie-deploiement-selectif/worspaces.png)
 
@@ -10,7 +10,7 @@ Sur un projet Power BI, j’utilise les Pipelines de déploiement pour gérer le
 
 Je ne peux pas déployer les rapports depuis Power BI Desktop (ce qui reviendrait à déployer directement une version de développement en production). Je ne souhaite pas faire de copie à la main, et je ne veux surtout pas supprimer les rapports existants car les identifiants ne seraient pas les mêmes à la republication.
 Il faut donc que je duplique les rapports en production sur les rapports des Workspaces spécifiques. 
-Et comme souvent je vais utiliser un de mes outils préférés : le Power Shell !
+Et comme souvent je vais utiliser un de mes outils préférés : le [PowerShell](https://learn.microsoft.com/en-us/powershell/power-bi/overview) !
 
 ```powershell
 ## paramètres         xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx 
@@ -43,7 +43,7 @@ Il a donc fallu que je supprime les rapports déployés en dev et que je redesce
 
 ![image](/Images/20241010-api-copie-deploiement-selectif/worspaces_selective_deploy.png)
 
-On refait chauffer le Power Shell. Le script utilise les identifiants du pipeline et des rapports à rétro-déployer. Le paramètre *sourceStageOrder* indique qu'on utilise les rapports en recette (0 = DEV), 1 = REC, 2 = PROD). Et le paramètre *isBackwardDeployment* indique qu'il s'agit d'un déploiement à une étape antérieure.
+On refait chauffer le [PowerShell](https://learn.microsoft.com/en-us/powershell/power-bi/overview). Le script utilise les identifiants du pipeline et des rapports à rétro-déployer. Le paramètre *sourceStageOrder* indique qu'on utilise les rapports en recette (0 = DEV), 1 = REC, 2 = PROD). Et le paramètre *isBackwardDeployment* indique qu'il s'agit d'un déploiement à une étape antérieure.
 
 ```powershell
 ## paramètres
