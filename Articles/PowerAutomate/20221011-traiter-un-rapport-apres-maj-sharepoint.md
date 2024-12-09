@@ -1,5 +1,7 @@
 # Rafraichir un rapport Power BI après la mise à jour du fichier source
 
+<p style="text-align: right;">2022-10-11</p>
+
 A l'agence nous avons un fichier Excel stocké sur [SharePoint](https://www.microsoft.com/fr-fr/microsoft-365/sharepoint/collaboration) où chacun note ses jours de présence ou de télétravail. 
 J'ai créé un rapport Power BI connecté à ce fichier et qui affiche le nombre de présents pour les prochains jours ainsi que les personnes qui n'ont pas rempli le fichier.
 

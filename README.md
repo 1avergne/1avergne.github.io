@@ -14,6 +14,10 @@
 
 # Articles
 
+## PowerAutomate
+- [Mettre un jour un flux avec un déclencheur Power BI](./Articles/PowerAutomate/20241202-maj-flux-powerbi.html)
+- [Rafraichir un rapport Power BI après la mise à jour du fichier source](./Articles/PowerAutomate/20221011-traiter-un-rapport-apres-maj-sharepoint.html)
+
 ## PowerBi
 - [API : copie de rapport et rétro-déploiement ](./Articles/PowerBi/20241010-api-copie-deploiement-selectif.html)
 - [Mon calendrier en DAX](./Articles/PowerBi/20240605-dax-calendar.html)
@@ -53,6 +57,3 @@
 
 ## Excel
 - [Validation de données avec menu déroulant à partir d'une formule](./Articles/Excel/20211129-Excel-validation-liste-formule.html)
-
-## PowerAutomate
-- [Rafraichir un rapport Power BI après la mise à jour du fichier source](./Articles/PowerAutomate/20221011-traiter-un-rapport-apres-maj-sharepoint.html)
