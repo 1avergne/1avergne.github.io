@@ -14,11 +14,8 @@
 
 # Articles
 
-## PowerAutomate
-- [Mettre un jour un flux avec un déclencheur Power BI](./Articles/PowerAutomate/20241202-maj-flux-powerbi.html)
-- [Rafraichir un rapport Power BI après la mise à jour du fichier source](./Articles/PowerAutomate/20221011-traiter-un-rapport-apres-maj-sharepoint.html)
-
 ## PowerBi
+- [DAX : Time intelligence et groupes de cacul](./Articles/PowerBi/20250326-dax-time-intelligence.html)
 - [API : copie de rapport et rétro-déploiement ](./Articles/PowerBi/20241010-api-copie-deploiement-selectif.html)
 - [Mon calendrier en DAX](./Articles/PowerBi/20240605-dax-calendar.html)
 - [Les groupes de calcul](./Articles/PowerBi/20240425-calculation-group.html)
@@ -36,6 +33,10 @@
 - [Embarquer une vidéo dans un _dashboard_ Power-BI](./Articles/PowerBi/20190827-embarquer-une-vidéo-dans-un-dashboard-Power-BI.html)
 - [Creer un Pareto avec Power BI](./Articles/PowerBi/20190729-creer-un-pareto.html)
 - [Dynamic filter in dashboard](./Articles/PowerBi/20180712-dynamic-filter-in-dashboard.html)
+
+## PowerAutomate
+- [Mettre un jour un flux avec un déclencheur Power BI](./Articles/PowerAutomate/20241202-maj-flux-powerbi.html)
+- [Rafraichir un rapport Power BI après la mise à jour du fichier source](./Articles/PowerAutomate/20221011-traiter-un-rapport-apres-maj-sharepoint.html)
 
 ## Divers
 - [Mes sites préférés](./Articles/Divers/20230810-mes-sites-preferes.html)

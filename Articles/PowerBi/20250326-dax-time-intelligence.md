@@ -1,9 +1,9 @@
-# DAX : Time intelligence et groupes de caculs
+# DAX : Time intelligence et groupes de cacul
 <p style="text-align: right;">2025-03-26</p>
 
 ## Design-pattern
 
-Les [groupes de calculs](https://1avergne.github.io/Articles/PowerBi/20240425-calculation-group.html) offrent des possibilités énormes en termes de dynamisme et de fonctionnalité du modèle. Et avec elles les fonctions d'intelligence temporelle peuvent être appliquées à tous les calculs d'un modèle.
+Les [groupes de calcul](https://1avergne.github.io/Articles/PowerBi/20240425-calculation-group.html) offrent des possibilités énormes en termes de dynamisme et de fonctionnalité du modèle. Et avec elles les fonctions d'intelligence temporelle peuvent être appliquées à tous les calculs d'un modèle.
 J’ai essayé de regrouper ici un maximum de calculs qui exploitent les fonctions de time intelligence.
 
 ```C
