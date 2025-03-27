@@ -23,7 +23,7 @@ Versus previous year = CALCULATE(SELECTEDMEASURE(), SAMEPERIODLASTYEAR('Calendar
 
 6 rolling month = CALCULATE(SELECTEDMEASURE(), DATESINPERIOD('Calendar'[Date], MAX('Calendar'[Date]), -6, MONTH)) // Cumul sur les six derniers mois glissants
 
-12 rolling month = CALCULATE(SELECTEDMEASURE(), DATESINPERIOD('Calendar'[Date], MAX('Calendar'[Date]), -6, MONTH)) // Cumul sur les douze derniers mois glissants
+12 rolling month = CALCULATE(SELECTEDMEASURE(), DATESINPERIOD('Calendar'[Date], MAX('Calendar'[Date]), -12, MONTH)) // Cumul sur les douze derniers mois glissants
 
 YTD = CALCULATE(SELECTEDMEASURE(), DATESYTD('Calendar'[Date])) // Valeurs cumulées du début de l'année jusqu'à la période courante
 
@@ -74,7 +74,7 @@ table 'Time intelligence'
 
 		calculationItem '6 rolling month' = CALCULATE(SELECTEDMEASURE(), DATESINPERIOD('Calendar'[Date], MAX('Calendar'[Date]), -6, MONTH)) // Cumul sur les six derniers mois glissants
 
-		calculationItem '12 rolling month' = CALCULATE(SELECTEDMEASURE(), DATESINPERIOD('Calendar'[Date], MAX('Calendar'[Date]), -6, MONTH)) // Cumul sur les douze derniers mois glissants
+		calculationItem '12 rolling month' = CALCULATE(SELECTEDMEASURE(), DATESINPERIOD('Calendar'[Date], MAX('Calendar'[Date]), -12, MONTH)) // Cumul sur les douze derniers mois glissants
 
 		calculationItem 'YTD' = CALCULATE(SELECTEDMEASURE(), DATESYTD('Calendar'[Date])) // Valeurs cumulées du début de l'année jusqu'à la période courante
 
