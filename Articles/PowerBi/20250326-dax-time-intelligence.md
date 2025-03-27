@@ -1,4 +1,4 @@
-# DAX : Time intelligence et groupes de cacul
+# DAX - Time intelligence et groupes de cacul
 <p style="text-align: right;">2025-03-26</p>
 
 ## Design-pattern

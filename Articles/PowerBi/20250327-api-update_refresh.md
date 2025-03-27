@@ -1,4 +1,4 @@
-# API : configurer et rafraichir un modèle
+# API - configurer et rafraichir un modèle
 
 <p style="text-align: right;">2025-03-27</p>
 
