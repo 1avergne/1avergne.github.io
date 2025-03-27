@@ -34,7 +34,7 @@ YTD due month = CALCULATE(SELECTEDMEASURE(), FILTER(DATESYTD('Calendar'[Date]), 
 
 ## Edition TMDL
 
-Il peut être fastidieux d'écrire chaque calcul un-à-un. Pour gagne du temps, on peut insérer les calculs directmeent dans les fichiers sources du modèle.
+Il peut être fastidieux d'écrire chaque calcul un-à-un. Pour gagner du temps, on peut insérer les calculs directment dans les fichiers sources du modèle.
 
 - Enregistrer le rapport en _.pbip_ au format [TMDL](https://learn.microsoft.com/fr-fr/analysis-services/tmdl/tmdl-overview) (fonctionnalité en prévision à activer)
  
