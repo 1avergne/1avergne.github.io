@@ -15,6 +15,7 @@
 # Articles
 
 ## PowerBi
+- [API : configurer et rafraichir un modèle](./Articles/PowerBi/20250327-api-update_refresh.html)
 - [DAX : Time intelligence et groupes de cacul](./Articles/PowerBi/20250326-dax-time-intelligence.html)
 - [API : copie de rapport et rétro-déploiement ](./Articles/PowerBi/20241010-api-copie-deploiement-selectif.html)
 - [Mon calendrier en DAX](./Articles/PowerBi/20240605-dax-calendar.html)
