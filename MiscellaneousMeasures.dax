@@ -1,0 +1,20 @@
+DEFINE
+TABLE Measures = DATATABLE("static_label", STRING, {{"bonjour"}})		 
+		 
+//renvoie le code hexadecimal d'une couleur au hasard. La couleur a une luminosité constante de 51% et une dominante rouge, verte ou bleu pour être toujour visible 
+MEASURE 'Measures'[alea_col_51] = VAR _pos = MOD(SECOND(UTCNOW()),6) + 1 -- RANDBETWEEN(1, 3)
+	VAR _ab = RANDBETWEEN(3, 255)
+	VAR _an = MOD(_ab, 16)
+	VAR _at = IF(_an < 10, FORMAT(_an, "0"), UNICHAR(UNICODE("A") + _an - 10))
+	VAR _bn = FLOOR(DIVIDE(_ab, 16), 1)
+	VAR _bt = IF(_bn < 10, FORMAT(_bn, "0"), UNICHAR(UNICODE("A") + _bn - 10))
+RETURN "#" 
+	& SWITCH(_pos, 1, "FF03", 2, "03FF", 3, "FF", 4, "03") 
+	& _at & _bt 
+	& SWITCH(_pos, 3, "03", 4, "FF", 5, "FF03", 6, "03FF")
+	
+EVALUATE ADDCOLUMNS(TOPN(1, Measures)
+	, "alea_col_51", [alea_col_51]
+)
+
+
