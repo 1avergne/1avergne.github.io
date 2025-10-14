@@ -15,6 +15,7 @@
 # Articles
 
 ## PowerBi
+- [Rapport au format PBIR - quelques déconvenues](./Articles/PowerBi/20251014-pbir-troubleshoot.html)
 - [API - configurer et rafraichir un modèle](./Articles/PowerBi/20250327-api-update_refresh.html)
 - [DAX - Time intelligence et groupes de cacul](./Articles/PowerBi/20250326-dax-time-intelligence.html)
 - [API - copie de rapport et rétro-déploiement ](./Articles/PowerBi/20241010-api-copie-deploiement-selectif.html)
@@ -35,18 +36,6 @@
 - [Creer un Pareto avec Power BI](./Articles/PowerBi/20190729-creer-un-pareto.html)
 - [Dynamic filter in dashboard](./Articles/PowerBi/20180712-dynamic-filter-in-dashboard.html)
 
-## PowerAutomate
-- [Mettre un jour un flux avec un déclencheur Power BI](./Articles/PowerAutomate/20241202-maj-flux-powerbi.html)
-- [Rafraichir un rapport Power BI après la mise à jour du fichier source](./Articles/PowerAutomate/20221011-traiter-un-rapport-apres-maj-sharepoint.html)
-
-## Divers
-- [Mes sites préférés](./Articles/Divers/20230810-mes-sites-preferes.html)
-
-## PowerShell
-- [Avoir un _clavier fantôme_ qui appuie sur une touche toutes les 5 secondes](./Articles/PowerShell/20221012-clavier-fantome.html)
-- [Tester l'état d'une instance SSAS](./Articles/PowerShell/20201003-tester-instance-ssas.html)
-- [Automatic entry of clipboard contents](./Articles/PowerShell/20181001-clipboard-automatic-entry.html)
-
 ## SqlServer
 - [Un exemple de requête SQL récursive](./Articles/SqlServer/20221215-exemple-cte-recursive.html)
 - [Prévoir une _sortie_ dans une boucle](./Articles/SqlServer/20210823-boucle-condition-sortie.html)
@@ -57,5 +46,17 @@
 - [Retirer les accents dans un texte](./Articles/SqlServer/20200319-supprimer-accents.html)
 - [Connaître le nombre de lignes dans chaque table](./Articles/SqlServer/20200319-compter-nombre-lignes.html)
 
+## PowerShell
+- [Avoir un _clavier fantôme_ qui appuie sur une touche toutes les 5 secondes](./Articles/PowerShell/20221012-clavier-fantome.html)
+- [Tester l'état d'une instance SSAS](./Articles/PowerShell/20201003-tester-instance-ssas.html)
+- [Automatic entry of clipboard contents](./Articles/PowerShell/20181001-clipboard-automatic-entry.html)
+
+## PowerAutomate
+- [Mettre un jour un flux avec un déclencheur Power BI](./Articles/PowerAutomate/20241202-maj-flux-powerbi.html)
+- [Rafraichir un rapport Power BI après la mise à jour du fichier source](./Articles/PowerAutomate/20221011-traiter-un-rapport-apres-maj-sharepoint.html)
+
 ## Excel
 - [Validation de données avec menu déroulant à partir d'une formule](./Articles/Excel/20211129-Excel-validation-liste-formule.html)
+
+## Divers
+- [Mes sites préférés](./Articles/Divers/20230810-mes-sites-preferes.html)

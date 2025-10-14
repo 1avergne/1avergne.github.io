@@ -3,12 +3,10 @@
 <p style="text-align: right;">2025-10-14</p>
 
 <details><summary><b>TL;DR</b></summary>
-
-- Erreur ```Cannot perform interop call to: ModelAuthoringHostService.UpdateModelExtensions(args:1) wrong arg[0]=extensions``` dans Power BI Desktop
-➔ supprimer toutes les tables sans mesures dans le fichier _reportExtension.json_.
-
-- Erreur ```Failed to update report content - source report is PBIR and target report is PBIR-Legacy. Versions must be the same.``` dans l'API Power BI
-➔ republier le rapport depuis Power BI Desktop
+<p>Erreur <code>Cannot perform interop call to: ModelAuthoringHostService.UpdateModelExtensions(args:1) wrong arg[0]=extensions</code> dans Power BI Desktop
+➔ supprimer toutes les tables sans mesures dans le fichier <i>reportExtension.json</i>.</p>
+<p>Erreur <code>Failed to update report content - source report is PBIR and target report is PBIR-Legacy. Versions must be the same.</code> dans l'API Power BI
+➔ republier le rapport depuis Power BI Desktop.</p>
 
 </details>
 
