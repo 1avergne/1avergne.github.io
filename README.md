@@ -14,6 +14,12 @@
 
 # Articles
 
+## PowerShell
+- [Power BI : PowerShell Cmdlets](./Articles/PowerShell/20251015-scripts-powershell-powerbi.html)
+- [Avoir un _clavier fantôme_ qui appuie sur une touche toutes les 5 secondes](./Articles/PowerShell/20221012-clavier-fantome.html)
+- [Tester l'état d'une instance SSAS](./Articles/PowerShell/20201003-tester-instance-ssas.html)
+- [Automatic entry of clipboard contents](./Articles/PowerShell/20181001-clipboard-automatic-entry.html)
+
 ## PowerBi
 - [Rapport au format PBIR - quelques déconvenues](./Articles/PowerBi/20251014-pbir-troubleshoot.html)
 - [API - configurer et rafraichir un modèle](./Articles/PowerBi/20250327-api-update_refresh.html)
@@ -45,11 +51,6 @@
 - [Suppression par lots](./Articles/SqlServer/20200604-suppression-lot.html)
 - [Retirer les accents dans un texte](./Articles/SqlServer/20200319-supprimer-accents.html)
 - [Connaître le nombre de lignes dans chaque table](./Articles/SqlServer/20200319-compter-nombre-lignes.html)
-
-## PowerShell
-- [Avoir un _clavier fantôme_ qui appuie sur une touche toutes les 5 secondes](./Articles/PowerShell/20221012-clavier-fantome.html)
-- [Tester l'état d'une instance SSAS](./Articles/PowerShell/20201003-tester-instance-ssas.html)
-- [Automatic entry of clipboard contents](./Articles/PowerShell/20181001-clipboard-automatic-entry.html)
 
 ## PowerAutomate
 - [Mettre un jour un flux avec un déclencheur Power BI](./Articles/PowerAutomate/20241202-maj-flux-powerbi.html)

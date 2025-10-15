@@ -16,7 +16,7 @@ $reportName = $report.name
 #config main
 $exportConfiguration_0 = [pscustomobject]@{
     ##reportLevelFilters = @([pscustomobject]@{filter = "V_PBI_MD_ACCOUNT/NAME eq 'Rexel'"})
-    pages = @([pscustomobject]@{pageName = "ReportSectiona318a31b5cca54c0d71d"} )
+    pages = @([pscustomobject]@{pageName = "ReportSection123456789"} )
 }
 
 $postBody = [pscustomobject]@{format = $format 

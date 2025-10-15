@@ -6,6 +6,8 @@ Power BI propose une API qui permet d'exécuter en ligne de commande la plupart 
 
 Le plus gros avantage des Cmdlets est de pouvoir intéragir avec le service Power BI et utiliser l'API avec un compte Power BI utilisateur sans avoir à passer par une application enregistrée dans l'Azure AD. La plupart des commandes de l'API ont une fonction équivalente dans la bibliothèque PowerShell.
 
+Plusieurs exemple de scripts utilisant l'API Power BI Sont disponible dans [ce repo](https://github.com/1avergne/1avergne.github.io/tree/d06ba7ce021d5d1fd9f88ce5d8808b3bec29b773/PowerShell-Scripts).
+
 ## Installation
 
 ### Module _MicrosoftPowerBIMgmt_
