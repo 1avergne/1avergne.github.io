@@ -4,7 +4,7 @@
 
 Il est parfois nécessaire de retirer les accents dans des champs d'une requête PowerQuery / M ou dans une table SQL. Par exemple pour faire une jointure sans avoir à passer par un Fuzzy Lookup.
 
-J'avais imaginé il y a quelques années des solutions compliquées pour faire cela en [SQL](https://1avergne.azurewebsites.net/post/2020/02/28/sql-retirer-les-accents-et-caractere-speciaux) et en [PowerQuery](https://1avergne.azurewebsites.net/post/2019/09/05/powerquery-m-retirer-les-accents). Mais même si j'aime beaucoup les solutions compliquées, c'est plus simple de faire des choses simples (à cause de la simplicité) ...
+J'avais imaginé il y a quelques années des solutions compliquées pour faire cela en SQL et en PowerQuery. Mais même si j'aime beaucoup les solutions compliquées, c'est plus simple de faire des choses simples (à cause de la simplicité) ...
 
 Donc voici comment _simplement_ retirer les accents d'un texte.
 
@@ -15,7 +15,7 @@ Pour cela on crée une nouvelle colonne : ```Text.FromBinary(Text.ToBinary ([#"T
 
 ![image](/Images/accent-powerquery.png)
 
-```
+```m
 let
     Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("NYy5TsNAFAB/5ck1QhENdXr+wLhYzCJW2ogo9kqUEIi470NchcMhbO4joAQIFKP9LwwITTPNTBgGzDBLkznmaZHR5pQzzrlgmx122SvZ54AnnunwwitdFllimRVyCq645oEFLtlklTXW2eCGW+6455AjjjmhxxvvfLDFo89823f5ou/7/jOIBsJgRIl1NUPe0EIRW2VKsUriBnlNi3LTkpY6YXUiZGJHXaUyNKzcmBYTG9GpWLLB31XV/VRF3SWxs38TinFjS5+iJzpJ//NJOnWTKhtE0Tc=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Texte-avec-accent" = _t]),
     #"Personnalisée ajoutée" = Table.AddColumn(Source, "Texte-sans-accent", each Text.FromBinary(Text.ToBinary  ([#"Texte-avec-accent"], 1251 ),  TextEncoding.Ascii))
