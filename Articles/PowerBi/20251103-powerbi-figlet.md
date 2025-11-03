@@ -23,7 +23,7 @@ Ou encore ``Power-BI #1 :)`` devient :
  _|    \___/   \_/\_/   \___|  _|           ___/  ___|     _ |_ |_|   _|     _)     | 
                                                             _| _|                 _/  
 ```
-C’est un logiciel que j’affectionne particulièrement car il permet de rendre facilement visible des titres dans une documentation ou es commentaires d’un code.
+C’est un logiciel que j’affectionne particulièrement car je l’ai beaucoup utilisé dans mes jeunes années d’utilisateur Linux. Il me permet encore de rendre facilement visible des titres les commentaires d’un code.
 
 ## Etape 1 : les polices
 
@@ -43,7 +43,7 @@ Chaque police est enregistrée au même format dans un fichier *.flf* :
 
 ![image](/Images/20251103-powerbi-figlet/powerbi-figlet-alphabet-215.png)
 
-Dans Power Query, j’ai créé une fonction qui va récupérer le fichier de police sur Git et le transforme en table avec comme colonnes :
+Dans Power Query, j’ai créé une fonction qui va récupérer le fichier de police sur *GIT* et le transforme en table avec comme colonnes :
 -	Code : le code d’une ligne de caractère comme il définit dans FIGlet, mais sans le @ en fin de ligne, et avec des guillemets `à la place des espaces
 -	Index : la numérotation des lignes du fichier. Je n’utiliserai pas cette colonne ensuite.
 -	Line : le numéro de la ligne pour chaque ligne de code d’un caractère en commençant à 0 pour la ligne la plus basse (qui finissait par @@).
@@ -52,7 +52,7 @@ Dans Power Query, j’ai créé une fonction qui va récupérer le fichier de po
 
 ![image](/Images/20251103-powerbi-figlet/powerbi-figlet-get-font.png)
 
-A partir d'une liste de polices à récuperer dans un répo GIT, j’appelle la fonction pour obtenir une table avec la définition de toutes mes polices.
+A partir d'une liste de polices à récuperer dans un répo *GIT*, j’appelle la fonction pour obtenir une table avec la définition de toutes mes polices.
 
 ![image](/Images/20251103-powerbi-figlet/powerbi-figlet-get-font-path.png)
 
@@ -117,7 +117,7 @@ Letter Order | Letter Code | Line | Code
 4 | 75 *K* | 1 | \|/ 
 4 | 75 *K* | 0 | \|\
 
-Enfin on va concaténer chacune des lignes de la plus haute (avec l’index *Line* le plus élevé) à la plus basse (avec Line égal à 0) en les séparant par un retour chariot. Et pour chaque ligne, on va concaténer l’encodage FIGlet des caractères (colonne *Code*) en suivant l’ordre original du texte (colonne *Letter Order*).
+Enfin on va concaténer chacune des lignes de la plus haute (avec l’index *Line* le plus élevé) à la plus basse (avec *Line* égal à 0) en les séparant par un retour chariot. Et pour chaque ligne, on va concaténer l’encodage FIGlet des caractères (colonne *Code*) en suivant l’ordre original du texte (colonne *Letter Order*).
 
 Dans la table alphabet, j’avais remplacé les espaces par des guillemets. Je les remplace des espaces insécables. Avec un espace normal, Power BI supprime les espaces répétés ou en début de texte.
 
