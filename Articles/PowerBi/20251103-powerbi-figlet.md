@@ -4,9 +4,9 @@
 
 ## Un peu d’histoire pour les plus jeunes.
 
-**FIGlet** est un logiciel en ligne de commande développé par Glenn Chappell et Ian Chai au début des années 90. C’est un logiciel libre intégré dans de nombreuses distributions GNU/Linux et qui a également été implémenté dans divers langages ou solutions.
+[FIGlet](https://www.figlet.org/) est un logiciel en ligne de commande développé par Glenn Chappell et Ian Chai au début des années 90. C’est un logiciel libre intégré dans de nombreuses distributions GNU/Linux et qui a également été implémenté dans [divers langages](https://github.com/bcwood/Piglet) ou solutions.
 
-Concrètement FIGlet permet de générer des bannières de texte en *ASCII Art*. C’est-à-dire d’écrire du texte en très gros à partir de caractères normaux.
+Concrètement [FIGlet](https://en.wikipedia.org/wiki/FIGlet) permet de générer des bannières de texte en *ASCII Art*. C’est-à-dire d’écrire du texte en très gros à partir de caractères normaux.
 Avec FIGlet ``1avergne.github.io`` devient :
 ```
   ___                                                      _   __    __          __       _      
