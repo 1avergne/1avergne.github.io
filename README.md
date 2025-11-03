@@ -14,13 +14,8 @@
 
 # Articles
 
-## PowerShell
-- [Power BI : PowerShell Cmdlets](./Articles/PowerShell/20251015-scripts-powershell-powerbi.html)
-- [Avoir un _clavier fantôme_ qui appuie sur une touche toutes les 5 secondes](./Articles/PowerShell/20221012-clavier-fantome.html)
-- [Tester l'état d'une instance SSAS](./Articles/PowerShell/20201003-tester-instance-ssas.html)
-- [Automatic entry of clipboard contents](./Articles/PowerShell/20181001-clipboard-automatic-entry.html)
-
 ## PowerBi
+- [J’ai redéveloppé FIGlet dans Power BI !](./Articles/PowerBi/20251103-powerbi-figlet.html)
 - [Rapport au format PBIR - quelques déconvenues](./Articles/PowerBi/20251014-pbir-troubleshoot.html)
 - [API - configurer et rafraichir un modèle](./Articles/PowerBi/20250327-api-update_refresh.html)
 - [DAX - Time intelligence et groupes de cacul](./Articles/PowerBi/20250326-dax-time-intelligence.html)
@@ -41,6 +36,12 @@
 - [Embarquer une vidéo dans un _dashboard_ Power-BI](./Articles/PowerBi/20190827-embarquer-une-vidéo-dans-un-dashboard-Power-BI.html)
 - [Creer un Pareto avec Power BI](./Articles/PowerBi/20190729-creer-un-pareto.html)
 - [Dynamic filter in dashboard](./Articles/PowerBi/20180712-dynamic-filter-in-dashboard.html)
+
+## PowerShell
+- [Power BI : PowerShell Cmdlets](./Articles/PowerShell/20251015-scripts-powershell-powerbi.html)
+- [Avoir un _clavier fantôme_ qui appuie sur une touche toutes les 5 secondes](./Articles/PowerShell/20221012-clavier-fantome.html)
+- [Tester l'état d'une instance SSAS](./Articles/PowerShell/20201003-tester-instance-ssas.html)
+- [Automatic entry of clipboard contents](./Articles/PowerShell/20181001-clipboard-automatic-entry.html)
 
 ## SqlServer
 - [Un exemple de requête SQL récursive](./Articles/SqlServer/20221215-exemple-cte-recursive.html)

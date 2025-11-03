@@ -60,7 +60,7 @@ Cette table est chargée dans le modèle, elle servira de base à mon FIGlet *Po
 
 ![image](/Images/20251103-powerbi-figlet/powerbi-figlet-fonts-table.png)
 
-## Etape 2 : Le DAX
+## Etape 2 : le DAX
 Il s’agit maintenant d’écrire le code qui va permettre de passer de *ça* à ...
          
 ```
@@ -164,3 +164,5 @@ RETURN CONCATENATEX(GENERATESERIES(0, _heigth, 1)
     , _nl, [Value], DESC
 )
 ```
+
+**Le fichier PBIT (avec le Power Query et le DAX) est disponible [ici](https://github.com/1avergne/1avergne.github.io/blob/main/FigletPbi.pbit).**
