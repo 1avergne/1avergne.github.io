@@ -1,12 +1,12 @@
-# J’ai redéveloppé FIGlet dans Power BI !
+# J'ai redéveloppé FIGlet dans Power BI !
 
 <p style="text-align: right;">2025-11-03</p>
 
-## Un peu d’histoire pour les plus jeunes.
+## Un peu d'histoire pour les plus jeunes.
 
-[FIGlet](https://www.figlet.org/) est un logiciel en ligne de commande développé par Glenn Chappell et Ian Chai au début des années 90. C’est un logiciel libre intégré dans de nombreuses distributions GNU/Linux et qui a également été implémenté dans [divers langages](https://github.com/bcwood/Piglet) ou solutions.
+[FIGlet](https://www.figlet.org/) est un logiciel en ligne de commande développé par Glenn Chappell et Ian Chai au début des années 90. C'est un logiciel libre intégré dans de nombreuses distributions GNU/Linux et qui a également été implémenté dans [divers langages](https://github.com/bcwood/Piglet) ou solutions.
 
-Concrètement [FIGlet](https://en.wikipedia.org/wiki/FIGlet) permet de générer des bannières de texte en *ASCII Art*. C’est-à-dire d’écrire du texte en très gros à partir de caractères normaux.
+Concrètement [FIGlet](https://en.wikipedia.org/wiki/FIGlet) permet de générer des bannières de texte en *ASCII Art*. C'est-à-dire d'écrire du texte en très gros à partir de caractères normaux.
 Avec FIGlet ``1avergne.github.io`` devient :
 ```
   ___                                                      _   __    __          __       _      
@@ -23,36 +23,36 @@ Ou encore ``Power-BI #1 :)`` devient :
  _|    \___/   \_/\_/   \___|  _|           ___/  ___|     _ |_ |_|   _|     _)     | 
                                                             _| _|                 _/  
 ```
-C’est un logiciel que j’affectionne particulièrement car je l’ai beaucoup utilisé dans mes jeunes années d’utilisateur Linux. Il me permet encore de rendre facilement visible des titres les commentaires d’un code.
+C'est un logiciel que j'affectionne particulièrement car je l'ai beaucoup utilisé dans mes jeunes années d'utilisateur Linux. Il me permet encore de rendre facilement visible des titres dans les commentaires d'un code.
 
 ## Etape 1 : les polices
 
-Même s’il est assez simple de créer sa propre police FIGlet, il existe déjà plusieurs polices *historiques* et je trouvais intéressant de pouvoir les réutiliser.
+Même s'il est assez simple de créer sa propre police FIGlet, il existe déjà plusieurs polices *historiques* et je trouvais intéressant de pouvoir les réutiliser.
 
 Chaque police est enregistrée au même format dans un fichier *.flf* :
 
 ![image](/Images/20251103-powerbi-figlet/powerbi-figlet-alphabet.png)
 
--	Une ligne d’en-tête avec quelques métadonnées : la hauteur des caractères, le nombre de lignes de commentaire, etc.
+-	Une ligne d'en-tête avec quelques métadonnées : la hauteur des caractères, le nombre de lignes de commentaire, etc.
 -	Un bloc de commentaire
--	Les caractères à la suite en commençant par l’espace (le 32e caractère dans le code ASCII) : 
+-	Les caractères à la suite en commençant par l'espace (le 32e caractère dans le code ASCII) : 
     -	Chaque ligne se termine par ``@``
     -   La dernière ligne (la plus basse) se termine par ``@@``
--	Les caractères sont enregistrés dans l’ordre de l’alphabet ASCII
--	Pour les caractères hors de l’alphabet ASCII, une ligne d’entête indique le code Unicode et le nom du caractère
+-	Les caractères sont enregistrés dans l'ordre de l'alphabet ASCII
+-	Pour les caractères hors de l'alphabet ASCII, une ligne d'entête indique le code Unicode et le nom du caractère
 
 ![image](/Images/20251103-powerbi-figlet/powerbi-figlet-alphabet-215.png)
 
-Dans Power Query, j’ai créé une fonction qui va récupérer le fichier de police sur *GIT* et le transforme en table avec comme colonnes :
--	Code : le code d’une ligne de caractère comme il définit dans FIGlet, mais sans le @ en fin de ligne, et avec des guillemets `à la place des espaces
--	Index : la numérotation des lignes du fichier. Je n’utiliserai pas cette colonne ensuite.
--	Line : le numéro de la ligne pour chaque ligne de code d’un caractère en commençant à 0 pour la ligne la plus basse (qui finissait par @@).
--	Letter Index : la numérotation des caractères dans le fichier. Je n’utiliserai pas cette colonne ensuite.
+Dans Power Query, j'ai créé une fonction qui va récupérer le fichier de police sur *GIT* et le transforme en table avec comme colonnes :
+-	Code : le code d'une ligne de caractère comme il définit dans FIGlet, mais sans le @ en fin de ligne, et avec des guillemets `à la place des espaces
+-	Index : la numérotation des lignes du fichier. Je n'utiliserai pas cette colonne ensuite.
+-	Line : le numéro de la ligne pour chaque ligne de code d'un caractère en commençant à 0 pour la ligne la plus basse (qui finissait par @@).
+-	Letter Index : la numérotation des caractères dans le fichier. Je n'utiliserai pas cette colonne ensuite.
 -	Letter Code : le code ASCII ou Unicode du caractère.
 
 ![image](/Images/20251103-powerbi-figlet/powerbi-figlet-get-font.png)
 
-A partir d'une liste de polices à récuperer dans un répo *GIT*, j’appelle la fonction pour obtenir une table avec la définition de toutes mes polices.
+A partir d'une liste de polices à récuperer dans un répo *GIT*, j'appelle la fonction pour obtenir une table avec la définition de toutes mes polices.
 
 ![image](/Images/20251103-powerbi-figlet/powerbi-figlet-get-font-path.png)
 
@@ -61,7 +61,7 @@ Cette table est chargée dans le modèle, elle servira de base à mon FIGlet *Po
 ![image](/Images/20251103-powerbi-figlet/powerbi-figlet-fonts-table.png)
 
 ## Etape 2 : le DAX
-Il s’agit maintenant d’écrire le code qui va permettre de passer de *ça* à ...
+Il s'agit maintenant d'écrire le code qui va permettre de passer de *ça* à ...
          
 ```
   __    __,  
@@ -70,7 +70,7 @@ Il s’agit maintenant d’écrire le code qui va permettre de passer de *ça* �
   _)         
 ```
              
-Même si on serait tenté d’aborder le problème de manière itérative (je converti une lettre en code, et je passe à la suivante, ainsi de suite jusqu’à la fin du texte) on fait ici du DAX dans Power BI ! Il faut donc voir les choses sous forme de tables qui vont être transformées globalement.
+Même si on serait tenté d'aborder le problème de manière itérative (je converti une lettre en code, et je passe à la suivante, ainsi de suite jusqu'à la fin du texte) on fait ici du DAX dans Power BI ! Il faut donc voir les choses sous forme de tables qui vont être transformées globalement.
 
 Je crée une mesure DAX, avec une variable texte qui contient ``GE3K`` c'est le texte à convertir.
 
@@ -83,7 +83,7 @@ Letter Order | Letter Code
 3 | 51 *3*
 4 | 75 *K*
 
-- Puis répéter chaque caractère par le nombre de ligne dans l’encodage FIGlet.
+- Puis répéter chaque caractère par le nombre de ligne dans l'encodage FIGlet.
 
 Letter Order | Letter Code | Line
 --- | --- | ---
@@ -100,7 +100,7 @@ Letter Order | Letter Code | Line
 4 | 75 *K* | 1
 4 | 75 *K* | 0
 
-Il suffit à présent de faire la jointure avec l’alphabet FIGlet souhaité (c’est-à dire la table chargée de Power Query filtré sur un alphabet).
+Il suffit à présent de faire la jointure avec l'alphabet FIGlet souhaité (c'est-à dire la table chargée de Power Query filtré sur un alphabet).
 
 Letter Order | Letter Code | Line | Code
 --- | --- | --- | ---
@@ -117,21 +117,21 @@ Letter Order | Letter Code | Line | Code
 4 | 75 *K* | 1 | \|/ 
 4 | 75 *K* | 0 | \|\
 
-Enfin on va concaténer chacune des lignes de la plus haute (avec l’index *Line* le plus élevé) à la plus basse (avec *Line* égal à 0) en les séparant par un retour chariot. Et pour chaque ligne, on va concaténer l’encodage FIGlet des caractères (colonne *Code*) en suivant l’ordre original du texte (colonne *Letter Order*).
+Enfin on va concaténer chacune des lignes de la plus haute (avec l'index *Line* le plus élevé) à la plus basse (avec *Line* égal à 0) en les séparant par un retour chariot. Et pour chaque ligne, on va concaténer l'encodage FIGlet des caractères (colonne *Code*) en suivant l'ordre original du texte (colonne *Letter Order*).
 
-Dans la table alphabet, j’avais remplacé les espaces par des guillemets. Je les remplace des espaces insécables. Avec un espace normal, Power BI supprime les espaces répétés ou en début de texte.
+Dans la table alphabet, j'avais remplacé les espaces par des guillemets. Je les remplace des espaces insécables. Avec un espace normal, Power BI supprime les espaces répétés ou en début de texte.
 
-Pour que l’affichage soit correct, il faut utiliser une police de caractères à [chasse fixe](https://fr.wikipedia.org/wiki/Police_de_caract%C3%A8res_%C3%A0_chasse_fixe). Par défaut, Power BI propose **Consolas** ou **Courier New**.
+Pour que l'affichage soit correct, il faut utiliser une police de caractères à [chasse fixe](https://fr.wikipedia.org/wiki/Police_de_caract%C3%A8res_%C3%A0_chasse_fixe). Par défaut, Power BI propose **Consolas** ou **Courier New**.
 
 ![image](/Images/20251103-powerbi-figlet/powerbi-figlet-ge3k.png)
 
 ## Etape 3 : la fonction
 
-L’objectif est d’avoir une routine facilement réutilisable, que l’on puisse appeler simplement.
-Je vais donc utiliser une fonction définie par l’utilisateur pour appeler mon code.
-Dans l éditeur DAX de Power BI Desktop, je définie la fonction « FIGlet » avec deux paramètres :
+L'objectif est d'avoir une routine facilement réutilisable, que l'on puisse appeler simplement.
+Je vais donc utiliser une fonction définie par l'utilisateur pour appeler mon code.
+Dans l'éditeur DAX de Power BI Desktop, je définie la fonction « FIGlet » avec deux paramètres :
 -	Le texte en entrée à encoder
--	Le nom d’alphabet à utiliser
+-	Le nom d'alphabet à utiliser
 Ces paramètres remplacent les variables de ma mesure initiale. Je peux à présent utiliser mon FIGlet Power BI dans mon rapport !
 
 ![image](/Images/20251103-powerbi-figlet/powerbi-figlet-today.png)
