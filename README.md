@@ -3,19 +3,21 @@
 ![image](/Images/avatar-1avergne.jpg)
 
 - 💻 Analytics Engineer / Data Engineer / Business Intelligence Consultant / Power BI Expert
-- 👨‍🏫 MS-BI Trainer / University part-time teacher 
+- 👨‍🏫 Microsoft Certified Trainer / University part-time teacher 
 - 🚲 Bike commuter / Vintage bikes collector 
 
-🐦 [Tweet me !](https://twitter.com/1avergne)
+👨🏻‍💻 [Review me !](https://learn.microsoft.com/fr-fr/users/lavergne-3371/transcript/d8epls25jl805qq)
 
 🤝 [Network me ?](https://www.linkedin.com/in/amaurylavergne/)
+
+🍖 [Don't speack french ?](https://1avergne-github-io.translate.goog/?_x_tr_sl=fr&_x_tr_tl=en)
 
 ---
 
 # Articles
 
 ## PowerBi
-- [J’ai redéveloppé FIGlet dans Power BI !](./Articles/PowerBi/20251103-powerbi-figlet.html)
+- [J'ai redéveloppé FIGlet dans Power BI !](./Articles/PowerBi/20251103-powerbi-figlet.html)
 - [Rapport au format PBIR - quelques déconvenues](./Articles/PowerBi/20251014-pbir-troubleshoot.html)
 - [API - configurer et rafraichir un modèle](./Articles/PowerBi/20250327-api-update_refresh.html)
 - [DAX - Time intelligence et groupes de cacul](./Articles/PowerBi/20250326-dax-time-intelligence.html)
