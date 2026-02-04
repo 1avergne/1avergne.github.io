@@ -10,7 +10,7 @@
 
 🤝 [Network me ?](https://www.linkedin.com/in/amaurylavergne/)
 
-🍖 [Don't speack french ?](https://1avergne-github-io.translate.goog/?_x_tr_sl=fr&_x_tr_tl=en)
+🍖 [Don't speak french ?](https://1avergne-github-io.translate.goog/?_x_tr_sl=fr&_x_tr_tl=en)
 
 ---
 
