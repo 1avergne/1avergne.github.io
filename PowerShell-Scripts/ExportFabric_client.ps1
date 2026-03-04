@@ -33,10 +33,9 @@ $pbiScope = "https://analysis.windows.net/powerbi/api/.default"
 $fabScope = "https://api.fabric.microsoft.com/.default"
 
 #export fabric
-$exportableTypes = @("Report", "SemanticModel", "DataPipeline", "Notebook")
-$exportableTypes = @("Report", "SemanticModel")
+$exportableTypes = @("Report", "SemanticModel", "DataPipeline", "Notebook", "Dataflows")
 # not supported : "Dashboard", "PaginatedReport", "Eventhouse", "KQLDatabase", "Eventstream", ...
-# not supported nor visible in the api : "Dataflows"
+# "Dataflows" not supported nor visible in the api, except "Dataflows Gen2 (CI/CD)"
 
 #blob container - client
 if($containerName -ne ""){
@@ -117,7 +116,7 @@ foreach($workspace in $workspaces) #test le nom et l'ID des Workspaces
 
         if($verbose -gt 0){Write-Output("-- Item : $itemName ($itemId)")} # '-_-
 
-        $getdefUrl = "https://api.fabric.microsoft.com/v1/workspaces/$workspaceId/dataPipelines/$itemId/getDefinition"        
+        $getdefUrl = "https://api.fabric.microsoft.com/v1/workspaces/$workspaceId/items/$itemId/getDefinition"        
         
         $getdefResponse = @{}
         $getdefResponse = Invoke-WebRequest  -Method 'POST' -Uri $getdefUrl -Headers $fabHeader
