@@ -28,7 +28,7 @@ obj_id|parent_id
     └───120
 ```
 
-```SQL
+```sql
 drop table if exists #t;
 create table #t (obj_id int, parent_id int)
 insert into #t 
