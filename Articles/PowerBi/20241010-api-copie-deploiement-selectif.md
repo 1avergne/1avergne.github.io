@@ -54,18 +54,16 @@ $requestBody = '{
   "isBackwardDeployment": true,
   "reports": [
     {
-      "sourceId": "10mib70b-xxxx-xxxx-xxxx-3dd87757145b",
-      "options": {
-        "allowCreateArtifact": true
-      }
+      "sourceId": "10mib70b-xxxx-xxxx-xxxx-3dd87757145b"
     },
     {
-      "sourceId": "5d470895-xxxx-xxxx-xxxx-3b00b5e8d559",
-      "options": {
-        "allowCreateArtifact": true
-      }
+      "sourceId": "5d470895-xxxx-xxxx-xxxx-3b00b5e8d559"
     }
   ],
+  "options": {
+    "allowOverwriteArtifact": true,
+    "allowCreateArtifact": true
+  },
   "note": "BackwardDeployment ..."
 }'
 

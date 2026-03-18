@@ -3,6 +3,28 @@
 $pipelineID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
 ## https://learn.microsoft.com/en-us/rest/api/power-bi/pipelines/selective-deploy#example-of-deploying-specific-power-bi-items-(such-as-reports-or-dashboards)-from-the-'development'-stage
+
+$requestBody = '{
+  "sourceStageOrder": 1,
+  "isBackwardDeployment": true,
+  "datasets": [
+    {
+      "sourceId": "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
+      }
+    ],
+  "reports": [
+    {
+      "sourceId": "zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz"
+    }
+  ],
+  "options": {
+    "allowOverwriteArtifact": true,
+    "allowCreateArtifact": true
+  },
+  "note": "BackwardDeployment"
+}'
+
+<# previous version of requestBody, i think it doesn't work 
 $requestBody = '{
   "reports": [
     {
@@ -15,6 +37,7 @@ $requestBody = '{
   ],
   "note": "BackwardDeployment"
 }'
+#>
 
 $uri = "https://api.powerbi.com/v1.0/myorg/pipelines/$pipelineID/stages"
 Invoke-PowerBIRestMethod -Url $uri -Method Get
