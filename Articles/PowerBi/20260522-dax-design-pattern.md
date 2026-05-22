@@ -22,13 +22,13 @@ Comme pour beaucoup de choses, il existe de nombreuses méthodes pour arriver au
 
 - Au delà de deux appels de la même mesure dans le même contexte, utiliser une variable.
 - Au delà de deux [*IF*](https://learn.microsoft.com/fr-fr/dax/if-function-dax) imbriqués, utiliser la fonction [*SWITCH*](https://learn.microsoft.com/fr-fr/dax/switch-function-dax) : 
-```sql (dax)
+```DAX
 IF([mesure_test], 0, IF([mesure_test_2] > 1000), -1, [mesure_test_2])
 ```
 
 <p style="text-align: center;">🡻 devient 🡻</p>
 
-```sql (dax)
+```DAX
 VAR _mesure_test_2 = [mesure_test_2]
 RETURN SWITCH(TRUE()
     , NOT(ISBLANK([mesure_test])), 0
@@ -38,14 +38,14 @@ RETURN SWITCH(TRUE()
 ```
 
 - Certaines fonctions permettent d'éviter l'utilisation de condition : [*COALESCE*](https://learn.microsoft.com/fr-fr/dax/coalesce-function-dax) pour remplacer une valeur vide, [*MAX*](https://learn.microsoft.com/fr-fr/dax/max-function-dax) et [*MIN*](https://learn.microsoft.com/fr-fr/dax/min-function-dax) pour borner une valeur, [*SELECTEDVALUE*](https://learn.microsoft.com/fr-fr/dax/selectedvalue-function-dax) renvoie la valeur sélectionnée dans un champ uniquement si elle est unique.
-```sql (dax)
+```DAX
 VAR _mesure_test = [mesure_test]
 RETURN IF(ISBLANK(_mesure_test), 0, IF(_mesure_test > 1000, 1000, _mesure_test))
 ```
 
 <p style="text-align: center;">🡻 devient 🡻</p>
 
-```sql (dax)
+```DAX
 MIN(COALESCE([mesure_test], 0), 1000)
 ```
 
@@ -60,7 +60,7 @@ Voici quelques exemples de mesures pour des cas d'usage génériques :
 La mesure renvoie une valeur de type *DateTime* correspondant au nombre de secondes donné par la mesure source.
 Si la durée dépasse 24 heures (86 400 secondes) la mesure renvoie le modulo à la journée.
 
-```sql (dax)
+```DAX
 ValTime = VAR _v = [ValSelected]
     VAR _h = FLOOR(DIVIDE(_v, 3600), 1)
     VAR _m = FLOOR(DIVIDE(MOD(_v, 3600), 60), 1)
@@ -74,7 +74,7 @@ RETURN TIME(_h, _m, _s)
 
 ### Compter le nombre d'utilisateurs sur une période 
 
-```sql (dax)
+```DAX
 user_nb = DISTINCTCOUNT(t_fact_app_usage[user_principal_name])
 ```
 
@@ -82,7 +82,7 @@ user_nb = DISTINCTCOUNT(t_fact_app_usage[user_principal_name])
 
 Le nombre d'utilisateurs enregistrés pour la première fois sur la période observée.
 
-```sql (dax)
+```DAX
 user_new_nb = VAR _current = DISTINCT(t_fact_app_usage[user_principal_name])
     VAR _previous = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_principal_name])
         , FILTER(ALL(t_dim_calendrier), t_dim_calendrier[dt_date] < MIN(t_dim_calendrier[dt_date]))
@@ -94,7 +94,7 @@ RETURN COUNTROWS(EXCEPT(_current, _previous))
 
 Le nombre d'utilisateurs enregistrés sur la période observée et qui ont au moins un autre enregistrement avant le début de la période observée.
 
-```sql (dax)
+```DAX
 user_old_nb = VAR _current = DISTINCT(t_fact_app_usage[user_principal_name])
     VAR _previous = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_principal_name])
         , FILTER(ALL(t_dim_calendrier), t_dim_calendrier[dt_date] < MIN(t_dim_calendrier[dt_date]))
@@ -106,7 +106,7 @@ RETURN COUNTROWS(INTERSECT(_current, _previous))
 
 Le nombre d'utilisateurs avec au moins un enregistrement avant le début de la période observée et qui n'ont plus aucun enregistrement à partir du début de la période observée.
 
-```sql (dax)
+```DAX
 user_lost_nb = VAR _current = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_principal_name])
         , FILTER(ALL(t_dim_calendrier), t_dim_calendrier[dt_date] >= MIN(t_dim_calendrier[dt_date]))
     )
