@@ -2,11 +2,11 @@
 
 <p style="text-align: right;">2026-05-22</p>
 
-*Ceci est un article perpétuel, qui sera compété au fil du temps et des idées.*
+*Ceci est un article perpétuel, qui sera complété au fil du temps et des idées.*
 
 ## Syntaxe et convention de nommage
 
-Lorsque j'écris du code DAX, je suis quelques règles de syntaxe afin d'avoir un code propre et lisible. Pour autant je ne m'impose pas une indentation stricte ; pour les instructions les plus simples j'écris mon code sur une seule ligne.
+Lorsque j'écris du code DAX, je respecte quelques règles de syntaxe afin d'avoir un code propre et lisible. Pour autant, je ne m'impose pas une indentation stricte ; pour les instructions les plus simples j'écris mon code sur une seule ligne.
 
 - virgules en début de ligne
 - fonctions en majuscule
@@ -14,16 +14,16 @@ Lorsque j'écris du code DAX, je suis quelques règles de syntaxe afin d'avoir u
 - si l'instruction est assez longue, je rajoute un espace avant la parenthèse fermante de la première fonction : ```t_cal = CALENDAR(DATE(2020, 1, 1), EOMONTH(MAX(t_fact[date_fact]), 0) )```
 - nom de variable en *CamelCase* précédé d'un tiret-bas : ```VAR _varDate = MAX(dim_calendrier[jour])```
 
-Pour mettre en forme rapidement le code DAX ; je ne peux que conseiller le très utile [DAX Formatter](https://www.daxformatter.com/).
+Pour mettre en forme rapidement le code DAX, je ne peux que conseiller le très utile [DAX Formatter](https://www.daxformatter.com/).
 
 ## Optimisation et choix des fonctions
 
 Comme pour beaucoup de choses, il existe de nombreuses méthodes pour arriver au même résultat. Mais certains chemins sont plus courts que d'autres. Voici quelques astuces pour avoir un code performant et maintenable.
 
-- Au delà de deux appels de la même mesure dans le même contexte, utiliser une variable.
-- Au delà de deux [*IF*](https://learn.microsoft.com/fr-fr/dax/if-function-dax) imbriqués, utiliser la fonction [*SWITCH*](https://learn.microsoft.com/fr-fr/dax/switch-function-dax) : 
+- Au-delà de deux appels de la même mesure dans le même contexte, utiliser une variable.
+- Au-delà de deux [*IF*](https://learn.microsoft.com/fr-fr/dax/if-function-dax) imbriqués, utiliser la fonction [*SWITCH*](https://learn.microsoft.com/fr-fr/dax/switch-function-dax) : 
 ```DAX
-IF([mesure_test], 0, IF([mesure_test_2] > 1000), -1, [mesure_test_2])
+IF([mesure_test], 0, IF([mesure_test_2] > 1000, -1, [mesure_test_2]))
 ```
 
 <p style="text-align: center;">🡻 devient 🡻</p>
@@ -32,12 +32,12 @@ IF([mesure_test], 0, IF([mesure_test_2] > 1000), -1, [mesure_test_2])
 VAR _mesure_test_2 = [mesure_test_2]
 RETURN SWITCH(TRUE()
     , NOT(ISBLANK([mesure_test])), 0
-    , _mesure_test_2 > 1000), -1
+    , _mesure_test_2 > 1000, -1
     , _mesure_test_2
 )
 ```
 
-- Certaines fonctions permettent d'éviter l'utilisation de condition : [*COALESCE*](https://learn.microsoft.com/fr-fr/dax/coalesce-function-dax) pour remplacer une valeur vide, [*MAX*](https://learn.microsoft.com/fr-fr/dax/max-function-dax) et [*MIN*](https://learn.microsoft.com/fr-fr/dax/min-function-dax) pour borner une valeur, [*SELECTEDVALUE*](https://learn.microsoft.com/fr-fr/dax/selectedvalue-function-dax) renvoie la valeur sélectionnée dans un champ uniquement si elle est unique.
+- Certaines fonctions permettent d'éviter l'utilisation de conditions : [*COALESCE*](https://learn.microsoft.com/fr-fr/dax/coalesce-function-dax) pour remplacer une valeur vide, [*MAX*](https://learn.microsoft.com/fr-fr/dax/max-function-dax) et [*MIN*](https://learn.microsoft.com/fr-fr/dax/min-function-dax) pour borner une valeur, [*SELECTEDVALUE*](https://learn.microsoft.com/fr-fr/dax/selectedvalue-function-dax) renvoie la valeur sélectionnée dans un champ uniquement si elle est unique.
 ```DAX
 VAR _mesure_test = [mesure_test]
 RETURN IF(ISBLANK(_mesure_test), 0, IF(_mesure_test > 1000, 1000, _mesure_test))
@@ -58,7 +58,7 @@ Voici quelques exemples de mesures pour des cas d'usage génériques :
 #### Convertir une durée en secondes vers le type *time*
 
 La mesure renvoie une valeur de type *DateTime* correspondant au nombre de secondes donné par la mesure source.
-Si la durée dépasse 24 heures (86 400 secondes) la mesure renvoie le modulo à la journée.
+Si la durée dépasse 24 heures (86 400 secondes), la mesure renvoie le modulo à la journée.
 
 ```DAX
 ValTime = VAR _v = [ValSelected]
@@ -102,7 +102,7 @@ RETURN COUNTROWS(INTERSECT(_current, _previous))
 
 ### Compter le nombre d'utilisateurs perdus
 
-Le nombre d'utilisateurs avec au moins un enregistrement avant le début de la période observée et qui n'ont plus aucun enregistrement à partir du début de la période observée.
+Le nombre d'utilisateurs ayant au moins un enregistrement avant le début de la période observée et qui n'ont plus aucun enregistrement à partir du début de la période observée.
 
 ```DAX
 user_lost_nb = VAR _current = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_principal_name])
@@ -111,18 +111,18 @@ user_lost_nb = VAR _current = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_prin
     VAR _previous = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_principal_name])
         , FILTER(ALL(t_dim_calendrier), t_dim_calendrier[dt_date] < MIN(t_dim_calendrier[dt_date]))
     )
-RETURN COUNTROWS(EXCEPT(_previous, _current)))
+RETURN COUNTROWS(EXCEPT(_previous, _current))
 ```
 
 ## Images sérialisées
 
 ### Afficher une image enregistrée en *Base 64*
 
-Le format *Base64* permet de sérialiser une image pour la stocker directement dans un champ texte. Power BI est capable d'interpreter ce format.
+Le format *Base64* permet de sérialiser une image pour la stocker directement dans un champ texte. Power BI est capable d'interpréter ce format.
 
-1. Choisir une image simple. L'image doit être suffisament simple pour que l'enregistrement sérialisé ne dépasse la limite de 32766 charactères de Power BI : icone, logo monochrome, illustration simple.
-2. Convertir l'image en *Base64*, plusieurs sites internet permettent de le faire ; par exemple  [base64-image.de](https://www.base64-image.de/). Le code généré doit commencer par ```data:image/png;base64,```.
-3. Integrer la chaîne de charactères dans une mesure Power BI. 
+1. Choisir une image simple. L'image doit être suffisamment simple pour que l'enregistrement sérialisé ne dépasse pas la limite de 32766 caractères de Power BI : icône, logo monochrome, illustration simple.
+2. Convertir l'image en *Base64*, plusieurs sites internet permettent de le faire, par exemple [base64-image.de](https://www.base64-image.de/). Le code généré doit commencer par ```data:image/png;base64,```
+3. Intégrer la chaîne de caractères dans une mesure Power BI.
 4. Modifier la 'Catégorie de données' de la mesure : *URL de l'image*.
 
 ![image](/Images/20260522-dax-design-pattern/tel_base64.png)
@@ -135,12 +135,12 @@ Le format *Base64* permet de sérialiser une image pour la stocker directement d
 
 Le *Scalable Vector Graphics* (en français "graphique vectoriel adaptable"), ou *SVG*, est un format de données ASCII conçu pour décrire des ensembles de graphiques vectoriels 2D et fondé sur *XML*. [*cf.*](https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics)
 
-Ce format à l'avantage d'êtrez facilement manipulable et paramétrable. Il est donc très utile pour créer des visuels personnalisés. SqlBI l'explique très bien dans [cet article](https://www.sqlbi.com/articles/creating-custom-visuals-in-power-bi-with-dax/).
+Ce format a l'avantage d'être facilement manipulable et paramétrable. Il est donc très utile pour créer des visuels personnalisés. SQLBI l'explique très bien dans [cet article](https://www.sqlbi.com/articles/creating-custom-visuals-in-power-bi-with-dax/).
 
 1. Choisir ou créer une image SVG. J'utilise régulièrement le site [svgrepo](https://www.svgrepo.com/) pour trouver des images.
-2. Dans le fichier SVG, ne conserver que le code entre les balises ```<svg>``` et ```</svg>```, et répeter toutes les doubles quotes pour qu'elles ne soient pas interprétées dans une mesure (**ctrl+H** est ton ami ...).
+2. Dans le fichier SVG, ne conserver que le code entre les balises ```<svg>``` et ```</svg>```, et répéter toutes les doubles quotes pour qu'elles ne soient pas interprétées dans une mesure (**ctrl+H** est ton ami ...).
 3. Ajouter en début de code (avant la balise ```<svg>```) le code suivant : ```data:image/svg+xml;utf8,```
-4. Integrer la chaîne de charactères dans une mesure Power BI. 
+4. Intégrer la chaîne de caractères dans une mesure Power BI.
 5. Modifier la 'Catégorie de données' de la mesure : *URL de l'image*.
 6. L'image peut être affichée dans un visuel image, un tableau, une carte ou tout autre visuel qui supporte les images.
 
