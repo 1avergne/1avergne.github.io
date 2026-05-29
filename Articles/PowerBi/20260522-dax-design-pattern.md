@@ -70,8 +70,6 @@ RETURN TIME(_h, _m, _s)
 
 ## Comptage
 
-
-
 ### Compter le nombre d'utilisateurs sur une période 
 
 ```DAX
@@ -115,3 +113,35 @@ user_lost_nb = VAR _current = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_prin
     )
 RETURN COUNTROWS(EXCEPT(_previous, _current)))
 ```
+
+## Images sérialisées
+
+### Afficher une image enregistrée en *Base 64*
+
+Le format *Base64* permet de sérialiser une image pour la stocker directement dans un champ texte. Power BI est capable d'interpreter ce format.
+
+1. Choisir une image simple. L'image doit être suffisament simple pour que l'enregistrement sérialisé ne dépasse la limite de 32766 charactères de Power BI : icone, logo monochrome, illustration simple.
+2. Convertir l'image en *Base64*, plusieurs sites internet permettent de le faire ; par exemple  [base64-image.de](https://www.base64-image.de/). Le code généré doit commencer par ```data:image/png;base64,```.
+3. Integrer la chaîne de charactères dans une mesure Power BI. 
+4. Modifier la 'Catégorie de données' de la mesure : *URL de l'image*.
+
+![image](/Images/20260522-dax-design-pattern/tel_base64.png)
+
+5. L'image peut être affichée dans un visuel image, un tableau, une carte ou tout autre visuel qui supporte les images.
+
+![image](/Images/20260522-dax-design-pattern/tel_base64_visual.png)
+
+### Afficher une image enregistrée en *SVG*
+
+Le *Scalable Vector Graphics* (en français "graphique vectoriel adaptable"), ou *SVG*, est un format de données ASCII conçu pour décrire des ensembles de graphiques vectoriels 2D et fondé sur *XML*. [*cf.*](https://fr.wikipedia.org/wiki/Scalable_Vector_Graphics)
+
+Ce format à l'avantage d'êtrez facilement manipulable et paramétrable. Il est donc très utile pour créer des visuels personnalisés. SqlBI l'explique très bien dans [cet article](https://www.sqlbi.com/articles/creating-custom-visuals-in-power-bi-with-dax/).
+
+1. Choisir ou créer une image SVG. J'utilise régulièrement le site [svgrepo](https://www.svgrepo.com/) pour trouver des images.
+2. Dans le fichier SVG, ne conserver que le code entre les balises ```<svg>``` et ```</svg>```, et répeter toutes les doubles quotes pour qu'elles ne soient pas interprétées dans une mesure (**ctrl+H** est ton ami ...).
+3. Ajouter en début de code (avant la balise ```<svg>```) le code suivant : ```data:image/svg+xml;utf8,```
+4. Integrer la chaîne de charactères dans une mesure Power BI. 
+5. Modifier la 'Catégorie de données' de la mesure : *URL de l'image*.
+6. L'image peut être affichée dans un visuel image, un tableau, une carte ou tout autre visuel qui supporte les images.
+
+![image](/Images/20260522-dax-design-pattern/raine_svg.png)

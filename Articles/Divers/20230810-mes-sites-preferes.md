@@ -35,6 +35,12 @@ Des mêmes auteurs que "JSON Formatter & validor", permet de convertir du JSON e
 
 Permet de sérialiser des images en base 64 (au format texte donc) pour pouvoir ensuite les intégrer des rapports Power BI. Cette méthode permet de manipuler une image comme s'il s'agissait d'une URL, plutôt qu'une image enregistrée en dur, sans pour autant avoir à l'héberger hors du rapport. Attention cependant, la taille de l'image est très limitée.
 
+## SVG Repo ([svgrepo.com](https://www.svgrepo.com/))
+
+[![image](/Images/20230810-mes-sites-preferes/svgrepo_logo.svg)](https://www.svgrepo.com/)
+
+Une banque d'images SGV très complète et gratuite. On peut enregistrer les images au format SVG pour les réutiliser dans des projets, ou utiliser directement les images hébergées sur le site.
+
 ## Microsoft Learn ([learn.microsoft.com](https://learn.microsoft.com/fr-fr/))
 
 [![image](/Images/20230810-mes-sites-preferes/microsoft-learn.png)](https://learn.microsoft.com/fr-fr/)
