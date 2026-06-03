@@ -25,9 +25,7 @@ Comme pour beaucoup de choses, il existe de nombreuses méthodes pour arriver au
 ```DAX
 IF([mesure_test], 0, IF([mesure_test_2] > 1000, -1, [mesure_test_2]))
 ```
-
 <p style="text-align: center;">🡻 devient 🡻</p>
-
 ```DAX
 VAR _mesure_test_2 = [mesure_test_2]
 RETURN SWITCH(TRUE()
@@ -42,9 +40,7 @@ RETURN SWITCH(TRUE()
 VAR _mesure_test = [mesure_test]
 RETURN IF(ISBLANK(_mesure_test), 0, IF(_mesure_test > 1000, 1000, _mesure_test))
 ```
-
 <p style="text-align: center;">🡻 devient 🡻</p>
-
 ```DAX
 MIN(COALESCE([mesure_test], 0), 1000)
 ```
