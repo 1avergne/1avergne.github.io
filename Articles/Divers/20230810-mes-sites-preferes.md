@@ -64,3 +64,9 @@ Si vous travaillez depuis plus 20 minutes dans l'informatique vous connaissez fo
 [![image](/Images/20230810-mes-sites-preferes/korben-info.png)](https://korben.info/)
 
 Je consulte régulièrement le site de Manuel Dorne depuis mes années d'étudiant. Il propose de nombreux articles sur le monde de l'informatique et la pop culture. Même si le site n'est pas du tout orienté BI / Data, on y trouve des infos sur des outils utiles et de la vulgarisation des nouvelles technologies.
+
+## Evaluation Context ([evaluationcontext.github.io](https://evaluationcontext.github.io/))
+
+[![image](/Images/20230810-mes-sites-preferes/evaluationcontext.png)](https://evaluationcontext.github.io/)
+
+Simplement pour l'impressionnante librairie [*DAXLibSVG*](https://evaluationcontext.github.io/daxlib.svg/) qui permet de génerer des visuels personalisés en SVG, le blog de Jake Duddy merite d'être dans mes favoris.

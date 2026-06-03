@@ -58,7 +58,7 @@ Voici quelques exemples de mesures pour des cas d'usage génériques :
 La mesure renvoie une valeur de type *DateTime* correspondant au nombre de secondes donné par la mesure source. Elle doit être mise au format *hh:MM:ss* dans le paramétrage de la mesure pour renvoyer une information cohérente.
 Si la durée dépasse 24 heures (86 400 secondes), la mesure renvoie le modulo à la journée.
 
-La fonction TIME() reçoit en paramètres des valeurs numériques de type *short* : de -32 768 à 32 767. Les valeurs utilisées ne doivent donc pas dépasser 32 767 (sachant que 32 767 secondes ça fait 9 heures 6 minutes et 7 secondes).
+La fonction [*TIME*](https://learn.microsoft.com/fr-fr/dax/time-function-dax) reçoit en paramètres des valeurs numériques de type *short* : de -32 768 à 32 767. Les valeurs utilisées ne doivent donc pas dépasser 32 767 (sachant que 32 767 secondes ça fait 9 heures 6 minutes et 7 secondes).
 
 Si la valeur est inférieure à 32 768 : 
 
