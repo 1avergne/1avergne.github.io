@@ -72,9 +72,9 @@ Si la valeur est supérieure ou égale à 32 768 :
 
 ```DAX
 ValTime = VAR _v = [ValSelected]
-    VAR _h = FLOOR(DIVIDE(_v, 3600), 1)
-    VAR _m = FLOOR(DIVIDE(MOD(_v, 3600), 60), 1)
-    VAR _s = MOD(_v, 60)
+VAR _h = FLOOR(DIVIDE(_v, 3600), 1)
+VAR _m = FLOOR(DIVIDE(MOD(_v, 3600), 60), 1)
+VAR _s = MOD(_v, 60)
 RETURN TIME(_h, _m, _s)
 ```
 
@@ -91,9 +91,9 @@ Si la valeur est encore en secondes (valeur numérique) :
 
 ```DAX
 TextTime = VAR _v = [ValSelected]
-    VAR _h = FLOOR(DIVIDE(_v, 3600), 1)
-    VAR _m = FLOOR(DIVIDE(MOD(_v, 3600), 60), 1)
-    VAR _s = MOD(_v, 60)
+VAR _h = FLOOR(DIVIDE(_v, 3600), 1)
+VAR _m = FLOOR(DIVIDE(MOD(_v, 3600), 60), 1)
+VAR _s = MOD(_v, 60)
 RETURN FORMAT(_h, "00") & ":" & FORMAT(_m, "00") & ":" & FORMAT(_s, "00")
 ```
 
@@ -111,7 +111,7 @@ Le nombre d'utilisateurs enregistrés pour la première fois sur la période obs
 
 ```DAX
 user_new_nb = VAR _current = DISTINCT(t_fact_app_usage[user_principal_name])
-    VAR _previous = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_principal_name])
+VAR _previous = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_principal_name])
         , FILTER(ALL(t_dim_calendrier), t_dim_calendrier[dt_date] < MIN(t_dim_calendrier[dt_date]))
     )
 RETURN COUNTROWS(EXCEPT(_current, _previous))
@@ -123,7 +123,7 @@ Le nombre d'utilisateurs enregistrés sur la période observée et qui ont au mo
 
 ```DAX
 user_old_nb = VAR _current = DISTINCT(t_fact_app_usage[user_principal_name])
-    VAR _previous = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_principal_name])
+VAR _previous = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_principal_name])
         , FILTER(ALL(t_dim_calendrier), t_dim_calendrier[dt_date] < MIN(t_dim_calendrier[dt_date]))
     )
 RETURN COUNTROWS(INTERSECT(_current, _previous))
@@ -137,7 +137,7 @@ Le nombre d'utilisateurs ayant au moins un enregistrement avant le début de la 
 user_lost_nb = VAR _current = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_principal_name])
         , FILTER(ALL(t_dim_calendrier), t_dim_calendrier[dt_date] >= MIN(t_dim_calendrier[dt_date]))
     )
-    VAR _previous = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_principal_name])
+VAR _previous = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_principal_name])
         , FILTER(ALL(t_dim_calendrier), t_dim_calendrier[dt_date] < MIN(t_dim_calendrier[dt_date]))
     )
 RETURN COUNTROWS(EXCEPT(_previous, _current))
@@ -182,12 +182,13 @@ Le résultat sera toujours de la forme *#DDDDDD*, *#555555*, etc.
 Cette mesure renvoie le code hexadécimal d'une couleur au hasard. La couleur a une luminosité constante de 51 % et une dominante rouge, verte ou bleue pour être toujours visible.
 
 ```DAX
-MEASURE 'Measures'[color51_alea] = VAR _pos = MOD(SECOND(UTCNOW()),6) + 1 -- RANDBETWEEN(1, 3)
-	VAR _ab = RANDBETWEEN(3, 255)
-	VAR _an = MOD(_ab, 16)
-	VAR _at = IF(_an < 10, FORMAT(_an, "0"), UNICHAR(UNICODE("A") + _an - 10))
-	VAR _bn = FLOOR(DIVIDE(_ab, 16), 1)
-	VAR _bt = IF(_bn < 10, FORMAT(_bn, "0"), UNICHAR(UNICODE("A") + _bn - 10))
+MEASURE 'Measures'[color51_alea] = 
+VAR _pos = MOD(SECOND(UTCNOW()),6) + 1 -- RANDBETWEEN(1, 3)
+VAR _ab = RANDBETWEEN(3, 255)
+VAR _an = MOD(_ab, 16)
+VAR _at = IF(_an < 10, FORMAT(_an, "0"), UNICHAR(UNICODE("A") + _an - 10))
+VAR _bn = FLOOR(DIVIDE(_ab, 16), 1)
+VAR _bt = IF(_bn < 10, FORMAT(_bn, "0"), UNICHAR(UNICODE("A") + _bn - 10))
 RETURN "#" 
 	& SWITCH(_pos, 1, "FF03", 2, "03FF", 3, "FF", 4, "03") 
 	& _at & _bt 
