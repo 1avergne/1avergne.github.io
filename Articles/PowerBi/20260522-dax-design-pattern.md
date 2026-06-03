@@ -6,7 +6,7 @@
 
 ## Syntaxe et convention de nommage
 
-Lorsque j'écris du code DAX, je respecte quelques règles de syntaxe afin d'avoir un code propre et lisible. Pour autant, je ne m'impose pas une indentation stricte ; pour les instructions les plus simples j'écris mon code sur une seule ligne.
+Lorsque j'écris du code DAX, je respecte quelques règles de syntaxe afin d'avoir un code propre et lisible. Pour autant, je ne m'impose pas d'indentation stricte ; pour les instructions les plus simples j'écris mon code sur une seule ligne.
 
 - virgules en début de ligne
 - fonctions en majuscule
@@ -57,12 +57,12 @@ Voici quelques exemples de mesures pour des cas d'usage génériques :
 
 #### Convertir une durée en secondes vers le type *time*
 
-La mesure renvoie une valeur de type *DateTime* correspondant au nombre de secondes donné par la mesure source. Elle doit être mise au format *hh:MM:ss* dans le paramétrage de la mesure pour renvoyer une information coherante.
+La mesure renvoie une valeur de type *DateTime* correspondant au nombre de secondes donné par la mesure source. Elle doit être mise au format *hh:MM:ss* dans le paramétrage de la mesure pour renvoyer une information cohérente.
 Si la durée dépasse 24 heures (86 400 secondes), la mesure renvoie le modulo à la journée.
 
 La fonction TIME() reçoit en paramètres des valeurs numériques de type *short* : de -32 768 à 32 767. Les valeurs utilisées ne doivent donc pas dépasser 32 767 (sachant que 32 767 secondes ça fait 9 heures 6 minutes et 7 secondes).
 
-Si la valeur est inferieure à 32 768 : 
+Si la valeur est inférieure à 32 768 : 
 
 ```DAX
 ValTime = TIME(0, 0, [ValSelected])
@@ -80,14 +80,14 @@ RETURN TIME(_h, _m, _s)
 
 #### Formatter une durée en secondes vers du texte
 
-On utilise la fonction *FORMAT* qui permet de faire une convertion vers du texte. 
-Attention une valeur en texte ne peut plus être utilisée dans un visuel *graphique* (histogramme, courbe, camembert, etc.).
+On utilise la fonction [*FORMAT*](https://learn.microsoft.com/fr-fr/dax/format-function-dax) qui permet de faire une conversion vers du texte. 
+Attention, une valeur sous forme de texte ne peut plus être utilisée dans un visuel *graphique* (histogramme, courbe, camembert, etc.).
 
 ```DAX
 TextTime = FORMAT([ValTime], "HH:mm:ss"))
 ```
 
-Si la valeur est encore en seconde (valeur numérique) :
+Si la valeur est encore en secondes (valeur numérique) :
 
 ```DAX
 TextTime = VAR _v = [ValSelected]
@@ -147,14 +147,14 @@ RETURN COUNTROWS(EXCEPT(_previous, _current))
 
 ### Générer un code couleur complètement aléatoire
 
-On utilise une mesure (qu'on appellera *hexa_alea*) qui renvoi une valeur héxadécimale aléatoire entre *0* et *F* (15).
+On utilise une mesure (qu'on appellera *hexa_alea*) qui renvoie une valeur hexadécimale aléatoire entre *0* et *F* (15).
 
 ```DAX
 MEASURE 'Measures'[hexa_alea] = VAR _an = RANDBETWEEN(0, 15)
 RETURN IF(_an < 10, FORMAT(_an, "0"), UNICHAR(UNICODE("A") + _an - 10))
 ```
 
-La mesure *hexa_alea* doit être appelée dans un *CALCULATE* avec une table et être enregistrée dans une variable pour forcer plusieurs évaluations successives et ainsi obtenir des valeurs diférentes.
+La mesure *hexa_alea* doit être appelée dans un [*CALCULATE*](https://learn.microsoft.com/fr-fr/dax/calculate-function-dax) avec une table et être enregistrée dans une variable pour forcer plusieurs évaluations successives et ainsi obtenir des valeurs diférentes.
 
 ```DAX
 MEASURE 'Measures'[color_alea] = VAR _a = [hexa_alea]
@@ -166,7 +166,7 @@ VAR _f = CALCULATE([hexa_alea], GENERATESERIES(0, 0, 1))
 RETURN "#" & _a &_b & _c & _d & _e & _f
 ```
 
-Il aurai été plus élegant d'utiliser un *GENERATESERIES* pour eviter la succession de variables. Mais dans ce cas, le contexte d'execution est unique et *RANDBETWEEN* renvoi toujours du gris : 
+Il aurait été plus élégant d'utiliser un [*GENERATESERIES*](https://learn.microsoft.com/fr-fr/dax/generateseries-function-dax) pour éviter la succession de variables. Mais dans ce cas, le contexte d'exécution est unique et [*RANDBETWEEN*](https://learn.microsoft.com/fr-fr/dax/randbetween-function-dax) renvoie toujours du gris : 
 
 ```DAX
 MEASURE 'Measures'[color_alea_ko] = "#" 
@@ -175,11 +175,11 @@ MEASURE 'Measures'[color_alea_ko] = "#"
     , "h", CALCULATE([hexa_alea], GENERATESERIES(0, 0, 1)) 
 ) , [h])
 ```
-Le resultat sera toujour de la forme *#DDDDDD*, *#555555*, etc.
+Le résultat sera toujours de la forme *#DDDDDD*, *#555555*, etc.
 
 ### Générer un code couleur avec une luminosité constante
 
-Cette mesure renvoi le code hexadecimal d'une couleur au hasard. La couleur a une luminosité constante de 51% et une dominante rouge, verte ou bleu pour être toujour visible.
+Cette mesure renvoie le code hexadécimal d'une couleur au hasard. La couleur a une luminosité constante de 51 % et une dominante rouge, verte ou bleue pour être toujours visible.
 
 ```DAX
 MEASURE 'Measures'[color51_alea] = VAR _pos = MOD(SECOND(UTCNOW()),6) + 1 -- RANDBETWEEN(1, 3)
