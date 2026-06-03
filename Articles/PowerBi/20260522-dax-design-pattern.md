@@ -57,8 +57,18 @@ Voici quelques exemples de mesures pour des cas d'usage génériques :
 
 #### Convertir une durée en secondes vers le type *time*
 
-La mesure renvoie une valeur de type *DateTime* correspondant au nombre de secondes donné par la mesure source.
+La mesure renvoie une valeur de type *DateTime* correspondant au nombre de secondes donné par la mesure source. Elle doit être mise au format *hh:MM:ss* dans le paramétrage de la mesure pour renvoyer une information coherante.
 Si la durée dépasse 24 heures (86 400 secondes), la mesure renvoie le modulo à la journée.
+
+La fonction TIME() reçoit en paramètres des valeurs numériques de type *short* : de -32 768 à 32 767. Les valeurs utilisées ne doivent donc pas dépasser 32 767 (sachant que 32 767 secondes ça fait 9 heures 6 minutes et 7 secondes).
+
+Si la valeur est inferieure à 32 768 : 
+
+```DAX
+ValTime = TIME(0, 0, [ValSelected])
+```
+
+Si la valeur est supérieure ou égale à 32 768 : 
 
 ```DAX
 ValTime = VAR _v = [ValSelected]
@@ -66,6 +76,25 @@ ValTime = VAR _v = [ValSelected]
     VAR _m = FLOOR(DIVIDE(MOD(_v, 3600), 60), 1)
     VAR _s = MOD(_v, 60)
 RETURN TIME(_h, _m, _s)
+```
+
+#### Formatter une durée en secondes vers du texte
+
+On utilise la fonction *FORMAT* qui permet de faire une convertion vers du texte. 
+Attention une valeur en texte ne peut plus être utilisée dans un visuel *graphique* (histogramme, courbe, camembert, etc.).
+
+```DAX
+TextTime = FORMAT([ValTime], "HH:mm:ss"))
+```
+
+Si la valeur est encore en seconde (valeur numérique) :
+
+```DAX
+TextTime = VAR _v = [ValSelected]
+    VAR _h = FLOOR(DIVIDE(_v, 3600), 1)
+    VAR _m = FLOOR(DIVIDE(MOD(_v, 3600), 60), 1)
+    VAR _s = MOD(_v, 60)
+RETURN FORMAT(_h, "00") & ":" & FORMAT(_m, "00") & ":" & FORMAT(_s, "00")
 ```
 
 ## Comptage
@@ -112,6 +141,57 @@ user_lost_nb = VAR _current = CALCULATETABLE(DISTINCT(t_fact_app_usage[user_prin
         , FILTER(ALL(t_dim_calendrier), t_dim_calendrier[dt_date] < MIN(t_dim_calendrier[dt_date]))
     )
 RETURN COUNTROWS(EXCEPT(_previous, _current))
+```
+
+## Couleurs
+
+### Générer un code couleur complètement aléatoire
+
+On utilise une mesure (qu'on appellera *hexa_alea*) qui renvoi une valeur héxadécimale aléatoire entre *0* et *F* (15).
+
+```DAX
+MEASURE 'Measures'[hexa_alea] = VAR _an = RANDBETWEEN(0, 15)
+RETURN IF(_an < 10, FORMAT(_an, "0"), UNICHAR(UNICODE("A") + _an - 10))
+```
+
+La mesure *hexa_alea* doit être appelée dans un *CALCULATE* avec une table et être enregistrée dans une variable pour forcer plusieurs évaluations successives et ainsi obtenir des valeurs diférentes.
+
+```DAX
+MEASURE 'Measures'[color_alea] = VAR _a = [hexa_alea]
+VAR _b = CALCULATE([hexa_alea], GENERATESERIES(0, 0, 1))
+VAR _c = CALCULATE([hexa_alea], GENERATESERIES(0, 0, 1)) 
+VAR _d = CALCULATE([hexa_alea], GENERATESERIES(0, 0, 1)) 
+VAR _e = CALCULATE([hexa_alea], GENERATESERIES(0, 0, 1)) 
+VAR _f = CALCULATE([hexa_alea], GENERATESERIES(0, 0, 1)) 
+RETURN "#" & _a &_b & _c & _d & _e & _f
+```
+
+Il aurai été plus élegant d'utiliser un *GENERATESERIES* pour eviter la succession de variables. Mais dans ce cas, le contexte d'execution est unique et *RANDBETWEEN* renvoi toujours du gris : 
+
+```DAX
+MEASURE 'Measures'[color_alea_ko] = "#" 
+& CONCATENATEX(
+    ADDCOLUMNS(GENERATESERIES(0, 5)
+    , "h", CALCULATE([hexa_alea], GENERATESERIES(0, 0, 1)) 
+) , [h])
+```
+Le resultat sera toujour de la forme *#DDDDDD*, *#555555*, etc.
+
+### Générer un code couleur avec une luminosité constante
+
+Cette mesure renvoi le code hexadecimal d'une couleur au hasard. La couleur a une luminosité constante de 51% et une dominante rouge, verte ou bleu pour être toujour visible.
+
+```DAX
+MEASURE 'Measures'[color51_alea] = VAR _pos = MOD(SECOND(UTCNOW()),6) + 1 -- RANDBETWEEN(1, 3)
+	VAR _ab = RANDBETWEEN(3, 255)
+	VAR _an = MOD(_ab, 16)
+	VAR _at = IF(_an < 10, FORMAT(_an, "0"), UNICHAR(UNICODE("A") + _an - 10))
+	VAR _bn = FLOOR(DIVIDE(_ab, 16), 1)
+	VAR _bt = IF(_bn < 10, FORMAT(_bn, "0"), UNICHAR(UNICODE("A") + _bn - 10))
+RETURN "#" 
+	& SWITCH(_pos, 1, "FF03", 2, "03FF", 3, "FF", 4, "03") 
+	& _at & _bt 
+	& SWITCH(_pos, 3, "03", 4, "FF", 5, "FF03", 6, "03FF")
 ```
 
 ## Images sérialisées
