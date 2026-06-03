@@ -22,6 +22,7 @@ Comme pour beaucoup de choses, il existe de nombreuses méthodes pour arriver au
 
 - Au-delà de deux appels de la même mesure dans le même contexte, utiliser une variable.
 - Au-delà de deux [*IF*](https://learn.microsoft.com/fr-fr/dax/if-function-dax) imbriqués, utiliser la fonction [*SWITCH*](https://learn.microsoft.com/fr-fr/dax/switch-function-dax) : 
+
 ```DAX
 IF([mesure_test], 0, IF([mesure_test_2] > 1000, -1, [mesure_test_2]))
 ```
@@ -36,6 +37,7 @@ RETURN SWITCH(TRUE()
 ```
 
 - Certaines fonctions permettent d'éviter l'utilisation de conditions : [*COALESCE*](https://learn.microsoft.com/fr-fr/dax/coalesce-function-dax) pour remplacer une valeur vide, [*MAX*](https://learn.microsoft.com/fr-fr/dax/max-function-dax) et [*MIN*](https://learn.microsoft.com/fr-fr/dax/min-function-dax) pour borner une valeur, [*SELECTEDVALUE*](https://learn.microsoft.com/fr-fr/dax/selectedvalue-function-dax) renvoie la valeur sélectionnée dans un champ uniquement si elle est unique.
+
 ```DAX
 VAR _mesure_test = [mesure_test]
 RETURN IF(ISBLANK(_mesure_test), 0, IF(_mesure_test > 1000, 1000, _mesure_test))
